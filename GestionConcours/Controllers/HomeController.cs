@@ -26,5 +26,10 @@ namespace GestionConcours.Controllers
 
             return View();
         }
+
+        public int HelloWorld()
+        {
+            return 0;
+        }
     }
 }
