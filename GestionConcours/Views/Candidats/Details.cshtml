@@ -1,0 +1,186 @@
+﻿@model GestionConcours.Models.Candidat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Candidat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Baccalaureat.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baccalaureat.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouncourEcrit.Cne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouncourEcrit.Cne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouncourOral.Cne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouncourOral.Cne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diplome.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diplome.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Filiere.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Filiere.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LieuNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationalite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationalite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Num_dossier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Num_dossier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gsm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gsm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateInscription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateInscription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Convoque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Convoque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cne }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

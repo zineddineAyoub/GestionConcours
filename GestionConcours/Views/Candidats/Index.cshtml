@@ -1,0 +1,153 @@
+﻿@model IEnumerable<GestionConcours.Models.Candidat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Baccalaureat.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CouncourEcrit.Cne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CouncourOral.Cne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diplome.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filiere.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationalite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Num_dossier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gsm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateInscription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Convoque)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Admis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Baccalaureat.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CouncourEcrit.Cne)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CouncourOral.Cne)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diplome.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Filiere.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LieuNaissance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nationalite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Num_dossier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gsm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateInscription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Convoque)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Admis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Cne }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Cne }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Cne })
+        </td>
+    </tr>
+}
+
+</table>
