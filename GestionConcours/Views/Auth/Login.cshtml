@@ -3,32 +3,53 @@
     ViewBag.Title = "Login";
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CodePen - Multi Step Form with Progress Bar using jQuery and CSS3</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="~/Content/Register.css">
-
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
 </head>
 <body>
-    <form id="msform">
- 
-        <!-- fieldsets -->
-        <fieldset>
-            <h2 class="fs-title">Login To your Account</h2>
-            <input type="text" name="email" placeholder="Email" />
-            <input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
-            <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
-    </form>
-    <!-- partial -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                <h3>Welcome</h3>
+                <p>You are 30 seconds away from earning your own money!</p>
 
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Login Portal</h3>
+                        <div class="row register-form">
+                            <div class="col-md-8 offset-2">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="CIN" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="CNE" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btnRegister" value="Login" /><br /><br />
+                                    <a href="Register">Don't have an account?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>
 
