@@ -11,10 +11,15 @@ namespace GestionConcours.Models
     public class Candidat
     {
         [Key]
+        [Required]
         public string Cne { get; set; }
+        [Required]
         public string Cin { get; set; }
+        [Required]
         public string Nom { get; set; }
+        [Required]
         public string Prenom { get; set; }
+        [Required]
         public string Email { get; set; }
         public string Adresse { get; set; }
         public string LieuNaissance { get; set; }
@@ -27,11 +32,14 @@ namespace GestionConcours.Models
         public string Photo { get; set; }
         public Boolean Convoque { get; set; }
         public Boolean Admis { get; set; }
+        [Required]
+        public int Niveau { get; set; }
+        public int Verified { get; set; }
         public string Password { get; set; }
 
 
-        //relation avec la classe annee universitaire oneToMany
-        public virtual IList<AnneeUniversitaire> AnneeUniversitaires { get; set; }
+        //relation avec la classe annee universitaire oneToOne
+        public virtual AnneeUniversitaire AnneeUniversitaire { get; set; }
         //relation avec la classe Baccalaureat oneToOne
         public virtual Baccalaureat Baccalaureat { get; set; }
         //relation avec la classe CouncourEcrit oneToOne

@@ -10,26 +10,52 @@ namespace GestionConcours.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Profil()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ModifierPersonel()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
-        public int HelloWorld()
+        public ActionResult ModifierDiplome()
         {
-            return 0;
+            return View();
         }
+
+        public ActionResult ModifierBac()
+        {
+            return View();
+        }
+
+        public ActionResult ModifierFiliere()
+        {
+            return View();
+        }
+
+        public ActionResult Image()
+        {
+            return View();
+        }
+
+        public ActionResult Pdf()
+        {
+            return View();
+        }
+
+        public ActionResult Deconnexion()
+        {
+            return View();
+        }
+
     }
 }

@@ -11,10 +11,10 @@ namespace GestionConcours.Models
     {
         [Key, ForeignKey("Candidat")]
         public string Cne { get; set; }
-        public string Type { get; set; }
-        public DateTime DateObtention { get; set; }
-        public double Note { get; set; }
-        public string Mention { get; set; }
+        public string TypeBac { get; set; }
+        public DateTime DateObtentionBac { get; set; }
+        public double NoteBac { get; set; }
+        public string MentionBac { get; set; }
 
 
         public virtual Candidat Candidat { get; set; }

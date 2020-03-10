@@ -20,7 +20,5 @@ namespace GestionConcours.Models
 
 
         public virtual Candidat Candidat { get; set; }
-
-
     }
 }

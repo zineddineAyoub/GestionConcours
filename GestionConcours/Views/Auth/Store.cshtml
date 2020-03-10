@@ -1,0 +1,272 @@
+﻿@model GestionConcours.Models.Candidat
+
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="~/Content/Register.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                <h3>Welcome</h3>
+                <p>You are 30 seconds away from earning your own money!</p>
+                <a href="Login">
+                    <input type="submit" name="" value="Login" /><br />
+                </a>
+            </div>
+
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Inscription Candidat</h3>
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        @using (Html.BeginForm())
+                        {
+
+
+                            <div class="row register-form">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <h4>Info Personel</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Nom" name="Nom" value="" />
+                                        @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="CNE" name="cne" value="" />
+                                        @Html.ValidationMessageFor(model => model.Cne, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="sexe" class="form-control">
+                                            <option>Selectionner le sex</option>
+                                            <option>Homme</option>
+                                            <option>Femme</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Lieu de naissance" name="lieuNaissance" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Tel" name="telephone" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Address" name="addresse" value="" />
+                                    </div>
+                                    <!--lol-->
+                                    <div class="form-group">
+                                        <h4>Info Académique</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Type diplome" name="type" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Ville Diplome" name="villeObtention" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <input type="text" class="form-control" placeholder="Anne universitaire" name="anneUni1" value="" />
+                                            </div>
+                                            <div class="col-5">
+                                                <select class="form-control" name="redoublant1">
+                                                    <option class="hidden" selected disabled>
+                                                        Redouble
+                                                    </option>
+                                                    <option>Oui</option>
+                                                    <option>Non</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <input type="text" class="form-control" placeholder="Anne universitaire" name="anneUni2" value="" />
+                                            </div>
+                                            <div class="col-5">
+                                                <select class="form-control" name="redoublant2">
+                                                    <option class="hidden" selected disabled>
+                                                        Redouble
+                                                    </option>
+                                                    <option>Oui</option>
+                                                    <option>Non</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <input type="text" class="form-control" placeholder="Anne universitaire" name="anneUni3" value="" />
+                                            </div>
+                                            <div class="col-5">
+                                                <select class="form-control" name="redoublant3">
+                                                    <option class="hidden" selected disabled>
+                                                        Redouble
+                                                    </option>
+                                                    <option>Oui</option>
+                                                    <option>Non</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>Info Bac</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="typeBac">
+                                            <option class="hidden" selected disabled>Select Type Bac</option>
+                                            <option>SMA</option>
+                                            <option>SMB</option>
+                                            <option>PC</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="note" name="noteBac" value="" />
+                                        @Html.ValidationMessage("NoteBac", "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>Choix Filiere</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" name="ID" value="1" class="form-group" /> <span>Genie Info</span><br />
+                                        <input type="radio" name="ID" value="2" class="form-group" /> <span>Genie Reseau</span><br />
+                                        <input type="radio" name="ID" value="3" class="form-group" /> <span>Genie Indus</span><br />
+                                        <input type="radio" name="ID" value="4" class="form-group" /> <span>Genie Procedes</span><br />
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Second part -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <h4 style="color:#f8f9fa">Test</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Prenom" name="prenom" value="" />
+                                        @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Email" name="email" value="" />
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="CIN" name="cin" value="" />
+                                        @Html.ValidationMessageFor(model => model.Cin, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="nationalite">
+                                            <option class="hidden" selected disabled>
+                                                Selectionner votre nationalité
+                                            </option>
+                                            <option>Marocain</option>
+                                            <option>Autre</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="GSM" value="" name="gsm" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Password" value="" name="password" />
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 style="color:#f8f9fa">Test</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Etablissement" name="etablissement" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Note Diplome" name="noteDiplome" value="" />
+                                        @Html.ValidationMessage("NoteDiplome", "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" placeholder="Note Semestre 1" name="semestre1" value="" />
+                                                @Html.ValidationMessage("Semestre1", "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" placeholder="Note Semestre 2" name="semestre2" value="" />
+                                                @Html.ValidationMessage("Semestre2", "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" placeholder="Note Semestre 3" name="semestre3" value="" />
+                                                @Html.ValidationMessage("Semestre3", "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" placeholder="Note Semestre 4" name="semestre4" value="" />
+                                                @Html.ValidationMessage("Semestre4", "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" placeholder="Note Semestre 5" name="semestre5" value="" />
+                                                @Html.ValidationMessage("Semestre5", "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" placeholder="Note Semestre 6" name="semestre6" value="" />
+                                                @Html.ValidationMessage("Semestre6", "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 style="color:#f8f9fa">Test</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" placeholder="Anne Bac" name="dateObtentionBac" value="" />
+                                        @Html.ValidationMessage("DateObtentionBac", "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="mentionBac">
+                                            <option class="hidden" selected disabled>
+                                                Mention
+                                            </option>
+                                            <option>Tres Bien</option>
+                                            <option>Bien</option>
+                                            <option>Assez Bien</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 style="color:#f8f9fa">Test</h4>
+                                    </div>
+                                    <input type="submit" class="btnRegister" value="Register" style="margin-top:50%" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+

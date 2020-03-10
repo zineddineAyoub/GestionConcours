@@ -137,6 +137,26 @@
     <Compile Include="Migrations\202003072152039_InitialCreate.designer.cs">
       <DependentUpon>202003072152039_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003092200186_InitialCreate1.cs" />
+    <Compile Include="Migrations\202003092200186_InitialCreate1.designer.cs">
+      <DependentUpon>202003092200186_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003092254476_InitialCreate2.cs" />
+    <Compile Include="Migrations\202003092254476_InitialCreate2.designer.cs">
+      <DependentUpon>202003092254476_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003092307096_InitialCreate3.cs" />
+    <Compile Include="Migrations\202003092307096_InitialCreate3.designer.cs">
+      <DependentUpon>202003092307096_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003102116396_InitialCreate4.cs" />
+    <Compile Include="Migrations\202003102116396_InitialCreate4.designer.cs">
+      <DependentUpon>202003102116396_InitialCreate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003102122397_InitialCreate5.cs" />
+    <Compile Include="Migrations\202003102122397_InitialCreate5.designer.cs">
+      <DependentUpon>202003102122397_InitialCreate5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
@@ -1814,8 +1834,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
@@ -1967,6 +1985,15 @@
     <Content Include="Views\AdminAuth\Login.cshtml" />
     <Content Include="Views\AdminAuth\Enregistrement.cshtml" />
     <Content Include="Views\AdminAuth\Recherche.cshtml" />
+    <Content Include="Views\Auth\Store.cshtml" />
+    <Content Include="Views\Home\Profil.cshtml" />
+    <Content Include="Views\Home\ModifierPersonel.cshtml" />
+    <Content Include="Views\Home\ModifierDiplome.cshtml" />
+    <Content Include="Views\Home\ModifierBac.cshtml" />
+    <Content Include="Views\Home\ModifierFiliere.cshtml" />
+    <Content Include="Views\Home\Image.cshtml" />
+    <Content Include="Views\Home\Pdf.cshtml" />
+    <Content Include="Views\Home\Deconnexion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1989,6 +2016,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003072152039_InitialCreate.resx">
       <DependentUpon>202003072152039_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003092200186_InitialCreate1.resx">
+      <DependentUpon>202003092200186_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003092254476_InitialCreate2.resx">
+      <DependentUpon>202003092254476_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003092307096_InitialCreate3.resx">
+      <DependentUpon>202003092307096_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003102116396_InitialCreate4.resx">
+      <DependentUpon>202003102116396_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003102122397_InitialCreate5.resx">
+      <DependentUpon>202003102122397_InitialCreate5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
