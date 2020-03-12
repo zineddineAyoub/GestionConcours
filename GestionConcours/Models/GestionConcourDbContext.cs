@@ -23,5 +23,7 @@ namespace GestionConcours.Models
         public DbSet<CouncourOral> CouncourOrals { get; set; }
         public DbSet<Diplome> Diplomes { get; set; }
         public DbSet<Filiere> Filieres { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+
     }
 }

@@ -14,7 +14,7 @@ namespace GestionConcours.Controllers
         // GET: Auth
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login");
         }
         public ActionResult Verify(string cne)
         {

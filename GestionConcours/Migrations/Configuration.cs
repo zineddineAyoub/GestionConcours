@@ -1,6 +1,8 @@
 ﻿namespace GestionConcours.Migrations
 {
+    using GestionConcours.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,10 +16,17 @@
 
         protected override void Seed(GestionConcours.Models.GestionConcourDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var admins = new List<Admin>();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            admins.Add(new Admin()
+            {
+                ID = 1,
+                Username = "admin",
+                Password = "admin"
+            });
+
+            context.Admins.AddRange(admins);
+            base.Seed(context);
         }
     }
 }

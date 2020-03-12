@@ -10,8 +10,9 @@ namespace GestionConcours.Models
     {
         public int ID { get; set; }
         [Required]
-        string Username { get; set; }
+        public string Username { get; set; }
         [Required]
-        string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }
