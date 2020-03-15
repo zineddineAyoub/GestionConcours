@@ -16,7 +16,7 @@ namespace GestionConcours.Controllers
         {
             if (Session["cne"] != null)
             {
-                    return View();
+                    return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Login", "Auth");
         }
