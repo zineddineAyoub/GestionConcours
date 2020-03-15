@@ -47,7 +47,12 @@ namespace GestionConcours.Controllers
             return View();
         }
 
-        public ActionResult Pdf()
+        public ActionResult Epreuve()
+        {
+            return View();
+        }
+
+        public ActionResult Fiche()
         {
             return View();
         }

@@ -210,6 +210,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Pictures\admin_pic\admin.svg" />
+    <Content Include="Pictures\admin_pic\admin2.svg" />
     <Content Include="Pictures\admin_pic\admin_icon.svg" />
     <Content Include="Pictures\bg-title-01.jpg" />
     <Content Include="Pictures\bg-title-02.jpg" />
@@ -2275,7 +2277,6 @@
     <Content Include="Views\Home\ModifierBac.cshtml" />
     <Content Include="Views\Home\ModifierFiliere.cshtml" />
     <Content Include="Views\Home\Image.cshtml" />
-    <Content Include="Views\Home\Pdf.cshtml" />
     <Content Include="Views\Home\Deconnexion.cshtml" />
     <Content Include="Views\AdminAuth\Error.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
@@ -2311,7 +2312,9 @@
     <Content Include="vendor_user\slick\slick-theme.scss" />
     <Content Include="vendor_user\slick\slick.less" />
     <Content Include="vendor_user\slick\slick.scss" />
-    <Content Include="Views\Auth\Index.cshtml" />
+    <Content Include="Views\Shared\_UserTabLayout.cshtml" />
+    <Content Include="Views\Home\Fiche.cshtml" />
+    <Content Include="Views\Home\Epreuve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

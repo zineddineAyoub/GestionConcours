@@ -14,7 +14,11 @@ namespace GestionConcours.Controllers
         // GET: Auth
         public ActionResult Index()
         {
-            return RedirectToAction("Login");
+            if (Session["cne"] != null)
+            {
+                    return View();
+            }
+            return RedirectToAction("Login", "Auth");
         }
         public ActionResult Verify(string cne)
         {
