@@ -9,6 +9,9 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+    <!-- for icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="all">
+
     <!-- Title Page-->
     <title>@ViewBag.Title</title>
 
@@ -34,6 +37,7 @@
     <!-- Main CSS-->
     <link href="~/Content/css_user/theme.css" rel="stylesheet" media="all">
 
+
 </head>
 
 <body class="animsition">
@@ -55,29 +59,29 @@
                 </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href='@Url.Action("Index", "Home")'>
-                                <i class="fas fa-tachometer-alt"></i>Home
+                        <li >
+                            <a  href='@Url.Action("Index", "Home")'>
+                                <i class="iconify mr-3" data-icon="ion:home" data-inline="true" style="color:hotpink; height:25px; width:25px;"></i>Home
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("ModifierPersonel", "Home")'>
-                                <i class="fas fa-chart-bar"></i>Informations Personnelles
+                                <i class="iconify mr-3" data-icon="ic:sharp-account-circle" data-inline="true" style="color:aquamarine; height:25px; width:25px;"></i>Informations Personnelles
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("Fiche", "Home")'>
-                                <i class="fas fa-shopping-basket"></i>Fiche de Convocation
+                                <i class="iconify mr-3" data-icon="bx:bxs-file-doc" data-inline="true" style="color:crimson; height:25px; width:25px;"></i>Fiche de Convocation
                             </a>
                         </li>
-                        <li >
+                        <li>
                             <a class="js-arrow" href='@Url.Action("ModifierDiplome", "Home")'>
                                 <i class="fas fa-tachometer-alt"></i>Diplôme
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("ModifierBac", "Home")'>
-                                <i class="fas fa-chart-bar"></i>Bac
+                                <i class="iconify mr-3" data-icon="mdi:bulletin-board" data-inline="true" style="color: burlywood; height:25px; width:25px;"></i>Bac
                             </a>
                         </li>
                         <li>
@@ -446,6 +450,9 @@
         </div>
     </div>
 
+    <!-- ICONS -->
+    <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+
 
     <!-- Jquery JS-->
     <script src="~/vendor_user/jquery-3.2.1.min.js"></script>
@@ -474,6 +481,7 @@
 
     <!-- Main JS-->
     <script src="~/Scripts/js_user/main.js"></script>
+
 
 </body>
 

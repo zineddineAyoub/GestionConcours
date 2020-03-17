@@ -215,6 +215,8 @@
     <Content Include="Pictures\admin_pic\admin_icon.svg" />
     <Content Include="Pictures\bg-title-01.jpg" />
     <Content Include="Pictures\bg-title-02.jpg" />
+    <Content Include="Pictures\icons_user\bac.svg" />
+    <Content Include="Pictures\icons_user\edit_icon.svg" />
     <Content Include="Pictures\icon\avatar-01.jpg" />
     <Content Include="Pictures\icon\avatar-02.jpg" />
     <Content Include="Pictures\icon\avatar-03.jpg" />
@@ -343,9 +345,6 @@
     <Content Include="Scripts\js\demo\datatables-demo.js" />
     <Content Include="Scripts\js\sb-admin-2.js" />
     <Content Include="Scripts\js\sb-admin-2.min.js" />
-    <Content Include="Scripts\js_user\bootstrap-datetimepicker.js" />
-    <Content Include="Scripts\js_user\main.js" />
-    <Content Include="Scripts\js_user\moment.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
