@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionConcours.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,6 +20,11 @@ namespace GestionConcours.Controllers
 
         public ActionResult Profil()
         {
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            
+           // Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).Single();
+
+           // return View(c1);
             return View();
         }
 
