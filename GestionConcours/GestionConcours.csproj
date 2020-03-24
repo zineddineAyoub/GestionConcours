@@ -53,6 +53,9 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -161,6 +164,10 @@
     <Compile Include="Migrations\202003111737280_InitialCreate6.designer.cs">
       <DependentUpon>202003111737280_InitialCreate6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003202229090_InitialCreate7.cs" />
+    <Compile Include="Migrations\202003202229090_InitialCreate7.designer.cs">
+      <DependentUpon>202003202229090_InitialCreate7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
@@ -172,6 +179,7 @@
     <Compile Include="Models\ConfigurationSelection.cs" />
     <Compile Include="Models\Corbeil.cs" />
     <Compile Include="Models\Diplome.cs" />
+    <Compile Include="Models\Epreuves.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,6 +223,7 @@
     <Content Include="Pictures\admin_pic\admin_icon.svg" />
     <Content Include="Pictures\bg-title-01.jpg" />
     <Content Include="Pictures\bg-title-02.jpg" />
+    <Content Include="Pictures\ENSA.jpg" />
     <Content Include="Pictures\icons_user\bac.svg" />
     <Content Include="Pictures\icons_user\edit_icon.svg" />
     <Content Include="Pictures\icon\avatar-01.jpg" />
@@ -232,6 +241,11 @@
     <Content Include="Pictures\admin_pic\school.svg" />
     <Content Include="Pictures\admin_pic\school4.svg" />
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
+    <Content Include="Pictures\Mark.jpg" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\scss\navs\_global.scss" />
@@ -329,6 +343,10 @@
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-regular.ttf" />
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-regular.woff" />
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Epreuves\Info2014_2013.pdf" />
+    <Content Include="Epreuves\Math2014_2013.pdf" />
+    <Content Include="Epreuves\Reseau2018_2017.pdf" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2314,6 +2332,7 @@
     <Content Include="Views\Shared\_UserTabLayout.cshtml" />
     <Content Include="Views\Home\Fiche.cshtml" />
     <Content Include="Views\Home\Epreuve.cshtml" />
+    <Content Include="Views\Shared\PdfLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2354,6 +2373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003111737280_InitialCreate6.resx">
       <DependentUpon>202003111737280_InitialCreate6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003202229090_InitialCreate7.resx">
+      <DependentUpon>202003202229090_InitialCreate7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
