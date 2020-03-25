@@ -1,4 +1,5 @@
 ﻿
+@model GestionConcours.Models.Candidat
 @{
     ViewBag.Title = "ModifierPersonel";
 }
@@ -10,32 +11,117 @@
             <!-- USER DATA-->
             <div class="user-data m-b-40">
                 <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar"></i>user data
+                    <i class="zmdi zmdi-account-calendar"></i>modification des informations personelles
                 </h3>
-                <div class="filters m-b-45">
-                    <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                        <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Properties</option>
-                            <option value="">Products</option>
-                            <option value="">Services</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 126.8px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-property-qs-container"><span class="select2-selection__rendered" id="select2-property-qs-container" title="All Properties">All Properties</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                    <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                        <select class="js-select2 au-select-dark select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Time</option>
-                            <option value="">By Month</option>
-                            <option value="">By Day</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 97.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-time-6y-container"><span class="select2-selection__rendered" id="select2-time-6y-container" title="All Time">All Time</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                </div>
+                @using (Html.BeginForm("ModifierPersonel", "Home", FormMethod.Post))
+                {
+                    <div class="row d-flex justify-content-center m-b-30">
+                        <div class="col-md-11">
 
-                <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
-                </div>
+                            <div class="form-horizontal ">
+
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Cne)
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Nom, "Nom :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Prenom, "Prenom :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cin, "Cin (carte d'identité nationale) :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Cin, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Cin, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DateNaissance, "Date de naissance :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DateNaissance, new { htmlAttributes = new { @class = "form-control datePicker" } })
+                                        @Html.ValidationMessageFor(model => model.DateNaissance, "", new { @class = "text-danger" })
+                                    </div>
+                                    
+                                </div>
+                                    
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LieuNaissance, "Lieu de naissance :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.LieuNaissance, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.LieuNaissance, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Nationalite, "Nationalite :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Nationalite, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Nationalite, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Gsm, "GSM :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Gsm, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Gsm, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Telephone, "Tel :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Adresse, "Adresse :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Adresse, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Ville, "Ville :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Ville, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Ville, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, "Email :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control " } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10 d-flex justify-content-end">
+                                        <input type="submit" value=" Enregistrer " class="btn btn-default px-4 mt-2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
             </div>
         </div>
     </div>
 </section>
+
+    
+    

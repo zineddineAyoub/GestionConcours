@@ -31,9 +31,38 @@ namespace GestionConcours.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult ModifierPersonel()
         {
-            return View();
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            Candidat candidat = db.Candidats.Find(Session["cne"]);
+            
+
+
+
+            return View(candidat);
+        }
+        [HttpPost]
+        public ActionResult ModifierPersonel(Candidat candidat)
+        {
+            var originalCandiat = (from c in db.Candidats where c.Cne == candidat.Cne select c).First();
+            originalCandiat.Nom = candidat.Nom;
+            originalCandiat.Prenom = candidat.Prenom;
+            originalCandiat.Cin = candidat.Cin;
+            originalCandiat.DateNaissance = candidat.DateNaissance;
+            originalCandiat.LieuNaissance = candidat.LieuNaissance;
+            originalCandiat.Nationalite = candidat.Nationalite;
+            originalCandiat.Gsm = candidat.Gsm;
+            originalCandiat.Telephone = candidat.Telephone;
+            originalCandiat.Adresse = candidat.Adresse;
+            originalCandiat.Ville = candidat.Ville;
+            originalCandiat.Email = candidat.Email;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult ModifierDiplome()

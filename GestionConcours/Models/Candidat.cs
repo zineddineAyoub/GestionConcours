@@ -22,6 +22,7 @@ namespace GestionConcours.Models
         [Required]
         public string Email { get; set; }
         public string Adresse { get; set; }
+        public string Ville { get; set; }
         public string LieuNaissance { get; set; }
         public string Telephone { get; set; }
         public string Nationalite { get; set; }
@@ -29,6 +30,7 @@ namespace GestionConcours.Models
         public string Sexe { get; set; }
         public string Gsm { get; set; }
         public DateTime DateInscription { get; set; }
+        public DateTime DateNaissance { get; set; }
         public string Photo { get; set; }
         public Boolean Convoque { get; set; }
         public Boolean Admis { get; set; }
