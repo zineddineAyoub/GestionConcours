@@ -7,34 +7,175 @@
     <div class="section__content section__content--p30 m-t-75">
         <div class="container-fluid">
             <!-- USER DATA-->
-            <div class="user-data m-b-40">
-                <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar"></i>user data
-                </h3>
-                <div class="filters m-b-45">
-                    <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                        <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Properties</option>
-                            <option value="">Products</option>
-                            <option value="">Services</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 126.8px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-property-qs-container"><span class="select2-selection__rendered" id="select2-property-qs-container" title="All Properties">All Properties</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                    <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                        <select class="js-select2 au-select-dark select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Time</option>
-                            <option value="">By Month</option>
-                            <option value="">By Day</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 97.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-time-6y-container"><span class="select2-selection__rendered" id="select2-time-6y-container" title="All Time">All Time</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                </div>
+			<div class="user-data m-b-40">
+				<div class="col-md-12 register-right">
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						
+							@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+							@using (Html.BeginForm())
+							{
+							<div class="row register-form " style="padding-bottom: 40px">
+								<div class="col-md-8 offset-2">
+									<h1 class="register-heading">Modification des informations Diplômes et notes</h1><br /><br /><br />
+									<div class="form-group">
+										<h3 class="register-heading">Diplome obtenu</h3><br />
 
-                <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
-                </div>
 
-            </div>
+										<select name="Type" class="form-control">
+											<option selected>Choix de type du Diplôme</option>
+											<option value="dut">DUT</option>
+											<option value="deug">DEUG</option>
+											<option value="fond">Liscence fondamentale</option>
+											<option value="pro">Liscence professionel</option>
+
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Spécialité" value="" name="Specialite" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Note du diplôme" value="" name="Note_Diplome" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Etablissement" value="" name="Etablissement" />
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Ville" value="" name="villeObtention" />
+										<br /><br />
+									</div>
+
+								</div>
+								<h3 class="register-heading" style="margin-left: 96px;margin-bottom: 23px">Releve de notes semestriel</h3><br />
+								<div style="display:flex">
+									<div class="rs-select2--dark  rs-select2--border" style="width: 283px; padding-left: 97px;margin-right: 30px">
+
+										<select class="form-control">
+											<option selected="selected"  name="AnneUni1">Année universitaire</option>
+											<option value="ann1-1">2012/2013</option>
+											<option value="ann1-2">2013/2014</option>
+											<option value="ann1-3">2014/2015</option>
+											
+										</select>
+										<br />
+										<select class="form-control">
+											<option selected="selected" name="AnneUni2">Année universitaire</option>
+											<option value="ann1-1">2012/2013</option>
+											<option value="ann1-2">2013/2014</option>
+											<option value="ann1-3">2014/2015</option>
+											<option value="ann1-4">2015/2016</option>
+										</select>
+										@if (Session["niveau"].ToString() == "4")
+										{
+											<br />
+											<select class="form-control">
+												<option selected="selected" name="AnneUni3">Année universitaire</option>
+												<option value="ann1-1">2012/2013</option>
+												<option value="ann1-2">2013/2014</option>
+												<option value="ann1-3">2014/2015</option>
+												<option value="ann1-4">2015/2016</option>
+											</select>
+										}
+										<div class="dropDownSelect2"></div>
+									</div>
+									<div class="rs-select2--dark rs-select2--md  rs-select2--border" style="margin-right: 30px">
+
+										<select class="form-control">
+											<option selected="selected" name="Redoublant1">Redoublement</option>
+											<option value="oui1">Oui</option>
+											<option value="non1">Non</option>
+										</select>
+										<br />
+										<select class="form-control">
+											<option selected="selected" name="Redoublant2">Redoublement</option>
+											<option value="oui1">Oui</option>
+											<option value="non1">Non</option>
+										</select>
+										<br />
+										@if (Session["niveau"].ToString() == "4")
+										{
+											<select class="form-control">
+												<option selected="selected" name="Redoublant3">Redoublement</option>
+												<option value="oui1">Oui</option>
+												<option value="non1">Non</option>
+											</select>
+										}
+										<div class="dropDownSelect2"></div>
+
+
+									</div>
+
+									<div class="rs-select2--dark rs-select2--md rs-select2--border" style="margin-right: 30px">
+
+										<div>
+											<input type="text" class="form-control" placeholder="1 ere semestre" value="" name="Semestre1" />
+										</div>
+										<br />
+										<div>
+											<input type="text" class="form-control" placeholder="3 eme semestre" value="" name="Semestre3" />
+										</div>
+										<br />
+										@if (Session["niveau"].ToString() == "4")
+										{
+											<div>
+												<input type="text" class="form-control" placeholder="5 eme semestre" value="" name="Semestre5" />
+											</div>
+										}
+
+
+									</div>
+
+									<div class="rs-select2--dark rs-select2--md rs-select2--border" style="margin-right: 30px">
+
+										<div>
+											<input type="text" class="form-control" placeholder="2 eme semestre" value="" name="Semestre2" />
+										</div>
+										<br />
+										<div>
+											<input type="text" class="form-control" placeholder="4 eme semestre" value="" name="Semestre4" />
+										</div>
+										<br />
+										@if (Session["niveau"].ToString() == "4")
+										{
+											<div>
+												<input type="text" class="form-control" placeholder="6 eme semestre" value="" name="Semestre6" />
+											</div>
+										}
+
+
+
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+								<div class="col-md-8 offset-2">
+									<div class="form-group" style="margin-left: 260px">
+										<br /><br />
+										<button type="submit" class="btn btn-success" id="maj">Mettre à jour</button>
+
+									</div>
+								</div>
+								<br /><br />
+
+
+
+
+							</div>
+							}
+						</div>
+					</div>
+				</div>
+
+			</div>
         </div>
     </div>
 </section>

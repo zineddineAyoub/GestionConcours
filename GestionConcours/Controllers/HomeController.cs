@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionConcours.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,10 +30,24 @@ namespace GestionConcours.Controllers
 
         public ActionResult ModifierDiplome()
         {
-            return View();
+			ViewBag.e = Session["niveau"];
+			return View();			
         }
+		[HttpPost]
+		public ActionResult ModifierDiplome(Diplome diplome, AnneeUniversitaire uni)
+		{
+			GestionConcourDbContext db = new GestionConcourDbContext();
+			diplome.Cne = Session["cne"].ToString();
+			db.Diplomes.Add(diplome);
+			db.SaveChanges();
 
-        public ActionResult ModifierBac()
+			uni.Cne = Session["cne"].ToString();
+			db.AnneeUniversitaires.Add(uni);
+			db.SaveChanges();
+			return View(Index());
+		}
+
+		public ActionResult ModifierBac()
         {
             return View();
         }
@@ -42,7 +57,8 @@ namespace GestionConcours.Controllers
             return View();
         }
 
-        public ActionResult Image()
+		
+			public ActionResult Image()
         {
             return View();
         }
