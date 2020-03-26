@@ -1,5 +1,9 @@
+
+﻿using GestionConcours.Models;
+
 using GestionConcours.Models;
 using Rotativa.Options;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -67,10 +71,24 @@ namespace GestionConcours.Controllers
 
         public ActionResult ModifierDiplome()
         {
-            return View();
+			ViewBag.e = Session["niveau"];
+			return View();			
         }
+		[HttpPost]
+		public ActionResult ModifierDiplome(Diplome diplome, AnneeUniversitaire uni)
+		{
+			GestionConcourDbContext db = new GestionConcourDbContext();
+			diplome.Cne = Session["cne"].ToString();
+			db.Diplomes.Add(diplome);
+			db.SaveChanges();
 
-        public ActionResult ModifierBac()
+			uni.Cne = Session["cne"].ToString();
+			db.AnneeUniversitaires.Add(uni);
+			db.SaveChanges();
+			return View(Index());
+		}
+
+		public ActionResult ModifierBac()
         {
             if (Session["cne"] == null)
             {
@@ -120,7 +138,8 @@ namespace GestionConcours.Controllers
             return View();
         }
 
-        public ActionResult Image()
+		
+			public ActionResult Image()
         {
             return View();
         }

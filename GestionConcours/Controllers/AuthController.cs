@@ -51,6 +51,7 @@ namespace GestionConcours.Controllers
                 return Redirect("Login");
             }
             Session["cne"] = candidat.Cne;
+			Session["niveau"] = x.Niveau;
             Session["role"] = "user";
             return RedirectToAction("Index", "Home");
         }
