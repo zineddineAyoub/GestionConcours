@@ -109,7 +109,7 @@ namespace GestionConcours.Controllers
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
-                    Timeout = 20000
+                    Timeout = 60000
                 };
                 using (var message = new MailMessage(fromAddress, toAddress)
                 {

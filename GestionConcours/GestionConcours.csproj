@@ -53,6 +53,9 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -161,6 +164,18 @@
     <Compile Include="Migrations\202003111737280_InitialCreate6.designer.cs">
       <DependentUpon>202003111737280_InitialCreate6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003202229090_InitialCreate7.cs" />
+    <Compile Include="Migrations\202003202229090_InitialCreate7.designer.cs">
+      <DependentUpon>202003202229090_InitialCreate7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003251459262_addingBirthToCandidat.cs" />
+    <Compile Include="Migrations\202003251459262_addingBirthToCandidat.designer.cs">
+      <DependentUpon>202003251459262_addingBirthToCandidat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003251932284_addingCityToCandidat.cs" />
+    <Compile Include="Migrations\202003251932284_addingCityToCandidat.designer.cs">
+      <DependentUpon>202003251932284_addingCityToCandidat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
@@ -172,6 +187,7 @@
     <Compile Include="Models\ConfigurationSelection.cs" />
     <Compile Include="Models\Corbeil.cs" />
     <Compile Include="Models\Diplome.cs" />
+    <Compile Include="Models\Epreuves.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +204,47 @@
     <Content Include="Content\css_user\font-face.css" />
     <Content Include="Content\css_user\theme.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-100.svg" />
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-100italic.svg" />
@@ -215,6 +272,9 @@
     <Content Include="Pictures\admin_pic\admin_icon.svg" />
     <Content Include="Pictures\bg-title-01.jpg" />
     <Content Include="Pictures\bg-title-02.jpg" />
+    <Content Include="Pictures\ENSA.jpg" />
+    <Content Include="Pictures\icons_user\bac.svg" />
+    <Content Include="Pictures\icons_user\edit_icon.svg" />
     <Content Include="Pictures\icon\avatar-01.jpg" />
     <Content Include="Pictures\icon\avatar-02.jpg" />
     <Content Include="Pictures\icon\avatar-03.jpg" />
@@ -230,6 +290,11 @@
     <Content Include="Pictures\admin_pic\school.svg" />
     <Content Include="Pictures\admin_pic\school4.svg" />
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
+    <Content Include="Pictures\Mark.jpg" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\scss\navs\_global.scss" />
@@ -327,12 +392,18 @@
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-regular.ttf" />
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-regular.woff" />
     <Content Include="fonts\fonts_user\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="Epreuves\Info2014_2013.pdf" />
+    <Content Include="Epreuves\Math2014_2013.pdf" />
+    <Content Include="Epreuves\Reseau2018_2017.pdf" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -343,9 +414,6 @@
     <Content Include="Scripts\js\demo\datatables-demo.js" />
     <Content Include="Scripts\js\sb-admin-2.js" />
     <Content Include="Scripts\js\sb-admin-2.min.js" />
-    <Content Include="Scripts\js_user\bootstrap-datetimepicker.js" />
-    <Content Include="Scripts\js_user\main.js" />
-    <Content Include="Scripts\js_user\moment.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -2315,6 +2383,12 @@
     <Content Include="Views\Shared\_UserTabLayout.cshtml" />
     <Content Include="Views\Home\Fiche.cshtml" />
     <Content Include="Views\Home\Epreuve.cshtml" />
+    <Content Include="Views\Shared\PdfLayout.cshtml" />
+    <Content Include="Views\Admins\Create.cshtml" />
+    <Content Include="Views\Admins\Delete.cshtml" />
+    <Content Include="Views\Admins\Details.cshtml" />
+    <Content Include="Views\Admins\Edit.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2355,6 +2429,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003111737280_InitialCreate6.resx">
       <DependentUpon>202003111737280_InitialCreate6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003202229090_InitialCreate7.resx">
+      <DependentUpon>202003202229090_InitialCreate7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003251459262_addingBirthToCandidat.resx">
+      <DependentUpon>202003251459262_addingBirthToCandidat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003251932284_addingCityToCandidat.resx">
+      <DependentUpon>202003251932284_addingCityToCandidat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

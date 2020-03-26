@@ -11,22 +11,15 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(GestionConcours.Models.GestionConcourDbContext context)
         {
-            var admins = new List<Admin>();
+            //  This method will be called after migrating to the latest version.
 
-            admins.Add(new Admin()
-            {
-                ID = 1,
-                Username = "admin",
-                Password = "admin"
-            });
-
-            context.Admins.AddRange(admins);
-            base.Seed(context);
+           // var Candidats = new List<Candidat>();
+           // Candidats.Add(new Candidat() { Cne="1111",Cin="E1111",Nom="dariaoui",Prenom="oussama",Email="oussama@gmail.com",Adresse="adresse Test",LieuNaissance="Lieu de Naissance test",Telephone="0606060606",Nationalite="marocain",Sexe="M",Gsm="06020210",Conv"")
         }
     }
 }
