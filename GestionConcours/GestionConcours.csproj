@@ -282,6 +282,7 @@
     <Content Include="Pictures\icon\avatar-05.jpg" />
     <Content Include="Pictures\icon\avatar-06.jpg" />
     <Content Include="Pictures\icon\avatar-big-01.jpg" />
+    <Content Include="Pictures\icon\icon.jpg" />
     <Content Include="Pictures\icon\logo-blue.png" />
     <Content Include="Pictures\icon\logo-mini.png" />
     <Content Include="Pictures\icon\logo-white.png" />
@@ -291,6 +292,7 @@
     <Content Include="Pictures\admin_pic\school4.svg" />
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
     <Content Include="Pictures\Mark.jpg" />
+    <Content Include="Pictures\userPic\icon.jpg" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />

@@ -16,7 +16,7 @@ namespace GestionConcours.Controllers
         {
             if (Session["cne"] != null)
             {
-                    return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Login", "Auth");
         }
@@ -53,6 +53,7 @@ namespace GestionConcours.Controllers
             Session["cne"] = candidat.Cne;
 			Session["niveau"] = x.Niveau;
             Session["role"] = "user";
+            Session["photo"] = candidat.Photo;
             return RedirectToAction("Index", "Home");
         }
 
@@ -88,14 +89,18 @@ namespace GestionConcours.Controllers
             if (ModelState.IsValid)
             {
                 candidat.DateInscription = DateTime.Now;
+                candidat.DateNaissance = DateTime.Now;
                 Random random = new Random();
                 const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
                 var chars = Enumerable.Range(0, 7)
                     .Select(x => pool[random.Next(0, pool.Length)]);
                 candidat.Password=new string(chars.ToArray());
                 candidat.Verified = 0;
+                candidat.Photo = "icon.jpg";
                 db.Candidats.Add(candidat);
                 db.SaveChanges();
+                
+
                 var fromAddress = new MailAddress("tarik.ouhamou@gmail.com", "From Name");
                 var toAddress = new MailAddress(candidat.Email, "To Name");
                 const string fromPassword = "dragonballz123+";

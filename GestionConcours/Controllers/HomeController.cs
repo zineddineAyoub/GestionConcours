@@ -7,7 +7,9 @@ using Rotativa.Options;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,6 +29,9 @@ namespace GestionConcours.Controllers
             }
 
             candidat = db.Candidats.Find(Session["cne"]);
+            Session["photo"] = candidat.Photo;
+            Session["nom"] = candidat.Nom;
+            Session["prenom"] = candidat.Prenom;
             return View();
         }
 
@@ -44,10 +49,7 @@ namespace GestionConcours.Controllers
             }
 
             Candidat candidat = db.Candidats.Find(Session["cne"]);
-            
-
-
-
+            Session["photo"] = candidat.Photo;
             return View(candidat);
         }
         [HttpPost]
@@ -139,9 +141,35 @@ namespace GestionConcours.Controllers
         }
 
 		
-			public ActionResult Image()
+		public JsonResult Image(HttpPostedFileBase file)
         {
-            return View();
+            string response=" ";
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    String extension = Path.GetExtension(file.FileName);
+                    Random r = new Random();
+                    int rInt = r.Next(0, 10000);
+                    string fileName = rInt.ToString() + extension.ToLower();
+                    string path = Path.Combine(Server.MapPath("~/Pictures/userPic"), fileName);
+                    file.SaveAs(path);
+                    string cne = Session["cne"].ToString();
+                    GestionConcourDbContext db = new GestionConcourDbContext();
+                    var x = db.Candidats.Where(c => c.Cne == cne).SingleOrDefault();
+                    x.Photo = fileName;
+                    db.SaveChanges();
+                    Session["photo"] = fileName;
+                    response = fileName;
+                }
+                catch (Exception ex)
+                {
+                    response = "icon.png";
+                }
+            else
+            {
+                response = "icon.png";
+            }
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         
