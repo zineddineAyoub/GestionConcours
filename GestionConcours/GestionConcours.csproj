@@ -282,6 +282,7 @@
     <Content Include="Pictures\icon\avatar-05.jpg" />
     <Content Include="Pictures\icon\avatar-06.jpg" />
     <Content Include="Pictures\icon\avatar-big-01.jpg" />
+    <Content Include="Pictures\icon\icon.jpg" />
     <Content Include="Pictures\icon\logo-blue.png" />
     <Content Include="Pictures\icon\logo-mini.png" />
     <Content Include="Pictures\icon\logo-white.png" />
@@ -2392,6 +2393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Pictures\userPic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
