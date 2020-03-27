@@ -292,6 +292,7 @@
     <Content Include="Pictures\admin_pic\school4.svg" />
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
     <Content Include="Pictures\Mark.jpg" />
+    <Content Include="Pictures\userPic\icon.jpg" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
@@ -2393,7 +2394,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Pictures\userPic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

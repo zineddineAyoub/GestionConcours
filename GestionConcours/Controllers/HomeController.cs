@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -147,7 +148,9 @@ namespace GestionConcours.Controllers
                 try
                 {
                     String extension = Path.GetExtension(file.FileName);
-                    string fileName = Session["cne"] + extension;
+                    Random r = new Random();
+                    int rInt = r.Next(0, 10000);
+                    string fileName = rInt.ToString() + extension.ToLower();
                     string path = Path.Combine(Server.MapPath("~/Pictures/userPic"), fileName);
                     file.SaveAs(path);
                     string cne = Session["cne"].ToString();

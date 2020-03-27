@@ -152,7 +152,7 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    if (response !="icon.png") {
+                    if (response != "icon.png") {
                         $("#image").attr("src", "../Pictures/userPic/" + response);
                         $("#frontImage").attr("src", "../Pictures/userPic/" + response);
                     }
@@ -162,7 +162,7 @@
                 }
             })
             .then(function(result) {
-
+               
             });
                 });
     })

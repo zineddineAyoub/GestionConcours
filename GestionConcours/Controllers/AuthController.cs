@@ -89,6 +89,7 @@ namespace GestionConcours.Controllers
             if (ModelState.IsValid)
             {
                 candidat.DateInscription = DateTime.Now;
+                candidat.DateNaissance = DateTime.Now;
                 Random random = new Random();
                 const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
                 var chars = Enumerable.Range(0, 7)
@@ -98,21 +99,7 @@ namespace GestionConcours.Controllers
                 candidat.Photo = "icon.jpg";
                 db.Candidats.Add(candidat);
                 db.SaveChanges();
-                //add row in anne universitaire
-                AnneeUniversitaire ann = new AnneeUniversitaire();
-                ann.Cne = candidat.Cne;
-                db.AnneeUniversitaires.Add(ann);
-                db.SaveChanges();
-                //add row in anne bac
-                Baccalaureat bac = new Baccalaureat();
-                bac.Cne = candidat.Cne;
-                db.Baccalaureats.Add(bac);
-                db.SaveChanges();
-                //add row in anne universitaire
-                Diplome dip = new Diplome();
-                dip.Cne = candidat.Cne;
-                db.Diplomes.Add(dip);
-                db.SaveChanges();
+                
 
                 var fromAddress = new MailAddress("tarik.ouhamou@gmail.com", "From Name");
                 var toAddress = new MailAddress(candidat.Email, "To Name");
