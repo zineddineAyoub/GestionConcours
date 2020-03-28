@@ -99,7 +99,26 @@ namespace GestionConcours.Controllers
                 candidat.Photo = "icon.jpg";
                 db.Candidats.Add(candidat);
                 db.SaveChanges();
-                
+
+                Diplome dip = new Diplome();
+                AnneeUniversitaire annUn = new AnneeUniversitaire();
+                Baccalaureat bac = new Baccalaureat();
+
+                //add row in diplome
+                dip.Cne = candidat.Cne;
+                db.Diplomes.Add(dip);
+                db.SaveChanges();
+
+                //add row in anne
+                annUn.Cne = candidat.Cne;
+                db.AnneeUniversitaires.Add(annUn);
+                db.SaveChanges();
+
+                //add row in bac
+                bac.Cne = candidat.Cne;
+                bac.DateObtentionBac = DateTime.Now;
+                db.Baccalaureats.Add(bac);
+                db.SaveChanges();
 
                 var fromAddress = new MailAddress("tarik.ouhamou@gmail.com", "From Name");
                 var toAddress = new MailAddress(candidat.Email, "To Name");

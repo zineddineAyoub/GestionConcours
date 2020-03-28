@@ -76,21 +76,40 @@ namespace GestionConcours.Controllers
 			ViewBag.e = Session["niveau"];
 			return View();			
         }
-		[HttpPost]
-		public ActionResult ModifierDiplome(Diplome diplome, AnneeUniversitaire uni)
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
-			diplome.Cne = Session["cne"].ToString();
-			db.Diplomes.Add(diplome);
-			db.SaveChanges();
+        [HttpPost]
+        public ActionResult ModifierDiplome(Diplome diplome, AnneeUniversitaire uni)
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            string cne = Session["cne"].ToString();
+            var x = db.Diplomes.Where(c => c.Cne == cne).SingleOrDefault();
+            x.Type = diplome.Type;
+            x.Etablissement = diplome.Etablissement;
+            x.VilleObtention = diplome.VilleObtention;
+            x.NoteDiplome = diplome.NoteDiplome;
+            x.Specialite = diplome.Specialite;
+            db.SaveChanges();
 
-			uni.Cne = Session["cne"].ToString();
-			db.AnneeUniversitaires.Add(uni);
-			db.SaveChanges();
-			return View(Index());
-		}
+            var y = db.AnneeUniversitaires.Where(a => a.Cne == cne).SingleOrDefault();
+            y.Semestre1 = uni.Semestre1;
+            y.Semestre2 = uni.Semestre2;
+            y.Semestre3 = uni.Semestre3;
+            y.Semestre4 = uni.Semestre4;
+            y.Redoublant1 = uni.Redoublant1;
+            y.Redoublant2 = uni.Redoublant2;
+            y.AnneUni1 = uni.AnneUni1;
+            y.AnneUni2 = uni.AnneUni2;
+            if (Session["niveau"].ToString() == "4")
+            {
+                y.Semestre5 = uni.Semestre5;
+                y.Semestre6 = uni.Semestre6;
+                y.Redoublant3 = uni.Redoublant3;
+                y.AnneUni3 = uni.AnneUni3;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-		public ActionResult ModifierBac()
+        public ActionResult ModifierBac()
         {
             if (Session["cne"] == null)
             {
