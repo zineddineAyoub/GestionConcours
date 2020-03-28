@@ -31,32 +31,39 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading">Inscription Candidat</h3>
-                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                         @using (Html.BeginForm())
                         {
                             <div class="row register-form">
                                 <div class="col-md-8 offset-2">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Nom" value="" name="nom" />
+                                        @Html.ValidationMessage("Nom", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Prenom" value="" name="prenom" />
+                                        @Html.ValidationMessage("Prenom", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="CIN" value="" name="cin" />
+                                        @Html.ValidationMessage("Cin", new { @class = "text-danger" })
+                                        @Html.ValidationMessage("UniqueCin", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="CNE" value="" name="cne" />
+                                        @Html.ValidationMessage("Cne", new { @class = "text-danger" })
+                                        @Html.ValidationMessage("UniqueCne", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Email" value="" name="email" />
+                                        @Html.ValidationMessage("Email", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <select name="niveau" class="form-control">
-                                            <option selected>Choix de niveau</option>
+                                            <option selected value="0">Choix de niveau</option>
                                             <option value="3">3 ème année</option>
                                             <option value="4">4 ème année</option>
                                         </select>
+                                        @Html.ValidationMessage("selectNiveau", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group">
                                         <h4>Choix Filiere</h4>
