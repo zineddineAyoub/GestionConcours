@@ -38,6 +38,9 @@ namespace GestionConcours.Models
         public int Niveau { get; set; }
         public int Verified { get; set; }
         public string Password { get; set; }
+        public string Matricule { get; set; }
+        public Boolean Presence { get; set; }
+        public Boolean Conforme { get; set; }
 
 
         //relation avec la classe annee universitaire oneToOne

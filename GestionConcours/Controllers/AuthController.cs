@@ -66,26 +66,26 @@ namespace GestionConcours.Controllers
         public ActionResult Register(Candidat candidat)
         {
             GestionConcourDbContext db = new GestionConcourDbContext();
-            /*Candidat newCandidat = new Candidat();
-            Diplome newDiplome = new Diplome();
-            Baccalaureat newBac = new Baccalaureat();*/
+            if (candidat.Niveau == 0)
+            {
+                ModelState.AddModelError("selectNiveau", "Selectionner un niveau");
+            }
+            var y = db.Candidats.Where(c => c.Cne == candidat.Cne).SingleOrDefault();
+            if (y != null)
+            {
+                ModelState.AddModelError("UniqueCne", "Cne need to be unique");
+            }
+            var z = db.Candidats.Where(c => c.Cin == candidat.Cin).SingleOrDefault();
+            if (z != null)
+            {
+                ModelState.AddModelError("UniqueCin", "Cin need to be unique");
+            }
+            /*var w = db.Candidats.Where(c => c.Email == candidat.Email).SingleOrDefault();
+            if (w != null)
+            {
+                ModelState.AddModelError("UniqueEmail", "Email need to be unique");
+            }*/
 
-            /*newCandidat.Cne = candidat.Cne;
-            newCandidat.Cin = candidat.Cin;
-            newCandidat.Email = candidat.Email;
-            newCandidat.ID = Convert.ToInt32(candidat.ID);
-            newCandidat.Password = candidat.Password;
-            newCandidat.Nom = candidat.Nom;
-            newCandidat.Prenom = candidat.Prenom;
-            newCandidat.DateInscription = DateTime.Now;
-
-            newBac.Cne = candidat.Cne;
-            newBac.TypeBac = bac.TypeBac;
-            newBac.DateObtentionBac = Convert.ToDateTime(bac.DateObtentionBac);
-            newBac.NoteBac = 16;
-
-            db.Candidats.Add(newCandidat);
-            db.Baccalaureats.Add(newBac);*/
             if (ModelState.IsValid)
             {
                 candidat.DateInscription = DateTime.Now;

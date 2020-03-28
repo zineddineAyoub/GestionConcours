@@ -176,6 +176,10 @@
     <Compile Include="Migrations\202003251932284_addingCityToCandidat.designer.cs">
       <DependentUpon>202003251932284_addingCityToCandidat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003282134040_AddingMatriToCandidat.cs" />
+    <Compile Include="Migrations\202003282134040_AddingMatriToCandidat.designer.cs">
+      <DependentUpon>202003282134040_AddingMatriToCandidat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
@@ -2440,6 +2444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003251932284_addingCityToCandidat.resx">
       <DependentUpon>202003251932284_addingCityToCandidat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003282134040_AddingMatriToCandidat.resx">
+      <DependentUpon>202003282134040_AddingMatriToCandidat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
