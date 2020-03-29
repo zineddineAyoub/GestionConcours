@@ -11,7 +11,6 @@ namespace GestionConcours.Models
     {
         [Key, ForeignKey("Candidat")]
         public string Cne { get; set; }
-        public int ID { get; set; }
         public int Classement { get; set; }
 
 

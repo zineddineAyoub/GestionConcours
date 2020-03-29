@@ -20,6 +20,8 @@ namespace GestionConcours
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<GestionConcourDbContext>(new DropCreateDatabaseIfModelChanges<GestionConcourDbContext>());
 
+            UnityConfig.RegisterComponents();
+
         }
     }
 }
