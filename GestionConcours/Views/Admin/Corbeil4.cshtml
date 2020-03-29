@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Recherche3";
+    ViewBag.Title = "Corbeil3";
     Layout = "~/Views/Shared/_TabLayout.cshtml";
 }
 
@@ -195,7 +195,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <p class="text-center">Recherche 3 eme annee</p>
+            <p class="text-center">Corbeil 4 eme annee</p>
             <div class="row mb-4">
                 <div class="col-md-3">
                     <select class="form-control" name="choix" id="criteria">
@@ -244,48 +244,25 @@
                     <button id="search" class="btn btn-primary btn-block">Search</button>
                 </div>
             </div>
-            <table class="table table-bordered table-responsive">
+
+            <table class="table table-bordered">
                 <tr>
-                    <th class="text-center">Delete</th>
-                    <th class="text-center">Conforme</th>
+                    <th class="text-center">Restore</th>
+                    <th class="text-center">Cne</th>
+                    <th class="text-center">Cin</th>
                     <th class="text-center">Nom</th>
                     <th class="text-center">Prenom</th>
-                    <th class="text-center">Sexe</th>
-                    <th class="text-center">NoteBac</th>
-                    <th class="text-center">Note1</th>
-                    <th class="text-center">Note2</th>
-                    <th class="text-center">Note3</th>
-                    <th class="text-center">Note4</th>
-                    <th class="text-center">Dossier</th>
-                    <th class="text-center">Convoque</th>
-                    <th class="text-center">Math</th>
-                    <th class="text-center">Specialite</th>
-                    <th class="text-center">Filiere</th>
-                    <th class="text-center">Admis</th>
-                    <th class="text-center">Non Conforme</th>
                 </tr>
                 <tbody id="tbody">
                     @foreach (var x in Model)
                     {
-                    <tr>
-                        <td class="text-center"><button class="btn btn-danger deleteBtn" id="@x.Cne">Delete</button></td>
-                        <td class="text-center"><button class="btn btn-info conformBtn" id="@x.Cne">Conforme</button></td>
-                        <td class="text-center">@x.Nom</td>
-                        <td class="text-center">@x.Prenom</td>
-                        <td class="text-center">@x.Sexe</td>
-                        <td class="text-center">@x.NoteBac</td>
-                        <td class="text-center">@x.Note1</td>
-                        <td class="text-center">@x.Note2</td>
-                        <td class="text-center">@x.Note3</td>
-                        <td class="text-center">@x.Note4</td>
-                        <td class="text-center">@x.Dossier</td>
-                        <td class="text-center">@x.Convoque</td>
-                        <td class="text-center">@x.Math</td>
-                        <td class="text-center">@x.Specialite</td>
-                        <td class="text-center">@x.Filiere</td>
-                        <td class="text-center">@x.Admis</td>
-                        <td class="text-center">@x.NonConforme</td>
-                    </tr>
+                        <tr>
+                            <td class="text-center"><button class="btn btn-info restoreBtn" id="@x.Cne">Restore</button></td>
+                            <td class="text-center">@x.Cne</td>
+                            <td class="text-center">@x.Cin</td>
+                            <td class="text-center">@x.Nom</td>
+                            <td class="text-center">@x.Prenom</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -301,33 +278,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+
         //search button
         $("#search").click(function () {
-            $.get("/Admin/SearchCriteria", {Criteria : $("#criteria").val() ,Key : $("#key").val(),Diplome: $("#diplome").val(),Filiere:$("#filiere").val(),Niveau:3}, function (data) {
+            $.get("/Admin/SearchCriteriaCorb", { Criteria: $("#criteria").val(), Key: $("#key").val(), Diplome: $("#diplome").val(), Filiere: $("#filiere").val(),Niveau:4 }, function (data) {
                 $("#tbody").empty();
                 $.each(data, function (index, row) {
-                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id="+row.Cne+">Delete</button></td><td><button class='btn btn-info conformBtn' id="+row.Cne+">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Math + "</td><td>" + row.Specialite + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>"+row.NonConforme+"</td></tr>");
-                });
-            });
-        });
-        //delete button
-        $(document).on("click", ".deleteBtn", function () {
-            var id = $(this).attr("id");
-            $.get("/Admin/deleteStudent", { cne: id,Niveau:3 }, function (data) {
-                $("#tbody").empty();
-                $.each(data, function (index, row) {
-                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Math + "</td><td>" + row.Specialite + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme +"</td></tr>");
+                    $("#tbody").append("<tr><td class='text-center'><button class='btn btn-info restoreBtn' id=" + row.Cne + ">Restore</button></td><td>" + row.Cne + "</td><td>" + row.Cin + "</td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td></tr>");
                 });
             });
         });
 
-        //conform button
-        $(document).on("click", ".conformBtn", function () {
+        //restore button
+        $(document).on("click", ".restoreBtn", function () {
             var id = $(this).attr("id");
-            $.get("/Admin/conformeStudent", { cne: id,Niveau:3 }, function (data) {
+            $.get("/Admin/restoreStudent", { cne: id,Niveau:4 }, function (data) {
                 $("#tbody").empty();
                 $.each(data, function (index, row) {
-                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Math + "</td><td>" + row.Specialite + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme +"</td></tr>");
+                    $("#tbody").append("<tr><td class='text-center'><button class='btn btn-info restoreBtn' id=" + row.Cne + ">Restore</button></td><td>" + row.Cne + "</td><td>" + row.Cin + "</td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td></tr>");
                 });
             });
         });

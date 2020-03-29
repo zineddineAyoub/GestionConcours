@@ -103,6 +103,8 @@ namespace GestionConcours.Controllers
                 Diplome dip = new Diplome();
                 AnneeUniversitaire annUn = new AnneeUniversitaire();
                 Baccalaureat bac = new Baccalaureat();
+                CouncourEcrit concE = new CouncourEcrit();
+                CouncourOral concO = new CouncourOral();
 
                 //add row in diplome
                 dip.Cne = candidat.Cne;
@@ -118,6 +120,16 @@ namespace GestionConcours.Controllers
                 bac.Cne = candidat.Cne;
                 bac.DateObtentionBac = DateTime.Now;
                 db.Baccalaureats.Add(bac);
+                db.SaveChanges();
+
+                //add in concours ecrit
+                concE.Cne = candidat.Cne;
+                db.CouncourEcrits.Add(concE);
+                db.SaveChanges();
+
+                //add in concours oral
+                concO.Cne = candidat.Cne;
+                db.CouncourOrals.Add(concO);
                 db.SaveChanges();
 
                 var fromAddress = new MailAddress("tarik.ouhamou@gmail.com", "From Name");
