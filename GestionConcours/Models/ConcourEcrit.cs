@@ -14,7 +14,7 @@ namespace GestionConcours.Models
 
         public double NoteMath { get; set; }
         public double NoteSpecialite { get; set; }
-
+        public double NoteGenerale { get; set; }
 
         public virtual Candidat Candidat { get; set; }
 

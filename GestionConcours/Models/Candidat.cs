@@ -32,6 +32,7 @@ namespace GestionConcours.Models
         public DateTime DateInscription { get; set; }
         public DateTime DateNaissance { get; set; }
         public string Photo { get; set; }
+        public double NotePreselec { get; set; }
         public Boolean Convoque { get; set; }
         public Boolean Admis { get; set; }
         [Required]

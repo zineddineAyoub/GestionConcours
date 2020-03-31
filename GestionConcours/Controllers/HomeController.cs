@@ -32,6 +32,7 @@ namespace GestionConcours.Controllers
             Session["photo"] = candidat.Photo;
             Session["nom"] = candidat.Nom;
             Session["prenom"] = candidat.Prenom;
+            Session["niveau"] = candidat.Niveau;
             return View();
         }
 
@@ -73,13 +74,16 @@ namespace GestionConcours.Controllers
 
         public ActionResult ModifierDiplome()
         {
-			ViewBag.e = Session["niveau"];
-			return View();			
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            
+            return View();			
         }
         [HttpPost]
         public ActionResult ModifierDiplome(Diplome diplome, AnneeUniversitaire uni)
         {
-            GestionConcourDbContext db = new GestionConcourDbContext();
             string cne = Session["cne"].ToString();
             var x = db.Diplomes.Where(c => c.Cne == cne).SingleOrDefault();
             x.Type = diplome.Type;
@@ -94,17 +98,15 @@ namespace GestionConcours.Controllers
             y.Semestre2 = uni.Semestre2;
             y.Semestre3 = uni.Semestre3;
             y.Semestre4 = uni.Semestre4;
+            y.Semestre5 = uni.Semestre5;
+            y.Semestre6 = uni.Semestre6;
             y.Redoublant1 = uni.Redoublant1;
             y.Redoublant2 = uni.Redoublant2;
+            y.Redoublant3 = uni.Redoublant3;
             y.AnneUni1 = uni.AnneUni1;
             y.AnneUni2 = uni.AnneUni2;
-            if (Session["niveau"].ToString() == "4")
-            {
-                y.Semestre5 = uni.Semestre5;
-                y.Semestre6 = uni.Semestre6;
-                y.Redoublant3 = uni.Redoublant3;
-                y.AnneUni3 = uni.AnneUni3;
-            }
+            y.AnneUni3 = uni.AnneUni3;
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
