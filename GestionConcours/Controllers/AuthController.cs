@@ -118,7 +118,7 @@ namespace GestionConcours.Controllers
 
                 //add row in bac
                 bac.Cne = candidat.Cne;
-                bac.DateObtentionBac = DateTime.Now;
+                //bac.DateObtentionBac = DateTime.Now;
                 db.Baccalaureats.Add(bac);
                 db.SaveChanges();
 

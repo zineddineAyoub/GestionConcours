@@ -13,10 +13,12 @@ namespace GestionConcours.Controllers
     {
         private ISearch3Service search;
         private ICorbeil3Service corbeil;
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil)
+        private IPreselectionService preselec;
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec)
         {
             this.search = search;
             this.corbeil = corbeil;
+            this.preselec = preselec;
         }
         // GET: Admin
         public ActionResult Index()
@@ -126,6 +128,36 @@ namespace GestionConcours.Controllers
 
             }
             return RedirectToAction("Login", "AdminAuth");
+        }
+        // ##################################### PRESELECTION #############################################
+
+        public ActionResult Preselection()
+        {
+            return View();
+        }
+
+        public JsonResult CalculerPreselec(string fil, string diplome, int Cs1, int Cs2, int Cs3, int Cs4, int Cbac, string seuil, int niv)
+        {
+            ConfigurationPreselection conf = new ConfigurationPreselection()
+            {
+                Filiere = fil,
+                TypeDiplome = diplome,
+                CoeffBac = Cbac,
+                CoeffS1 = Cs1,
+                CoeffS2 = Cs2,
+                CoeffS3 = Cs3,
+                CoeffS4 = Cs4,
+                NoteSeuil = Convert.ToInt32(seuil)
+            };
+
+            preselec.setConfig(conf, niv);
+            
+            return Json(conf, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Preselection4()
+        {
+            return View();
         }
     }
 }

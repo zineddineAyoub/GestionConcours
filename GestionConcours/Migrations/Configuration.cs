@@ -16,10 +16,26 @@
 
         protected override void Seed(GestionConcours.Models.GestionConcourDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            
+            if (!context.Filieres.Any())
+            {
+                var filieres = new List<Filiere>();
+                filieres.Add(new Filiere() { Nom = "Informatique" });
+                filieres.Add(new Filiere() { Nom = "GTR" });
+                filieres.Add(new Filiere() { Nom = "Industriel" });
+                filieres.Add(new Filiere() { Nom = "GPMC" });
 
-           // var Candidats = new List<Candidat>();
-           // Candidats.Add(new Candidat() { Cne="1111",Cin="E1111",Nom="dariaoui",Prenom="oussama",Email="oussama@gmail.com",Adresse="adresse Test",LieuNaissance="Lieu de Naissance test",Telephone="0606060606",Nationalite="marocain",Sexe="M",Gsm="06020210",Conv"")
+                context.Filieres.AddRange(filieres);
+            }
+            if (!context.Admins.Any())
+            {
+                var admins = new List<Admin>();
+                admins.Add(new Admin() { Username="admin", Password="admin"});
+
+                context.Admins.AddRange(admins);
+            }
+
+            base.Seed(context);
         }
     }
 }
