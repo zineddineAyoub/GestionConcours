@@ -148,8 +148,8 @@ namespace GestionConcours.Controllers
                 Diplome dip = new Diplome();
                 AnneeUniversitaire annUn = new AnneeUniversitaire();
                 Baccalaureat bac = new Baccalaureat();
-                CouncourEcrit concE = new CouncourEcrit();
-                CouncourOral concO = new CouncourOral();
+                ConcourEcrit concE = new ConcourEcrit();
+                ConcourOral concO = new ConcourOral();
 
                 //add row in diplome
                 dip.Cne = candidat.Cne;
