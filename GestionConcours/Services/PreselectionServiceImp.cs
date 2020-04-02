@@ -99,9 +99,6 @@ namespace GestionConcours.Services
                 db.SaveChanges();
             }            
         }
-        
-
-
 
         public void setConfig(ConfigurationPreselection config, int niveau)
         {
