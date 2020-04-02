@@ -129,11 +129,41 @@ namespace GestionConcours.Controllers
             }
             return RedirectToAction("Login", "AdminAuth");
         }
+
         // ##################################### PRESELECTION #############################################
 
         public ActionResult Preselection()
         {
             return View();
+        }
+        public ActionResult Preselection4()
+        {
+            return View();
+        }
+
+        public JsonResult CalculerPreselec4(string fil, string diplome, int Cs1, int Cs2, int Cs3, int Cs4, int Cs5, int Cs6, int Cbac, string seuil, int niv)
+        {
+            ConfigurationPreselection conf = new ConfigurationPreselection()
+            {
+                Filiere = fil,
+                TypeDiplome = diplome,
+                CoeffBac = Cbac,
+                CoeffS1 = Cs1,
+                CoeffS2 = Cs2,
+                CoeffS3 = Cs3,
+                CoeffS4 = Cs4,
+                CoeffS5 = Cs5,
+                CoeffS6 = Cs6,
+                NoteSeuil = Convert.ToDouble(seuil.Replace(".",","))
+            };
+
+            preselec.setConfig(conf, niv);
+
+            preselec.calculerPreselec(niv, fil, diplome);
+
+            var x = preselec.getConvoques(niv, fil, diplome);
+            
+            return Json(x, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult CalculerPreselec(string fil, string diplome, int Cs1, int Cs2, int Cs3, int Cs4, int Cbac, string seuil, int niv)
@@ -147,17 +177,35 @@ namespace GestionConcours.Controllers
                 CoeffS2 = Cs2,
                 CoeffS3 = Cs3,
                 CoeffS4 = Cs4,
-                NoteSeuil = Convert.ToInt32(seuil)
+                NoteSeuil = Convert.ToDouble(seuil.Replace(".", ","))
             };
 
             preselec.setConfig(conf, niv);
-            
-            return Json(conf, JsonRequestBehavior.AllowGet);
+
+            preselec.calculerPreselec(niv, fil, diplome);
+
+            var x = preselec.getConvoques(niv, fil, diplome);
+
+            return Json(x, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Preselection4()
+        public JsonResult GetConfig(string fil, string diplome)
         {
-            return View();
+            ConfigurationPreselection list = preselec.getConfig(fil, diplome);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetConvoquets(string fil, string diplome, int niv)
+        {
+            var list = preselec.getConvoques(niv, fil, diplome);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPourcentage(string fil, string diplome, int niv)
+        {
+            var list = preselec.getPourcentage(niv, fil, diplome);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

@@ -18,15 +18,17 @@ namespace GestionConcours.Services
             db.Configuration.ProxyCreationEnabled = false;
         }
         
-
-        public IEnumerable<PreselectionModel> getAll(int niveau)
+        public IEnumerable<PreselectionModel> getAll(int niveau, string filiere, string diplome)
         {
             var res = (from c in db.Candidats
                        join a in db.AnneeUniversitaires on c.Cne equals a.Cne
                        join b in db.Baccalaureats on c.Cne equals b.Cne
                        join d in db.Diplomes on c.Cne equals d.Cne
-                       where !db.Corbeilles.Select(g => g.CNE).ToList().Contains(c.Cne)
-                       where c.Niveau == niveau
+                       join f in db.Filieres on c.ID equals f.ID
+                       where (f.Nom.Equals(filiere) &&
+                       d.Type.Contains(diplome) &&
+                       !db.Corbeilles.Select(g => g.CNE).ToList().Contains(c.Cne) &&
+                       c.Niveau == niveau)
                        select new PreselectionModel
                        {
                            Matricule = c.Matricule,
@@ -36,7 +38,7 @@ namespace GestionConcours.Services
                            Prenom = c.Prenom,
                            Sexe = c.Sexe,
                            Convoque = c.Convoque,
-                           
+
                            NoteBac = b.NoteBac,
                            Note1 = a.Semestre1,
                            Note2 = a.Semestre2,
@@ -44,6 +46,9 @@ namespace GestionConcours.Services
                            Note4 = a.Semestre4,
                            Note5 = a.Semestre5,
                            Note6 = a.Semestre6,
+                           NoteDip = d.NoteDiplome,
+                           NoteLic = ((a.Semestre5 + a.Semestre6) / 2),
+                           NotePreselec = c.NotePreselec,
 
                            Type_dip = d.Type,
                            Ville_dip = d.VilleObtention,
@@ -56,7 +61,8 @@ namespace GestionConcours.Services
                            AnneUni2 = a.AnneUni2,
                            AnneUni3 = a.AnneUni3,
 
-                           Filiere = db.Filieres.Where(f => f.ID == c.ID).FirstOrDefault().Nom,
+                           //Filiere = db.Filieres.Where(f => f.ID == c.ID).FirstOrDefault().Nom,
+                           Filiere = f.Nom,
                            Date_inscription = c.DateInscription,
                            
                        }).ToList();
@@ -64,39 +70,42 @@ namespace GestionConcours.Services
             return res;
         }
 
-        public IEnumerable<PreselectionModel> calculerPreselec(string fil, string diplome, int niveau)
+        public void calculerPreselec(int niveau, string fil, string diplome)
         {
-            ConfigurationPreselection conf = db.ConfigurationPreselections.Where(c => c.Filiere.Equals(fil) && c.TypeDiplome.Equals(diplome)).First();
-            double sum1;
+            ConfigurationPreselection conf = db.ConfigurationPreselections.Where(c => c.Filiere.Equals(fil) && diplome.Contains(c.TypeDiplome)).First();
+            double sum;
             int sumCoeff;
-
-            if(niveau == 3)
+            sumCoeff = conf.CoeffBac + conf.CoeffS1 + conf.CoeffS2 + conf.CoeffS3 + conf.CoeffS4;
+            if (niveau == 4)
             {
-                sumCoeff = conf.CoeffBac + conf.CoeffS1 + conf.CoeffS2;
+                sumCoeff += conf.CoeffS5 + conf.CoeffS6;
             }
 
-            foreach (PreselectionModel c in this.getAll(niveau).ToList())
+            foreach (PreselectionModel c in this.getAll(niveau, fil, diplome).ToList())
             {
-                sum1 = 0;
-                sum1 = (c.NoteBac * conf.CoeffBac) + (c.Note1 * conf.CoeffS1) + (c.Note2 * conf.CoeffS2) + (c.Note3 * conf.CoeffS3) + (c.Note4 * conf.CoeffS4);
+                sum = 0;
+                sum = (c.NoteBac * conf.CoeffBac) + (c.Note1 * conf.CoeffS1) + (c.Note2 * conf.CoeffS2) + (c.Note3 * conf.CoeffS3) + (c.Note4 * conf.CoeffS4);
                 if(niveau == 4)
                 {
-                    sum1 += (c.Note5 * conf.CoeffS5) + (c.Note6 * conf.CoeffS6);
+                    sum += (c.Note5 * conf.CoeffS5) + (c.Note6 * conf.CoeffS6);
                 }
-
-
-            }
-
-
-            return null;
+                //il se peut y7eydo ila b9a void
+                c.NotePreselec = Math.Round(sum / sumCoeff, 2);
+                c.Convoque = (c.NotePreselec >= conf.NoteSeuil) ? true : false;
+                
+                var temp = db.Candidats.Find(c.Cne);
+                temp.NotePreselec = c.NotePreselec;
+                temp.Convoque = c.Convoque;
+                db.SaveChanges();
+            }            
         }
+        
 
-        //public double calculerNote()
 
 
         public void setConfig(ConfigurationPreselection config, int niveau)
         {
-            var conf_tab = db.ConfigurationPreselections.Where(c => c.Filiere == config.Filiere && c.TypeDiplome == config.TypeDiplome).FirstOrDefault();
+            var conf_tab = db.ConfigurationPreselections.Where(c => c.Filiere.Equals(config.Filiere) && c.TypeDiplome.Equals(config.TypeDiplome)).FirstOrDefault();
             if (conf_tab == null)
             {
                 config.ID = 1;
@@ -112,15 +121,47 @@ namespace GestionConcours.Services
                 conf_tab.CoeffS2 = config.CoeffS2;
                 conf_tab.CoeffS3 = config.CoeffS3;
                 conf_tab.CoeffS4 = config.CoeffS4;
+                conf_tab.NoteSeuil = config.NoteSeuil;
                 if (niveau == 4)
                 {
                     conf_tab.CoeffS5 = config.CoeffS5;
                     conf_tab.CoeffS6 = config.CoeffS6;
                 }
-
+                db.SaveChanges();
             }
         }
 
-       
+        public IEnumerable<PreselectionModel> getConvoques(int niveau, string filiere, string diplome)
+        {
+            return this.getAll(niveau, filiere, diplome).Where(c => c.Convoque.Equals(true));
+        }
+        public ConfigurationPreselection getConfig(string filiere, string diplome)
+        {
+            var conf = db.ConfigurationPreselections.Where(c => c.Filiere.Equals(filiere) && c.TypeDiplome.Equals(diplome)).FirstOrDefault();
+            return conf;
+        }
+
+        public IEnumerable<string> getPourcentage(int niveau, string filiere, string diplome)
+        {
+            var list = new List<string>();
+            var all = this.getAll(niveau, filiere, diplome);
+            int sum = all.Count();
+            int sumConv = all.Where(c => c.Convoque.Equals(true)).Count();
+            string pourc;
+            if(sum != 0)
+            {
+                 pourc = ((sumConv * 100) / sum).ToString();
+            } else
+            {
+                pourc = "0";
+            }
+            
+            list.Add(sumConv.ToString() + "/" + sum.ToString() + "  ");
+           
+            list.Add(" (" + pourc + "%)");
+
+            return list;
+        }
+    
     }
 }

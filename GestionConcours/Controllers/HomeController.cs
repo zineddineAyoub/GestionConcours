@@ -360,7 +360,12 @@ namespace GestionConcours.Controllers
         public ActionResult Deconnexion()
         {
             Session["cne"] = null;
-            return Redirect("/Auth/Login");
+            Session["photo"] = null;
+            Session["nom"] = null;
+            Session["prenom"] = null;
+            Session["niveau"] = null;
+            return RedirectToAction("Login", "Auth");
+
         }
 
     }

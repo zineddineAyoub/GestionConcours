@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.TypeBac, "Type du Bac :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.TypeBac, ViewBag.typeBac as SelectList, htmlAttributes: new { @class = "form-control " })
+                                        @Html.DropDownListFor(model => model.TypeBac, ViewBag.typeBac as SelectList, "--- Séléctionner un type ---", htmlAttributes: new { @class = "form-control " })
                                         @Html.ValidationMessageFor(model => model.TypeBac, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.DateObtentionBac, "Date d'obtention du Bac :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.DateObtentionBac, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.DateObtentionBac, new { htmlAttributes = new { @class = "form-control", placeholder = "YYYY/YYYY " } })
                                         @Html.ValidationMessageFor(model => model.DateObtentionBac, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.MentionBac, "Metion du Bac :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.MentionBac, ViewBag.mention as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.MentionBac, ViewBag.mention as IEnumerable<SelectListItem>, "--- Séléctionner une mention ---", htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.MentionBac, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
