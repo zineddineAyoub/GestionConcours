@@ -216,6 +216,7 @@
     <Compile Include="Models\Corbeil.cs" />
     <Compile Include="Models\CorbeilModel.cs" />
     <Compile Include="Models\Diplome.cs" />
+    <Compile Include="Models\DiplomeNote.cs" />
     <Compile Include="Models\Epreuves.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
@@ -451,6 +452,7 @@
     <Content Include="Scripts\js\demo\chart-bar-demo.js" />
     <Content Include="Scripts\js\demo\chart-pie-demo.js" />
     <Content Include="Scripts\js\demo\datatables-demo.js" />
+    <Content Include="Scripts\js\jquery-dateformat.min.js" />
     <Content Include="Scripts\js\sb-admin-2.js" />
     <Content Include="Scripts\js\sb-admin-2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -2380,7 +2382,6 @@
     <Content Include="Views\Home\ModifierPersonel.cshtml" />
     <Content Include="Views\Home\ModifierDiplome.cshtml" />
     <Content Include="Views\Home\ModifierBac.cshtml" />
-    <Content Include="Views\Home\ModifierFiliere.cshtml" />
     <Content Include="Views\Home\Image.cshtml" />
     <Content Include="Views\Home\Deconnexion.cshtml" />
     <Content Include="Views\AdminAuth\Error.cshtml" />
@@ -2429,6 +2430,8 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
+    <Content Include="Views\Home\ModifierFiliere.cshtml" />
+    <Content Include="Views\Auth\PasswordOublie.cshtml" />
     <Content Include="Views\Admin\Statistique3Annee.cshtml" />
   </ItemGroup>
   <ItemGroup>
