@@ -23,7 +23,7 @@
 
 
                                             <select name="Type" id="Type" class="form-control">                                                
-                                                <option selected>-- Choix de type du Diplôme --</option>
+                                                <option selected value="">-- Choix de type du Diplôme --</option>
 
                                                 @if (Session["niveau"].ToString() == "3")
                                                 {
@@ -39,7 +39,7 @@
                                                 else if (Session["niveau"].ToString() == "4")
                                                 {
                                                     <option value="Lic.pro">Liscence Professionnelle </option>
-                                                    <option value="Lic.fnd">Liscence Fondamentale - DUT</option>
+                                                    <option value="Lic.fnd">Liscence Fondamentale</option>
                                                     <option value="Lic.st">Liscence Sciences et Techniques </option>
 
                                                 }                                                
@@ -49,11 +49,11 @@
                                             <input type="text" class="form-control" placeholder="Spécialité" value="" name="Specialite" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Note du diplôme" value="" name="Note_Diplome" />
+                                            <input type="text" class="form-control" placeholder="Note du diplôme" value="" name="NoteDiplome" />
                                         </div>
                                         <div class="form-group">
                                             <select name="Etablissement" class="form-control">
-                                                <option selected>-- Choix d'Etablissement --</option>
+                                                <option selected value="">-- Choix d'Etablissement --</option>
                                                 <option value="EST">École Supérieure de Technologie EST</option>
                                                 <option value="FST">Faculté des Sciences et Techniques FST</option>
                                                 <option value="FP">Faculté Polydisciplinaire FP</option>
@@ -72,7 +72,7 @@
                                         <div class="rs-select2--dark  rs-select2--border" style="width: 283px; padding-left: 97px;margin-right: 30px">
 
                                             <select name="AnneUni1" class="form-control">
-                                                <option selected="selected">Année universitaire</option>
+                                                <option selected value="">Année universitaire</option>
                                                 <option value="2012/2013">2012/2013</option>
                                                 <option value="2013/2014">2013/2014</option>
                                                 <option value="2014/2015">2014/2015</option>
@@ -82,7 +82,7 @@
                                             </select>
                                             <br />
                                             <select name="AnneUni2" class="form-control">
-                                                <option selected="selected">Année universitaire</option>
+                                                <option selected value="">Année universitaire</option>
                                                 <option value="2013/2014">2013/2014</option>
                                                 <option value="2014/2015">2014/2015</option>
                                                 <option value="2015/2016">2015/2016</option>
@@ -92,7 +92,7 @@
 
                                             <br />
                                             <select id="AnneUni3" name="AnneUni3" class="form-control">
-                                                <option selected="selected">Année universitaire</option>
+                                                <option selected value="">Année universitaire</option>
                                                 <option value="2014/2015">2014/2015</option>
                                                 <option value="2015/2016">2015/2016</option>
                                                 <option value="2016/2017">2016/2017</option>
@@ -105,20 +105,20 @@
                                         <div class="rs-select2--dark rs-select2--md  rs-select2--border" style="margin-right: 30px">
 
                                             <select name="Redoublant1" class="form-control">
-                                                <option selected="selected" value="">Redoublement</option>
+                                                <option selected value="">Redoublement</option>
                                                 <option value="Oui">Oui</option>
                                                 <option value="Non">Non</option>
                                             </select>
                                             <br />
                                             <select name="Redoublant2" class="form-control">
-                                                <option selected="selected" value="">Redoublement</option>
+                                                <option selected value="">Redoublement</option>
                                                 <option value="Oui">Oui</option>
                                                 <option value="Non">Non</option>
                                             </select>
                                             <br />
 
                                             <select name="Redoublant3" id="Redoublant3" class="form-control">
-                                                <option selected="selected" value="">Redoublement</option>
+                                                <option selected value="">Redoublement</option>
                                                 <option value="Oui">Oui</option>
                                                 <option value="Non">Non</option>
                                             </select>
@@ -195,10 +195,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        console.log("hello");
 
         $("#Type").change(function () {
-            console.log("fct");
 
             if (@Session["niveau"] == "3") {
                 
@@ -217,7 +215,6 @@
                 }
 
             }
-            alert("You have selected the country - " + selectedCountry);
         });
     });
 </script>

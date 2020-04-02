@@ -256,7 +256,12 @@ namespace GestionConcours.Controllers
 
         public ActionResult Deconnexion()
         {
-            return View();
+            Session["cne"] = null;
+            Session["photo"] = null;
+            Session["nom"] = null;
+            Session["prenom"] = null;
+            Session["niveau"] = null;
+            return RedirectToAction("Login", "Auth");
         }
 
     }
