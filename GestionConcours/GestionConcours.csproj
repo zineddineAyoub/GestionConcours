@@ -200,6 +200,10 @@
     <Compile Include="Migrations\202003311719083_Note_Preselection_Selection.designer.cs">
       <DependentUpon>202003311719083_Note_Preselection_Selection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004021832362_changing_councour_to_concour.cs" />
+    <Compile Include="Migrations\202004021832362_changing_councour_to_concour.designer.cs">
+      <DependentUpon>202004021832362_changing_councour_to_concour.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
@@ -2425,6 +2429,7 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
+    <Content Include="Views\Admin\Statistique3Annee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2486,6 +2491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003311719083_Note_Preselection_Selection.resx">
       <DependentUpon>202003311719083_Note_Preselection_Selection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021832362_changing_councour_to_concour.resx">
+      <DependentUpon>202004021832362_changing_councour_to_concour.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

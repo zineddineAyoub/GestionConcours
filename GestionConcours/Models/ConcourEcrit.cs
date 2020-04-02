@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GestionConcours.Models
 {
-    public class CouncourEcrit
+    public class ConcourEcrit
     {
         [Key, ForeignKey("Candidat")]
         public string Cne { get; set; }
