@@ -38,6 +38,11 @@ namespace GestionConcours.Controllers
 
         public ActionResult Profil()
         {
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            
+           // Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).Single();
+
+           // return View(c1);
             return View();
         }
 
