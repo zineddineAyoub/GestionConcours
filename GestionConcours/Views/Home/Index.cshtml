@@ -4,54 +4,61 @@
 }
 
 
-
-
 <section>
     <div class="section__content section__content--p30 m-t-75">
         <div class="container-fluid">
             <!-- USER DATA-->
-            @if (TempData["message"] != null)
-            {
-                <div class="form-group">
-                    <div class="alert alert-success">
-                        <span>@TempData["message"]</span>
-                    </div>
-                </div>
-            }
-            @if (ViewData["error"] != "")
-            {
-                <div class="form-group">
-                    <div class="alert alert-danger">
-                        <span>@ViewData["error"]</span>
-                    </div>
-                </div>
-            }
             <div class="user-data m-b-40">
+                @if (TempData["message"] != null)
+                {
+                    <div class="form-group">
+                        <div class="alert alert-success ml-3 mr-3">
+                            <span>@TempData["message"]</span>
+                        </div>
+                    </div>
+                }
+                @if (ViewData["error"] != "")
+                {
+                    <div class="form-group">
+                        <div class="alert alert-danger ml-3 mr-3">
+                            <span>@ViewData["error"]</span>
+                        </div>
+                    </div>
+                }<br>
                 <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar"></i>user data
+                    <i class="zmdi zmdi-account-calendar" style="padding-left:390px;"></i>user data
                 </h3>
-                <div class="filters m-b-45">
-                    <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                        <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Properties</option>
-                            <option value="">Products</option>
-                            <option value="">Services</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 126.8px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-property-qs-container"><span class="select2-selection__rendered" id="select2-property-qs-container" title="All Properties">All Properties</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                    <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                        <select class="js-select2 au-select-dark select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Time</option>
-                            <option value="">By Month</option>
-                            <option value="">By Day</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 97.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-time-6y-container"><span class="select2-selection__rendered" id="select2-time-6y-container" title="All Time">All Time</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                </div>
 
-                <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
+                <div style="padding-left:420px;">
+
+                    <p><strong>@Model.Nom @Model.Prenom </strong> </p>
+                    <p><strong> CNE </strong> : @Model.Cne</p>
+
+                    <p><strong> CIN </strong>: @Model.Cin  </p>
+                    <p><strong> Email </strong> : @Model.Email</p>
                 </div>
+                <br />
+
+                <div style="padding-left:200px">
+                    <h3> NB : </h3>
+
+
+                    <div class="alert alert-danger" role="alert" style="width: 590px">
+                        La date limite d'inscription est le 20/06/2020
+                    </div>
+                    <div class="alert alert-warning" role="alert" style="width: 590px">
+                        Le concours aura lieu le 20/08/2020
+                    </div>
+                    <div class="alert alert-info" role="alert" style="width: 590px">
+                        Veuillez imprimer la fiche d'inscription et l'avoir le jour du concours !!
+                    </div>
+                    <div class="alert alert-success" role="alert" style="width: 590px">
+                        Les résultats du concours seront prêts 3 jours après le passage du concours
+                    </div>
+
+                </div>
+                <br /><br />
+
 
             </div>
         </div>

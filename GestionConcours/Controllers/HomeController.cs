@@ -68,7 +68,9 @@ namespace GestionConcours.Controllers
             Session["niveau"] = candidat.Niveau;
             string message = checkConformity();
             ViewData["error"] = message;
-            return View();
+            string cne = Session["cne"].ToString();
+            Candidat c1 = db.Candidats.Where(p => p.Cne == cne).SingleOrDefault();
+            return View(c1);
         }
 
         public ActionResult Profil()
@@ -79,10 +81,8 @@ namespace GestionConcours.Controllers
             }
             GestionConcourDbContext db = new GestionConcourDbContext();
             
-           // Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).Single();
-
-           // return View(c1);
-            return View();
+           Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).SingleOrDefault();
+            return View(c1);
         }
 
         [HttpGet]

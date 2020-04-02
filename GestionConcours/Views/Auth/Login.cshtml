@@ -73,3 +73,29 @@
 </html>
 
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="container">
+    <div class="row">
+        <img src="~/Pictures/ENSA.jpg" />
+    </div>
+    <div class="row text-center">
+        <p>Vous avez créer un compt dans la platforme d'acces au cycle d'ingénieur a ENSAS Veuillez Vérifier Votre Compt en appuiyant sur le lien ci dessous.</p>
+        <a href=\"http://localhost:49969/Auth/Verify?cne ="+candidat.Cne+" \">Link</a>
+    </div>
+    <div class="alert alert-danger">
+        <span>Vous trouverez votre mot de pass au dessouss</span>
+    </div>
+    <div class="row">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <strong>Nom :</strong><span>candidat.Nom</span><br />
+                <strong>Prenom : </strong><span>candidat.Prenom</span><br />
+                <strong>CNE : </strong><span>candidat.CNE</span><br />
+                <strong>CIN : </strong><span>candidat.CIN</span><br />
+                <strong>Password : </strong><span>candidat.Password</span><br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
