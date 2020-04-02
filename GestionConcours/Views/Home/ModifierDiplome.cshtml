@@ -1,4 +1,4 @@
-﻿
+﻿@model GestionConcours.Models.DiplomeNote
 @{
     ViewBag.Title = "ModifierDiplome";
 }
@@ -21,9 +21,9 @@
                                         <div class="form-group">
                                             <h3 class="register-heading">Diplome obtenu</h3><br />
 
-
                                             <select name="Type" id="Type" class="form-control">                                                
                                                 <option selected value="">-- Choix de type du Diplôme --</option>
+
 
                                                 @if (Session["niveau"].ToString() == "3")
                                                 {
@@ -42,14 +42,18 @@
                                                     <option value="Lic.fnd">Liscence Fondamentale</option>
                                                     <option value="Lic.st">Liscence Sciences et Techniques </option>
 
-                                                }                                                
+                                                }
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Spécialité" value="" name="Specialite" />
+                                            @Html.EditorFor(model => model.Specialite, "Specialité", new { htmlAttributes = new { @class = "form-control",@placeholder="Specialité" } })
+                                            @Html.ValidationMessageFor(model => model.Specialite, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Note du diplôme" value="" name="NoteDiplome" />
+
+                                            @Html.EditorFor(model => model.NoteDiplome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note diplome" } })
+                                            @Html.ValidationMessageFor(model => model.NoteDiplome, "", new { @class = "text-danger" })
+
                                         </div>
                                         <div class="form-group">
                                             <select name="Etablissement" class="form-control">
@@ -62,7 +66,8 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Ville" value="" name="villeObtention" />
+                                            @Html.EditorFor(model => model.VilleObtention, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ville Obtention" } })
+                                            @Html.ValidationMessageFor(model => model.VilleObtention, "", new { @class = "text-danger" })
                                             <br /><br />
                                         </div>
 
@@ -105,20 +110,26 @@
                                         <div class="rs-select2--dark rs-select2--md  rs-select2--border" style="margin-right: 30px">
 
                                             <select name="Redoublant1" class="form-control">
+
                                                 <option selected value="">Redoublement</option>
+
                                                 <option value="Oui">Oui</option>
                                                 <option value="Non">Non</option>
                                             </select>
                                             <br />
                                             <select name="Redoublant2" class="form-control">
+
                                                 <option selected value="">Redoublement</option>
+
                                                 <option value="Oui">Oui</option>
                                                 <option value="Non">Non</option>
                                             </select>
                                             <br />
 
                                             <select name="Redoublant3" id="Redoublant3" class="form-control">
+
                                                 <option selected value="">Redoublement</option>
+
                                                 <option value="Oui">Oui</option>
                                                 <option value="Non">Non</option>
                                             </select>
@@ -131,16 +142,19 @@
                                         <div class="rs-select2--dark rs-select2--md rs-select2--border" style="margin-right: 30px">
 
                                             <div>
-                                                <input type="text" class="form-control" placeholder="1 ere semestre" value="" name="Semestre1" />
+                                                @Html.EditorFor(model => model.Semestre1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre1" } })
+                                                @Html.ValidationMessageFor(model => model.Semestre1, "", new { @class = "text-danger" })
                                             </div>
                                             <br />
                                             <div>
-                                                <input type="text" class="form-control" placeholder="3 eme semestre" value="" name="Semestre3" />
+                                                @Html.EditorFor(model => model.Semestre3, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre3" } })
+                                                @Html.ValidationMessageFor(model => model.Semestre3, "", new { @class = "text-danger" })
                                             </div>
                                             <br />
 
                                             <div>
-                                                <input id="Semestre5" type="text" class="form-control" placeholder="5 eme semestre" value="" name="Semestre5" />
+                                                @Html.EditorFor(model => model.Semestre5, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre5" } })
+                                                @Html.ValidationMessageFor(model => model.Semestre5, "", new { @class = "text-danger" })
                                             </div>
 
 
@@ -150,16 +164,19 @@
                                         <div class="rs-select2--dark rs-select2--md rs-select2--border" style="margin-right: 30px">
 
                                             <div>
-                                                <input type="text" class="form-control" placeholder="2 eme semestre" value="" name="Semestre2" />
+                                                @Html.EditorFor(model => model.Semestre2, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre2" } })
+                                                @Html.ValidationMessageFor(model => model.Semestre2, "", new { @class = "text-danger" })
                                             </div>
                                             <br />
                                             <div>
-                                                <input type="text" class="form-control" placeholder="4 eme semestre" value="" name="Semestre4" />
+                                                @Html.EditorFor(model => model.Semestre4, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre4" } })
+                                                @Html.ValidationMessageFor(model => model.Semestre4, "", new { @class = "text-danger" })
                                             </div>
                                             <br />
 
                                             <div>
-                                                <input id="Semestre6" type="text" class="form-control" placeholder="6 eme semestre" value="" name="Semestre6" />
+                                                @Html.EditorFor(model => model.Semestre6, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre6" } })
+                                                @Html.ValidationMessageFor(model => model.Semestre6, "", new { @class = "text-danger" })
                                             </div>
 
 
@@ -199,7 +216,7 @@
         $("#Type").change(function () {
 
             if (@Session["niveau"] == "3") {
-                
+
                 var select = $(this).children("option:selected").val();
                 if (select == "DUT" || select == "DEUG") {
                     $("#Semestre6").hide();

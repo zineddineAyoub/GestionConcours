@@ -212,6 +212,7 @@
     <Compile Include="Models\Corbeil.cs" />
     <Compile Include="Models\CorbeilModel.cs" />
     <Compile Include="Models\Diplome.cs" />
+    <Compile Include="Models\DiplomeNote.cs" />
     <Compile Include="Models\Epreuves.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
@@ -2377,7 +2378,6 @@
     <Content Include="Views\Home\ModifierPersonel.cshtml" />
     <Content Include="Views\Home\ModifierDiplome.cshtml" />
     <Content Include="Views\Home\ModifierBac.cshtml" />
-    <Content Include="Views\Home\ModifierFiliere.cshtml" />
     <Content Include="Views\Home\Image.cshtml" />
     <Content Include="Views\Home\Deconnexion.cshtml" />
     <Content Include="Views\AdminAuth\Error.cshtml" />
@@ -2426,6 +2426,7 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
+    <Content Include="Views\Home\ModifierFiliere.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

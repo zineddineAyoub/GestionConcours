@@ -10,6 +10,22 @@
     <div class="section__content section__content--p30 m-t-75">
         <div class="container-fluid">
             <!-- USER DATA-->
+            @if (TempData["message"] != null)
+            {
+                <div class="form-group">
+                    <div class="alert alert-success">
+                        <span>@TempData["message"]</span>
+                    </div>
+                </div>
+            }
+            @if (ViewData["error"] != "")
+            {
+                <div class="form-group">
+                    <div class="alert alert-danger">
+                        <span>@ViewData["error"]</span>
+                    </div>
+                </div>
+            }
             <div class="user-data m-b-40">
                 <h3 class="title-3 m-b-30">
                     <i class="zmdi zmdi-account-calendar"></i>user data
