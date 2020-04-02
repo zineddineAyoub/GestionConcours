@@ -35,12 +35,12 @@ namespace GestionConcours.Controllers
             int k = 0;
             if(!isNull(diplome))
             {
-                msg += "Diplome Info, ";
+                msg += "Diplôme Info, ";
                 k = 1;
             }
             if (!isNull(anne))
             {
-                msg += "Anne Univertsitaire, ";
+                msg += "Année Univertsitaire, ";
                 k = 1;
             }
             if (!isNull(bac))

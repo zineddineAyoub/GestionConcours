@@ -14,11 +14,13 @@ namespace GestionConcours.Controllers
         private ISearch3Service search;
         private ICorbeil3Service corbeil;
         private IPreselectionService preselec;
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec)
+        private IIndexService index;
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, IIndexService index)
         {
             this.search = search;
             this.corbeil = corbeil;
             this.preselec = preselec;
+            this.index = index;
         }
         // GET: Admin
         public ActionResult Index()
@@ -26,7 +28,30 @@ namespace GestionConcours.Controllers
             if (Session["admin"] != null)
             {
                 if (Session["admin"].Equals(true))
-                    return View();
+                {
+                    IndexModel model = new IndexModel()
+                    {
+                        Info3 = index.getNbr_filiere(1, 3),
+                        Info4 = index.getNbr_filiere(1, 4),
+                        Gtr3 = index.getNbr_filiere(2, 3),
+                        Gtr4 = index.getNbr_filiere(2, 4),
+                        Indus3 = index.getNbr_filiere(3, 3),
+                        Indus4 = index.getNbr_filiere(3, 4),
+                        Gpmc3 = index.getNbr_filiere(4, 3),
+                        Gpmc4 = index.getNbr_filiere(4, 4),
+
+                        Inscrit3 = index.getInscrits_niv(3),
+                        Inscrit4 = index.getInscrits_niv(4),
+
+                        Suprim3 = index.getNbr_Corbeille(3),
+                        Suprim4 = index.getNbr_Corbeille(4),
+                        Suprim = index.getNbr_Corbeille(3) + index.getNbr_Corbeille(4),
+
+                        Total = index.getAll()
+                    };
+                    
+                    return View(model);
+                }
 
             }
             return RedirectToAction("Login","AdminAuth");
@@ -134,11 +159,26 @@ namespace GestionConcours.Controllers
 
         public ActionResult Preselection()
         {
-            return View();
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("Login", "AdminAuth");
         }
+
         public ActionResult Preselection4()
         {
-            return View();
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("Login", "AdminAuth");
         }
 
         public JsonResult CalculerPreselec4(string fil, string diplome, int Cs1, int Cs2, int Cs3, int Cs4, int Cs5, int Cs6, int Cbac, string seuil, int niv)
@@ -158,9 +198,7 @@ namespace GestionConcours.Controllers
             };
 
             preselec.setConfig(conf, niv);
-
             preselec.calculerPreselec(niv, fil, diplome);
-
             var x = preselec.getConvoques(niv, fil, diplome);
             
             return Json(x, JsonRequestBehavior.AllowGet);
@@ -181,9 +219,7 @@ namespace GestionConcours.Controllers
             };
 
             preselec.setConfig(conf, niv);
-
             preselec.calculerPreselec(niv, fil, diplome);
-
             var x = preselec.getConvoques(niv, fil, diplome);
 
             return Json(x, JsonRequestBehavior.AllowGet);
