@@ -11,21 +11,30 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(GestionConcours.Models.GestionConcourDbContext context)
         {
-            var admins = new List<Admin>();
-
-            admins.Add(new Admin()
+            
+            if (!context.Filieres.Any())
             {
-                ID = 1,
-                Username = "admin",
-                Password = "admin"
-            });
+                var filieres = new List<Filiere>();
+                filieres.Add(new Filiere() { Nom = "Informatique" });
+                filieres.Add(new Filiere() { Nom = "GTR" });
+                filieres.Add(new Filiere() { Nom = "Industriel" });
+                filieres.Add(new Filiere() { Nom = "GPMC" });
 
-            context.Admins.AddRange(admins);
+                context.Filieres.AddRange(filieres);
+            }
+            if (!context.Admins.Any())
+            {
+                var admins = new List<Admin>();
+                admins.Add(new Admin() { Username="admin", Password="admin"});
+
+                context.Admins.AddRange(admins);
+            }
+
             base.Seed(context);
         }
     }

@@ -16,7 +16,7 @@ namespace GestionConcours.Controllers
         {
             if (Session["cne"] != null)
             {
-                    return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Login", "Auth");
         }
@@ -51,7 +51,9 @@ namespace GestionConcours.Controllers
                 return Redirect("Login");
             }
             Session["cne"] = candidat.Cne;
+			Session["niveau"] = x.Niveau;
             Session["role"] = "user";
+            Session["photo"] = candidat.Photo;
             return RedirectToAction("Index", "Home");
         }
 
@@ -64,37 +66,72 @@ namespace GestionConcours.Controllers
         public ActionResult Register(Candidat candidat)
         {
             GestionConcourDbContext db = new GestionConcourDbContext();
-            /*Candidat newCandidat = new Candidat();
-            Diplome newDiplome = new Diplome();
-            Baccalaureat newBac = new Baccalaureat();*/
+            if (candidat.Niveau == 0)
+            {
+                ModelState.AddModelError("selectNiveau", "Selectionner un niveau");
+            }
+            var y = db.Candidats.Where(c => c.Cne == candidat.Cne).SingleOrDefault();
+            if (y != null)
+            {
+                ModelState.AddModelError("UniqueCne", "Cne need to be unique");
+            }
+            var z = db.Candidats.Where(c => c.Cin == candidat.Cin).SingleOrDefault();
+            if (z != null)
+            {
+                ModelState.AddModelError("UniqueCin", "Cin need to be unique");
+            }
+            /*var w = db.Candidats.Where(c => c.Email == candidat.Email).SingleOrDefault();
+            if (w != null)
+            {
+                ModelState.AddModelError("UniqueEmail", "Email need to be unique");
+            }*/
 
-            /*newCandidat.Cne = candidat.Cne;
-            newCandidat.Cin = candidat.Cin;
-            newCandidat.Email = candidat.Email;
-            newCandidat.ID = Convert.ToInt32(candidat.ID);
-            newCandidat.Password = candidat.Password;
-            newCandidat.Nom = candidat.Nom;
-            newCandidat.Prenom = candidat.Prenom;
-            newCandidat.DateInscription = DateTime.Now;
-
-            newBac.Cne = candidat.Cne;
-            newBac.TypeBac = bac.TypeBac;
-            newBac.DateObtentionBac = Convert.ToDateTime(bac.DateObtentionBac);
-            newBac.NoteBac = 16;
-
-            db.Candidats.Add(newCandidat);
-            db.Baccalaureats.Add(newBac);*/
             if (ModelState.IsValid)
             {
                 candidat.DateInscription = DateTime.Now;
+                candidat.DateNaissance = DateTime.Now;
                 Random random = new Random();
                 const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
                 var chars = Enumerable.Range(0, 7)
                     .Select(x => pool[random.Next(0, pool.Length)]);
                 candidat.Password=new string(chars.ToArray());
                 candidat.Verified = 0;
+                candidat.Photo = "icon.jpg";
                 db.Candidats.Add(candidat);
                 db.SaveChanges();
+
+                Diplome dip = new Diplome();
+                AnneeUniversitaire annUn = new AnneeUniversitaire();
+                Baccalaureat bac = new Baccalaureat();
+                CouncourEcrit concE = new CouncourEcrit();
+                CouncourOral concO = new CouncourOral();
+
+                //add row in diplome
+                dip.Cne = candidat.Cne;
+                db.Diplomes.Add(dip);
+                db.SaveChanges();
+
+                //add row in anne
+                annUn.Cne = candidat.Cne;
+                db.AnneeUniversitaires.Add(annUn);
+                db.SaveChanges();
+
+                //add row in bac
+                bac.Cne = candidat.Cne;
+                //bac.DateObtentionBac = DateTime.Now;
+                db.Baccalaureats.Add(bac);
+                db.SaveChanges();
+
+                //add in concours ecrit
+                concE.Cne = candidat.Cne;
+                db.CouncourEcrits.Add(concE);
+                db.SaveChanges();
+
+                //add in concours oral
+                concO.Cne = candidat.Cne;
+                db.CouncourOrals.Add(concO);
+                db.SaveChanges();
+
                 var fromAddress = new MailAddress("tarik.ouhamou@gmail.com", "From Name");
                 var toAddress = new MailAddress(candidat.Email, "To Name");
                 const string fromPassword = "dragonballz123+";
@@ -108,7 +145,7 @@ namespace GestionConcours.Controllers
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
-                    Timeout = 20000
+                    Timeout = 60000
                 };
                 using (var message = new MailMessage(fromAddress, toAddress)
                 {

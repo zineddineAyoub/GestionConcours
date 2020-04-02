@@ -1,7 +1,132 @@
 ﻿
-@{
-    ViewBag.Title = "Fiche";
+
+@if (ViewBag.imprimer == "imprimer")
+{
+    {
+        Layout = "~/Views/Shared/PdfLayout.cshtml";
+
+
+    }
+
 }
 
-<h2>Fiche</h2>
+
+@if (ViewBag.imprimer == "imprimer")
+{
+   <style>
+       body {
+          
+           padding-top:50px;
+       }
+
+       .second_table{
+           margin-top:50px;
+       }
+
+   </style>
+
+}
+
+
+<style>
+    td {
+        font-size: 16px;
+    }
+
+    th {
+        font-size: 18px;
+        color: white;
+    }
+
+    .myborder {
+        padding-top: 10px;
+        margin: 0 auto;
+    }
+
+    img {
+        padding: unset;
+    }
+
+    h1 {
+        margin: 10px 10px 10px 10px;
+        text-align: center;
+    }
+</style>
+
+
+
+@if (ViewBag.imprimer != "imprimer")
+{
+    <br /> <br /> <br />
+    <div>
+        <a href="ImprimerConvocation"> <input class="btn btn-success" type="text" value="Imprimer" /></a>
+    </div>
+}
+
+<h1>Convocation Concours d'acces ENSA </h1>
+
+
+
+<div class="row myborder">
+
+    <div class="col-lg-6 col-md-8 col-xs-8 col-sm-8">
+        <table class="table">
+
+            <tr>
+                <th class="bg-primary">  <img width="100" src="~/Pictures/ENSA.jpg" /> </th>
+                <th class="bg-primary"> Ensa de Safi <br /> Concours d'acees en 3eme année </th>
+                <th rowspan="4"> <img src="~/Pictures/Mark.jpg" height="220" width="200" /></th>
+            </tr>
+
+            <tr>
+                <th class="bg-primary">  Matricule: </th>
+                <td> @Model.Cne</td>
+            </tr>
+            <tr>
+                <th class="bg-primary"> CIN: </th>
+                <td> @Model.Cin</td>
+            </tr>
+            <tr>
+                <th class="bg-primary"> N°dossier: </th>
+                <td> @Model.Num_dossier</td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+
+
+</div>
+
+<br />
+
+<table class="table second_table">
+    <tr class="bg-primary">
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Filiere</th>
+        <th>Diplome</th>
+        <th>CNE</th>
+        <th>Ville Dipl</th>
+        <th>Convoqué</th>
+        <th>Date inscription</th>
+    </tr>
+
+    <tr>
+        <td>@Model.Nom</td>
+        <td>@Model.Prenom</td>
+        <td>@Model.Filiere.Nom</td>
+        <td>@Model.Diplome.Type</td>
+        <td>@Model.Cne</td>
+        <td>@Model.Diplome.VilleObtention</td>
+        <td>@Model.Convoque </td>
+
+
+        <td>@Model.DateInscription</td>
+    </tr>
+</table>
+
+
 

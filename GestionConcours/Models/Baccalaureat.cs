@@ -12,7 +12,7 @@ namespace GestionConcours.Models
         [Key, ForeignKey("Candidat")]
         public string Cne { get; set; }
         public string TypeBac { get; set; }
-        public DateTime DateObtentionBac { get; set; }
+        public string DateObtentionBac { get; set; }
         public double NoteBac { get; set; }
         public string MentionBac { get; set; }
 

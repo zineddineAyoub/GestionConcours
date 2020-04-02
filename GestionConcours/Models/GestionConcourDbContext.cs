@@ -24,6 +24,7 @@ namespace GestionConcours.Models
         public DbSet<Diplome> Diplomes { get; set; }
         public DbSet<Filiere> Filieres { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Epreuves> Epreuves { get; set; }
 
     }
 }

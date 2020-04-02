@@ -8,6 +8,6 @@ namespace GestionConcours.Models
     public class Corbeille
     {
         public int ID { get; set; }
-        Candidat Candidat { get; set; }
+        public string CNE { get; set; }
     }
 }

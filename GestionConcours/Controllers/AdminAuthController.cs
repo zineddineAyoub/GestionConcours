@@ -17,7 +17,7 @@ namespace GestionConcours.Controllers
             if(Session["admin"] != null)
             {
                 if (Session["admin"].Equals(true))
-                    return View();
+                    return RedirectToAction("Index","Admin");
                 
             }
                 return Redirect("Error");
@@ -37,7 +37,7 @@ namespace GestionConcours.Controllers
                 if(adminSaisi != null)
                 {
                     Session["admin"] = true;
-                    return RedirectToAction("Index", "AdminAuth");
+                    return RedirectToAction("Index", "Admin");
                 }
 
                 ViewBag.error = "Incorrect username or password !";
@@ -52,15 +52,6 @@ namespace GestionConcours.Controllers
             return Redirect("Login");
         }
 
-        public ActionResult TestAutrePage()
-        {
-            return View("Enregistrement");
-        }
-
-        public ActionResult TestRecherche()
-        {
-            return View("Recherche");
-        }
 
         public ActionResult Error()
         {
