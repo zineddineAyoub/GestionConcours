@@ -103,6 +103,7 @@ namespace GestionConcours.Controllers
             var originalCandiat = (from c in db.Candidats where c.Cne == candidat.Cne select c).First();
             originalCandiat.Nom = candidat.Nom;
             originalCandiat.Prenom = candidat.Prenom;
+            originalCandiat.Password = candidat.Password;
             originalCandiat.Cin = candidat.Cin;
             originalCandiat.DateNaissance = candidat.DateNaissance;
             originalCandiat.LieuNaissance = candidat.LieuNaissance;

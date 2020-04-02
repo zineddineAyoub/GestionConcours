@@ -2427,6 +2427,7 @@
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
     <Content Include="Views\Home\ModifierFiliere.cshtml" />
+    <Content Include="Views\Auth\PasswordOublie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

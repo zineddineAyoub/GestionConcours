@@ -57,6 +57,51 @@ namespace GestionConcours.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult PasswordOublie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PasswordOublie(string email)
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            Candidat candidat = db.Candidats.Where(c => c.Email==email).SingleOrDefault();
+            Random random = new Random();
+            const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var chars = Enumerable.Range(0, 7)
+                .Select(x => pool[random.Next(0, pool.Length)]);
+            string password = new string(chars.ToArray());
+            candidat.Password = password;
+            db.SaveChanges();
+            var fromAddress = new MailAddress("tarik.ouhamou@gmail.com", "From Name");
+            var toAddress = new MailAddress(email, "To Name");
+            const string fromPassword = "dragonballz123+";
+            const string subject = "Restauration de mot de pass";
+            //string body = "<a href=\"http://localhost:49969/Auth/Verify?cne="+candidat.Cne+" \">Link</a><br /><p> this is the password : "+candidat.Password+"</p>";
+            string body = "<div class=\"container\"><div class=\"row\"><img src=\"https://lh3.googleusercontent.com/proxy/hC9cwJR36bnSWiwqQdIH-xbphsS52akOONW7LPoGCIVLPrBrTpXfdV7PbHe6SsI5gWYfV6nUjY6dys8N8c7IUIk4uw8 \" /></div><br><div class=\"alert alert-danger\"><strong><span style=\"color:'red'\">Vous trouverez votre nouveau mot de pass au dessouss</span></strong><br></div><div class=\"row\"><div class=\"card\" style=\"width: 18rem;\"><div class=\"card-body\"><strong>Nom :</strong><span>" + candidat.Nom + "</span><br /><strong>Prenom : </strong><span>" + candidat.Prenom + "</span><br /><strong>CNE : </strong><span>" + candidat.Cne + "</span><br /><strong>CIN : </strong><span>" + candidat.Cin + "</span><br /><strong>Password : </strong><span>" + candidat.Password + "</span><br /></div></div></div></div>";
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword),
+                Timeout = 60000
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                message.IsBodyHtml = true;
+                smtp.Send(message);
+            }
+            TempData["message"] = "Email Sent Succefully";
+            return View();
+        }
+
         public ActionResult Register()
         {
             return View();
