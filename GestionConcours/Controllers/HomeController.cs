@@ -21,6 +21,39 @@ namespace GestionConcours.Controllers
         GestionConcourDbContext cl = new GestionConcourDbContext();
         private GestionConcourDbContext db = new GestionConcourDbContext();
         private Candidat candidat;
+        public bool isNull(Object obj)
+        {
+            bool isNull = obj.GetType().GetProperties().All(p => p.GetValue(obj,null) != null);
+            return isNull;
+        }
+        public string checkConformity()
+        {
+            string msg = "";
+            var diplome = db.Diplomes.Find(Session["cne"]);
+            var anne = db.AnneeUniversitaires.Find(Session["cne"]);
+            var bac = db.Baccalaureats.Find(Session["cne"]);
+            int k = 0;
+            if(!isNull(diplome))
+            {
+                msg += "Diplôme Info, ";
+                k = 1;
+            }
+            if (!isNull(anne))
+            {
+                msg += "Année Univertsitaire, ";
+                k = 1;
+            }
+            if (!isNull(bac))
+            {
+                msg += "Bac Info,";
+                k = 1;
+            }
+            if (k == 1)
+            {
+                msg += "still need editing";
+            }
+            return msg;
+        }
         public ActionResult Index()
         {
             if (Session["cne"] == null)
@@ -33,12 +66,23 @@ namespace GestionConcours.Controllers
             Session["nom"] = candidat.Nom;
             Session["prenom"] = candidat.Prenom;
             Session["niveau"] = candidat.Niveau;
-            return View();
+            string message = checkConformity();
+            ViewData["error"] = message;
+            string cne = Session["cne"].ToString();
+            Candidat c1 = db.Candidats.Where(p => p.Cne == cne).SingleOrDefault();
+            return View(c1);
         }
 
         public ActionResult Profil()
         {
-            return View();
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            
+           Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).SingleOrDefault();
+            return View(c1);
         }
 
         [HttpGet]
@@ -59,6 +103,7 @@ namespace GestionConcours.Controllers
             var originalCandiat = (from c in db.Candidats where c.Cne == candidat.Cne select c).First();
             originalCandiat.Nom = candidat.Nom;
             originalCandiat.Prenom = candidat.Prenom;
+            originalCandiat.Password = candidat.Password;
             originalCandiat.Cin = candidat.Cin;
             originalCandiat.DateNaissance = candidat.DateNaissance;
             originalCandiat.LieuNaissance = candidat.LieuNaissance;
@@ -69,6 +114,7 @@ namespace GestionConcours.Controllers
             originalCandiat.Ville = candidat.Ville;
             originalCandiat.Email = candidat.Email;
             db.SaveChanges();
+            TempData["message"] = "Profil Personel Modified succefully";
             return RedirectToAction("Index");
         }
 
@@ -78,37 +124,64 @@ namespace GestionConcours.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            
-            return View();			
+            var diplome = db.Diplomes.Find(Session["cne"]);
+            var anne = db.AnneeUniversitaires.Find(Session["cne"]);
+            DiplomeNote dipNote = new DiplomeNote()
+            {
+                Type = diplome.Type,
+                Etablissement = diplome.Etablissement,
+                VilleObtention = diplome.VilleObtention,
+                NoteDiplome = diplome.NoteDiplome,
+                Specialite = diplome.Specialite,
+                Semestre1 = anne.Semestre1,
+                Semestre2 = anne.Semestre2,
+                Semestre3 = anne.Semestre3,
+                Semestre4 = anne.Semestre4,
+                Semestre5 = anne.Semestre5,
+                Semestre6 = anne.Semestre6,
+                Redoublant1 = anne.Redoublant1,
+                Redoublant2 = anne.Redoublant2,
+                Redoublant3 = anne.Redoublant3,
+                AnneUni1 = anne.AnneUni1,
+                AnneUni2 = anne.AnneUni2,
+                AnneUni3 = anne.AnneUni3
+            };
+            return View(dipNote);			
         }
         [HttpPost]
-        public ActionResult ModifierDiplome(Diplome diplome, AnneeUniversitaire uni)
+        public ActionResult ModifierDiplome(DiplomeNote diplome)
         {
-            string cne = Session["cne"].ToString();
-            var x = db.Diplomes.Where(c => c.Cne == cne).SingleOrDefault();
-            x.Type = diplome.Type;
-            x.Etablissement = diplome.Etablissement;
-            x.VilleObtention = diplome.VilleObtention;
-            x.NoteDiplome = diplome.NoteDiplome;
-            x.Specialite = diplome.Specialite;
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                string cne = Session["cne"].ToString();
+                var x = db.Diplomes.Where(c => c.Cne == cne).SingleOrDefault();
+                x.Type = diplome.Type;
+                x.Etablissement = diplome.Etablissement;
+                x.VilleObtention = diplome.VilleObtention;
+                x.NoteDiplome = diplome.NoteDiplome;
+                x.Specialite = diplome.Specialite;
+                db.SaveChanges();
 
-            var y = db.AnneeUniversitaires.Where(a => a.Cne == cne).SingleOrDefault();
-            y.Semestre1 = uni.Semestre1;
-            y.Semestre2 = uni.Semestre2;
-            y.Semestre3 = uni.Semestre3;
-            y.Semestre4 = uni.Semestre4;
-            y.Semestre5 = uni.Semestre5;
-            y.Semestre6 = uni.Semestre6;
-            y.Redoublant1 = uni.Redoublant1;
-            y.Redoublant2 = uni.Redoublant2;
-            y.Redoublant3 = uni.Redoublant3;
-            y.AnneUni1 = uni.AnneUni1;
-            y.AnneUni2 = uni.AnneUni2;
-            y.AnneUni3 = uni.AnneUni3;
+                var y = db.AnneeUniversitaires.Where(a => a.Cne == cne).SingleOrDefault();
+                y.Semestre1 = diplome.Semestre1;
+                y.Semestre2 = diplome.Semestre2;
+                y.Semestre3 = diplome.Semestre3;
+                y.Semestre4 = diplome.Semestre4;
+                y.Semestre5 = diplome.Semestre5;
+                y.Semestre6 = diplome.Semestre6;
+                y.Redoublant1 = diplome.Redoublant1;
+                y.Redoublant2 = diplome.Redoublant2;
+                y.Redoublant3 = diplome.Redoublant3;
+                y.AnneUni1 = diplome.AnneUni1;
+                y.AnneUni2 = diplome.AnneUni2;
+                y.AnneUni3 = diplome.AnneUni3;
 
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                TempData["message"] = "Diplome Modified succefully";
+                return RedirectToAction("Index");
+            }
+            return View(diplome);
+            
         }
 
         public ActionResult ModifierBac()
@@ -148,6 +221,7 @@ namespace GestionConcours.Controllers
             {
                 db.Entry(bac).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["message"] = "Bac Modified succefully";
                 return RedirectToAction("Index");
             }
             return View(bac);
@@ -158,11 +232,37 @@ namespace GestionConcours.Controllers
 
         public ActionResult ModifierFiliere()
         {
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            string cne = Session["cne"].ToString();
+            var x = db.Candidats.Where(c => c.Cne == cne).SingleOrDefault();
+            var y = db.Filieres.Where(f => f.ID == x.ID).SingleOrDefault();
+            ViewData["filiere"] = y.Nom;
             return View();
         }
 
-		
-		public JsonResult Image(HttpPostedFileBase file)
+        [HttpPost]
+        public ActionResult ModifierFiliere(string ID)
+        {
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            string cne = Session["cne"].ToString();
+            var x = db.Candidats.Where(c => c.Cne == cne).SingleOrDefault();
+            x.ID = Convert.ToInt32(ID);
+            db.SaveChanges();
+            var y = db.Filieres.Where(f => f.ID == x.ID).SingleOrDefault();
+            TempData["message"] = "Filiere Modified succefully";
+            return RedirectToAction("Index");
+        }
+
+
+        public JsonResult Image(HttpPostedFileBase file)
         {
             string response=" ";
             if (file != null && file.ContentLength > 0)
@@ -227,6 +327,10 @@ namespace GestionConcours.Controllers
             }
              
             Candidat data = GetCandidat(id);
+            if(data.Diplome.Type==null || data.Diplome.VilleObtention==null)
+            {
+                return RedirectToAction("Index");
+            }
             return View(data);
         }
 
@@ -256,7 +360,13 @@ namespace GestionConcours.Controllers
 
         public ActionResult Deconnexion()
         {
-            return View();
+            Session["cne"] = null;
+            Session["photo"] = null;
+            Session["nom"] = null;
+            Session["prenom"] = null;
+            Session["niveau"] = null;
+            return RedirectToAction("Login", "Auth");
+
         }
 
     }

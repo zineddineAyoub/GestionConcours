@@ -49,10 +49,10 @@ namespace GestionConcours.Models
         //relation avec la classe Baccalaureat oneToOne
         public virtual Baccalaureat Baccalaureat { get; set; }
         //relation avec la classe CouncourEcrit oneToOne
-        public virtual CouncourEcrit CouncourEcrit { get; set; }
+        public virtual ConcourEcrit CouncourEcrit { get; set; }
         //relation avec la classe councourOral oneToOne
-        public virtual CouncourOral CouncourOral { get; set; }
-        //relation avec la classe Diplome oneToOne
+        public virtual ConcourOral CouncourOral { get; set; }
+        //relation avec la clase Diplome oneToOne
         public virtual Diplome Diplome { get; set; }
 
         [ForeignKey("Filiere")]
