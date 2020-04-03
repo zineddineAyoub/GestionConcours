@@ -19,8 +19,8 @@ namespace GestionConcours.Models
         public DbSet<ConfigurationPreselection> ConfigurationPreselections { get; set; }
         public DbSet<ConfigurationSelection> ConfigurationSelections { get; set; }
         public DbSet<Corbeille> Corbeilles { get; set; }
-        public DbSet<CouncourEcrit> CouncourEcrits { get; set; }
-        public DbSet<CouncourOral> CouncourOrals { get; set; }
+        public DbSet<ConcourEcrit> CouncourEcrits { get; set; }
+        public DbSet<ConcourOral> CouncourOrals { get; set; }
         public DbSet<Diplome> Diplomes { get; set; }
         public DbSet<Filiere> Filieres { get; set; }
         public DbSet<Admin> Admins { get; set; }
