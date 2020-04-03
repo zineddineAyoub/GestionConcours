@@ -18,7 +18,9 @@ namespace GestionConcours
             container.RegisterType<ISearch3Service, Search3ServiceImp>();
             container.RegisterType<ICorbeil3Service, Corbeil3ServiceImp>();
             container.RegisterType<IPreselectionService, PreselectionServiceImp>();
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+			container.RegisterType<ICorrectionService, CorrectionServiceImp>();
+
+			DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
 }

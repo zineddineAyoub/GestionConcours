@@ -73,18 +73,28 @@
                     <span>3ème Année</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        @Html.ActionLink("Enregistrement", "Enregistrement", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Recherche", "Recherche", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Corbeil", "Corbeil", "Admin", new { @class = "collapse-item" })
-                        <a class="collapse-item" href="cards.html">Préselection</a>
-                        <a class="collapse-item" href="buttons.html">Statistiques</a>
-                        <a class="collapse-item" href="cards.html">Gestion</a>
-                        <a class="collapse-item" href="buttons.html">Sélection</a>
-                    </div>
-                </div>
-            </li>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Custom Components:</h6>
+						@Html.ActionLink("Enregistrement", "Enregistrement", "Admin", new { @class = "collapse-item" })
+						@Html.ActionLink("Recherche", "Recherche", "Admin", new { @class = "collapse-item" })
+						@Html.ActionLink("Corbeil", "Corbeil", "Admin", new { @class = "collapse-item" })
+						<a class="collapse-item" href="cards.html">Préselection</a>
+						<a class="collapse-item" href="buttons.html">Statistiques</a>
+						<a class="collapse-item" href="cards.html">Gestion</a>
+						<a class="collapse-item" href="buttons.html">Sélection</a>
+						<div class="collapse-divider"></div>
+						<h6 class="collapse-header">Gestion de notes</h6>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+							<div class="bg-white py-2 collapse-inner rounded">
+								@Html.ActionLink("Informatique", "INFO", "Admin", new { @class = "collapse-item" })
+								@Html.ActionLink("Reseau", "GTR", "Admin", new { @class = "collapse-item" })
+								@Html.ActionLink("Industrielle", "INDUS", "Admin", new { @class = "collapse-item" })
+								@Html.ActionLink("Procede", "GPMC", "Admin", new { @class = "collapse-item" })
+							</div>
+						</div>
+					</div>
+						</div>
+</li>
 
             <!-- Nav Item - 4ème Année -->
 
@@ -94,13 +104,23 @@
                     <span>4ème Année</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="collapseUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        @Html.ActionLink("Recherche", "Recherche4", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Corbeil", "Corbeil4", "Admin", new { @class = "collapse-item" })
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Custom Components:</h6>
+						@Html.ActionLink("Recherche", "Recherche4", "Admin", new { @class = "collapse-item" })
+						@Html.ActionLink("Corbeil", "Corbeil4", "Admin", new { @class = "collapse-item" })
+						<a class="collapse-item" href="buttons.html">Buttons</a>
+						<a class="collapse-item" href="cards.html">Cards</a>
+						<div class="collapse-divider"></div>
+						<h6 class="collapse-header">Gestion de notes</h6>
+						<div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+							<div class="bg-white py-2 collapse-inner rounded">
+								@Html.ActionLink("Informatique", "INFO4", "Admin", new { @class = "collapse-item" })
+								@Html.ActionLink("Reseau", "GTR4", "Admin", new { @class = "collapse-item" })
+								@Html.ActionLink("Industrielle", "INDUS4", "Admin", new { @class = "collapse-item" })
+								@Html.ActionLink("Procedes", "GPMC4", "Admin", new { @class = "collapse-item" })
+							</div>
+						</div>
+					</div>
                 </div>
             </li>
 

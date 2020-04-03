@@ -13,5 +13,7 @@ namespace GestionConcours.Services
         IEnumerable<SearchModel3> specifiedSearch(string Criteria, string Key,string Diplome, string Filiere,int niveau);
         IEnumerable<SearchModel3> deleteCandidat(string cne,int niveau);
         IEnumerable<SearchModel3> conformCandidat(string cne,int niveau);
-    }
+		
+
+	}
 }
