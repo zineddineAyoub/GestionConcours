@@ -23,14 +23,14 @@ namespace GestionConcours.Controllers
 	//	public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, ICorrectionService corret, IIndexService index)
 
               
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil,ICorrectionService corre, IPreselectionService preselec,ISelectionService selection,IEpreuveService epreuve, IIndexService index)
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil,ICorrectionService corret, IPreselectionService preselec,ISelectionService selection,IEpreuveService epreuve, IIndexService index)
         {
 			
             this.search = search;
             this.corbeil = corbeil;
             this.preselec = preselec;
             this.selection = selection;
-			      this.corret = corret;
+			this.corret = corret;
             this.index = index;
             this.epreuve = epreuve;
 		    }
