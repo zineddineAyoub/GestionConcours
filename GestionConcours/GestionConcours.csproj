@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AdmisModel.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
     <Compile Include="Models\Baccalaureat.cs" />
     <Compile Include="Models\Candidat.cs" />
@@ -215,12 +216,18 @@
     <Compile Include="Models\ConfigurationSelection.cs" />
     <Compile Include="Models\Corbeil.cs" />
     <Compile Include="Models\CorbeilModel.cs" />
+    <Compile Include="Models\CorrectionModel.cs" />
+    <Compile Include="Models\CorrectionModel4.cs" />
     <Compile Include="Models\Diplome.cs" />
     <Compile Include="Models\DiplomeNote.cs" />
     <Compile Include="Models\Epreuves.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
+    <Compile Include="Models\ListFinal.cs" />
+    <Compile Include="Models\Note_Concour3.cs" />
     <Compile Include="Models\IndexModel.cs" />
+
+
     <Compile Include="Models\PreselectionModel.cs" />
     <Compile Include="Models\SearchModel3.cs" />
     <Compile Include="Models\UploadModel.cs" />
@@ -229,12 +236,20 @@
     <Compile Include="Services\EpreuveServicceImp.cs" />
     <Compile Include="Services\ICorbeil3Service.cs" />
     <Compile Include="Services\IEpreuveService.cs" />
+    <Compile Include="Services\CorrectionServiceImp.cs" />
+    <Compile Include="Services\ICorbeil3Service.cs" />
+
+    <Compile Include="Services\ICorrectionService.cs" />
+
     <Compile Include="Services\IIndexService.cs" />
     <Compile Include="Services\IndexServiceImp.cs" />
+
     <Compile Include="Services\IPreselectionService.cs" />
     <Compile Include="Services\ISearch3Service.cs" />
+    <Compile Include="Services\ISelectionService.cs" />
     <Compile Include="Services\PreselectionServiceImp.cs" />
     <Compile Include="Services\Search3ServiceImp.cs" />
+    <Compile Include="Services\SelectionServiceImp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -2441,11 +2456,26 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
+
+    <Content Include="Views\Admin\Selection.cshtml" />
+    <Content Include="Views\Admin\ListeFinal.cshtml" />
+    <Content Include="Views\Admin\SelectionL.cshtml" />
+    <Content Include="Views\Admin\ListFinaleSup.cshtml" />
+    <Content Include="Views\Admin\INFO.cshtml" />
+    <Content Include="Views\Admin\INFO4.cshtml" />
+    <Content Include="Views\Admin\GTR.cshtml" />
+    <Content Include="Views\Admin\GTR4.cshtml" />
+    <Content Include="Views\Admin\GPMC.cshtml" />
+    <Content Include="Views\Admin\GPMC4.cshtml" />
+    <Content Include="Views\Admin\INDUS.cshtml" />
+    <Content Include="Views\Admin\INDUS4.cshtml" />
+
     <Content Include="Views\Home\ModifierFiliere.cshtml" />
     <Content Include="Views\Auth\PasswordOublie.cshtml" />
     <Content Include="Views\Admin\Statistique3Annee.cshtml" />
     <Content Include="Views\Admin\Epreuve.cshtml" />
   </ItemGroup>
+ </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
