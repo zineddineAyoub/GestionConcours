@@ -17,30 +17,28 @@ namespace GestionConcours.Controllers
 
         private ICorrectionService corret;
 		private IPreselectionService preselec;
+   private ISelectionService selection;
+    private IIndexService index;
+    private IPreselectionService preselec;
 
+	//	public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, ICorrectionService corret, IIndexService index)
 
-		public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, ICorrectionService corret)
+              
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec,ISelectionService selection, IIndexService index)
 
-        private IPreselectionService preselec;
-        private IIndexService index;
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, IIndexService index)
 
         {
 			
             this.search = search;
             this.corbeil = corbeil;
             this.preselec = preselec;
-
-			this.corret = corret;
-
-		}
-
-		
-		// GET: Admin
-		public ActionResult Index()
-
+            this.selection = selection;
+			      this.corret = corret;
             this.index = index;
-        }
+
+		    }
+        
+        
         // GET: Admin
         public ActionResult Index()
 
@@ -619,7 +617,96 @@ namespace GestionConcours.Controllers
             var list = preselec.getPourcentage(niv, fil, diplome);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        
+
+
+        public ActionResult Selection()
+        {
+           return View();
+        }
+
+        public ActionResult SelectionL()
+        {
+            return View();
+        }
+
+     
+
+        public JsonResult GetConfigurationSelection(string filiere,int nv)
+        {
+            var data = selection.getConfigurationSelection(filiere,nv);
+          
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult Test(string f, int cs, int np, int la, double nm, int cm, string cl, string nv)
+        {
+            return Json("niceTest", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SetConfigurationSelection(string f, int cs, int np, int la, double nm,int cm,string cl,string nv)
+        {
+            ConfigurationSelection conf = new ConfigurationSelection();
+
+            conf.Filiere = f;
+            conf.CoeffMath = cm;
+            conf.CoeffSpecialite = cs;
+            conf.NbrPlace = np;
+            conf.NoteMin = nm;
+            conf.NbrPlaceListAtt = la;
+            conf.TypeClassement =cl;
+            conf.Niveau = nv;
+
+
+         
+             selection.updateConfigurationSelection(conf);
+            if(nv=="3")
+            {
+                selection.calculeNoteGlobale(f);
+            }
+           
+          var data = selection.selectStudents(f,nv);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ListeFinal()
+        {
+            
+            return View();
+        }
+
+
+      public ActionResult ListFinaleSup()
+        {
+            return View();
+        }
+
+        public JsonResult GetListePrincipal(string filiere)
+        {
+            var data = selection.getListPrincipale(filiere);
+           return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetListeAttente(string filiere)
+        {
+            var data = selection.getListAttente(filiere);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetListePrincipalSup(string filiere)
+        {
+            var data = selection.getListPrincipaleSup(filiere);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetListeAttenteSup(string filiere)
+        {
+            var data = selection.getListAttenteSup(filiere);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
  
