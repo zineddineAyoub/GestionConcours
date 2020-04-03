@@ -25,6 +25,7 @@ namespace GestionConcours
 			DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             container.RegisterType<IIndexService, IndexServiceImp>();
+            container.RegisterType<IEpreuveService, EpreuveServicceImp>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
         }

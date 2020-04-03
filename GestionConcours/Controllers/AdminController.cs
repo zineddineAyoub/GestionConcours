@@ -14,19 +14,16 @@ namespace GestionConcours.Controllers
 		
 		private ISearch3Service search;
         private ICorbeil3Service corbeil;
-
+        private IEpreuveService epreuve;
         private ICorrectionService corret;
 		private IPreselectionService preselec;
    private ISelectionService selection;
     private IIndexService index;
-    private IPreselectionService preselec;
 
 	//	public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, ICorrectionService corret, IIndexService index)
 
               
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec,ISelectionService selection, IIndexService index)
-
-
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil,ICorrectionService corre, IPreselectionService preselec,ISelectionService selection,IEpreuveService epreuve, IIndexService index)
         {
 			
             this.search = search;
@@ -35,7 +32,7 @@ namespace GestionConcours.Controllers
             this.selection = selection;
 			      this.corret = corret;
             this.index = index;
-
+            this.epreuve = epreuve;
 		    }
         
         
@@ -618,6 +615,26 @@ namespace GestionConcours.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        // ##################################### Upload Epreuve #############################################
+        public ActionResult Epreuve()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
+
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+
+        public JsonResult UploadEpreuve(UploadModel epr)
+        {
+            var result = epreuve.uploadEpreuve(epr);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult Selection()
         {
@@ -705,8 +722,6 @@ namespace GestionConcours.Controllers
             var data = selection.getListAttenteSup(filiere);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
-
-
     }
 }
  
