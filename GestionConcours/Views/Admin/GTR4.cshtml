@@ -1,0 +1,118 @@
+﻿
+@{
+	ViewBag.Title = "GTR4";
+}
+
+
+@{
+	ViewBag.Title = "Correction4";
+}
+
+
+
+@model IEnumerable<GestionConcours.Models.CorrectionModel4>
+
+@{
+	ViewBag.Title = "corection";
+	Layout = "~/Views/Shared/_TabLayout.cshtml";
+}
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<div class="align-content-center">
+				<h3 class="font-weight-bold text-center pt-3 pb-5">Listes des candidats présents au concour d'accès en 4 ème année</h3>
+
+			</div>
+			@using (Html.BeginForm("GTR_Post4", "Admin", FormMethod.Post))
+			{
+				<div>
+					<table class="table table-bordered" >
+						<tr>
+							<th class="text-center">N</th>
+							<th class="text-center">Dossier</th>
+							<th class="text-center">Cin</th>
+							<th class="text-center">Nom</th>
+							<th class="text-center">Prenom</th>
+							<th class="text-center">Filiere</th>
+							<th class="text-center">Diplôme</th>
+							<th class="text-center">Provenance</th>
+							<th class="text-center">Spécialité</th>
+							<th class="text-center">Classement</th>
+
+						</tr>
+						<tbody id="tbody">
+							@{int i = 1;}
+							@foreach (var etudiants in Model)
+							{
+								<tr>
+									<td class="text-center">@(i++)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Num_dossier)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Cin)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Nom)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Prenom)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Filiere)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Diplome)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Etablissement)</td>
+									<td class="text-center">@Html.DisplayFor(modelItem => etudiants.Specialite)</td>
+									<td class="text-center">
+										@Html.TextBoxFor(modelItem => etudiants.Classement, new { @class = "form-control" })
+										@Html.HiddenFor(modelItem => etudiants.Cne)
+									</td>
+
+
+
+								</tr>
+
+							}
+						</tbody>
+
+					</table>
+					<div class="col-md-3 offset-4 mt-3">
+						<input type="submit" id="submit" value="Valider le classement" class="btn btn-primary btn-block" />
+
+					</div>
+
+				</div>
+			}
+			<h1 id="dd"></h1>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+@*
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+	<script type="text/javascript">
+
+
+
+		$("body").on("click", "#btnSave", function () {
+			//Loop through the Table rows and build a JSON array.
+			var customers = new Array();
+			$("#tblCustomers TBODY TR").each(function () {
+				var row = $(this);
+				var customer = {};
+				customer.math = row.find("TD").eq(0).html();
+				customer.specialite = row.find("TD").eq(1).html();
+				customers.push(customer);
+			});
+
+			//Send the JSON array to Controller using AJAX.
+			$.ajax({
+				type: "POST",
+				url: "/Admin/InsertNote",
+				data: JSON.stringify(customers),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: function (r) {
+					alert(r + " record(s) inserted.");
+				}
+			})
+	</script>
+*@
+<!-- End of Content Wrapper -->

@@ -139,6 +139,9 @@ namespace GestionConcours.Controllers
                 const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
                 var chars = Enumerable.Range(0, 7)
                     .Select(x => pool[random.Next(0, pool.Length)]);
+                var charsMatricule = Enumerable.Range(0, 8)
+                    .Select(w => pool[random.Next(0, pool.Length)]);
+                candidat.Matricule = new string(charsMatricule.ToArray());
                 candidat.Password=new string(chars.ToArray());
                 candidat.Verified = 0;
                 candidat.Photo = "icon.jpg";
