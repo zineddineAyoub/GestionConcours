@@ -140,7 +140,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourEcrit con = db.CouncourEcrits.Find(d);
+				ConcourEcrit con = db.CouncourEcrits.Find(d);
 				con.NoteMath = Double.Parse(NOTES[i]);
 				con.NoteSpecialite = Double.Parse(NOTES2[i]);
 				db.SaveChanges();
@@ -186,7 +186,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourEcrit con = db.CouncourEcrits.Find(d);
+				ConcourEcrit con = db.CouncourEcrits.Find(d);
 				con.NoteMath = Double.Parse(NOTES[i]);
 				con.NoteSpecialite = Double.Parse(NOTES2[i]);
 				db.SaveChanges();
@@ -230,7 +230,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourEcrit con = db.CouncourEcrits.Find(d);
+				ConcourEcrit con = db.CouncourEcrits.Find(d);
 				con.NoteMath = Double.Parse(NOTES[i]);
 				con.NoteSpecialite = Double.Parse(NOTES2[i]);
 				db.SaveChanges();
@@ -274,7 +274,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourEcrit con = db.CouncourEcrits.Find(d);
+				ConcourEcrit con = db.CouncourEcrits.Find(d);
 				con.NoteMath = Double.Parse(NOTES[i]);
 				con.NoteSpecialite = Double.Parse(NOTES2[i]);
 				db.SaveChanges();
@@ -316,7 +316,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourOral con = db.CouncourOrals.Find(d);
+				ConcourOral con = db.CouncourOrals.Find(d);
 				con.Classement = Int32.Parse(NOTES[i]);
 				db.SaveChanges();
 			}
@@ -356,7 +356,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourOral con = db.CouncourOrals.Find(d);
+				ConcourOral con = db.CouncourOrals.Find(d);
 				con.Classement = Int32.Parse(NOTES[i]);
 				db.SaveChanges();
 			}
@@ -396,7 +396,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourOral con = db.CouncourOrals.Find(d);
+				ConcourOral con = db.CouncourOrals.Find(d);
 				con.Classement = Int32.Parse(NOTES[i]);
 				db.SaveChanges();
 			}
@@ -437,7 +437,7 @@ namespace GestionConcours.Controllers
 			for (int i = 0; i < CNE.Length; i++)
 			{
 				d = CNE[i].ToString();
-				CouncourOral con = db.CouncourOrals.Find(d);
+				ConcourOral con = db.CouncourOrals.Find(d);
 				con.Classement = Int32.Parse(NOTES[i]);
 				db.SaveChanges();
 			}

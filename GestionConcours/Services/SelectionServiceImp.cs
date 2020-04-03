@@ -60,7 +60,7 @@ namespace GestionConcours.Services
             var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) &&  c.Niveau==3);
             foreach(var person in data)
             {
-                CouncourEcrit concours =  db.CouncourEcrits.Where(c => c.Cne.Equals(person.Cne)).SingleOrDefault();
+                ConcourEcrit concours =  db.CouncourEcrits.Where(c => c.Cne.Equals(person.Cne)).SingleOrDefault();
                 concours.NoteGenerale = (concours.NoteMath * conf.CoeffMath + concours.NoteSpecialite * conf.CoeffSpecialite)/(conf.CoeffMath+conf.CoeffSpecialite);
                 
             }

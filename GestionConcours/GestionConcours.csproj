@@ -226,24 +226,18 @@
     <Compile Include="Models\ListFinal.cs" />
     <Compile Include="Models\Note_Concour3.cs" />
     <Compile Include="Models\IndexModel.cs" />
-
-
     <Compile Include="Models\PreselectionModel.cs" />
     <Compile Include="Models\SearchModel3.cs" />
     <Compile Include="Models\UploadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Corbeil3ServiceImp.cs" />
     <Compile Include="Services\EpreuveServicceImp.cs" />
-    <Compile Include="Services\ICorbeil3Service.cs" />
     <Compile Include="Services\IEpreuveService.cs" />
     <Compile Include="Services\CorrectionServiceImp.cs" />
     <Compile Include="Services\ICorbeil3Service.cs" />
-
     <Compile Include="Services\ICorrectionService.cs" />
-
     <Compile Include="Services\IIndexService.cs" />
     <Compile Include="Services\IndexServiceImp.cs" />
-
     <Compile Include="Services\IPreselectionService.cs" />
     <Compile Include="Services\ISearch3Service.cs" />
     <Compile Include="Services\ISelectionService.cs" />
@@ -2456,7 +2450,6 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
-
     <Content Include="Views\Admin\Selection.cshtml" />
     <Content Include="Views\Admin\ListeFinal.cshtml" />
     <Content Include="Views\Admin\SelectionL.cshtml" />
@@ -2469,7 +2462,6 @@
     <Content Include="Views\Admin\GPMC4.cshtml" />
     <Content Include="Views\Admin\INDUS.cshtml" />
     <Content Include="Views\Admin\INDUS4.cshtml" />
-
     <Content Include="Views\Home\ModifierFiliere.cshtml" />
     <Content Include="Views\Auth\PasswordOublie.cshtml" />
     <Content Include="Views\Admin\Statistique3Annee.cshtml" />
