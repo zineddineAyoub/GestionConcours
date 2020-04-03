@@ -79,7 +79,8 @@
                         @Html.ActionLink("Recherche", "Recherche", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Corbeil", "Corbeil", "Admin", new { @class = "collapse-item" })
                         <a class="collapse-item" href="cards.html">Préselection</a>
-                        <a class="collapse-item" href="buttons.html">Statistiques</a>
+                        @Html.ActionLink("Statistique avant concour", "Statistique3A", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Statistique apres concour", "Statistique3ApresConcour", "Admin", new { @class = "collapse-item" })
                         <a class="collapse-item" href="cards.html">Gestion</a>
                         <a class="collapse-item" href="buttons.html">Sélection</a>
                     </div>
@@ -98,7 +99,8 @@
                         <h6 class="collapse-header">Custom Components:</h6>
                         @Html.ActionLink("Recherche", "Recherche4", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Corbeil", "Corbeil4", "Admin", new { @class = "collapse-item" })
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        @Html.ActionLink("Statistique avant concour", "Statistique4A", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Statistique apres concour", "Statistique4ApresConcour", "Admin", new { @class = "collapse-item" })
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>

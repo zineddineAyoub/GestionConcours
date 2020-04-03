@@ -226,8 +226,11 @@
     <Compile Include="Services\ICorbeil3Service.cs" />
     <Compile Include="Services\IPreselectionService.cs" />
     <Compile Include="Services\ISearch3Service.cs" />
+    <Compile Include="Services\Istatistiques3AService.cs" />
     <Compile Include="Services\PreselectionServiceImp.cs" />
     <Compile Include="Services\Search3ServiceImp.cs" />
+    <Compile Include="Services\Statistique3AImpl.cs" />
+    <Compile Include="ViewModels\Statistique.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -2429,7 +2432,9 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
-    <Content Include="Views\Admin\Statistique3Annee.cshtml" />
+    <Content Include="Views\Admin\Statistique3A.cshtml" />
+    <Content Include="Views\Admin\Statistique4A.cshtml" />
+    <Content Include="Views\Admin\Statistique3ApresConcour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
