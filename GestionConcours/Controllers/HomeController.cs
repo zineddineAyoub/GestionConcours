@@ -315,8 +315,12 @@ namespace GestionConcours.Controllers
         // Afficher le contenue de la convocation 
         public ActionResult Fiche(string id,string click="empty")
         {
+            if (Session["cne"] == null && id==null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             // Pour supprimer le header de la page de la convocation
-            if(click.Equals("imprimer"))
+            if (click.Equals("imprimer"))
             {
                 ViewBag.Imprimer = "imprimer";
             }
@@ -345,9 +349,9 @@ namespace GestionConcours.Controllers
 
 
         // Responsable d'imprimer le fiche mais les sessions ne marchent pas lors de l'appel de Fiche()
-         public ActionResult ImprimerConvocation()
+         public ActionResult ImprimerConvocation(string cne)
          {
-           return new Rotativa.ActionAsPdf("Fiche", new { id = Session["cne"], click = "imprimer" })
+           return new Rotativa.ActionAsPdf("Fiche", new { id = cne, click = "imprimer" })
            {
                PageSize = Size.A4,
                CustomSwitches = "--disable-smart-shrinking",

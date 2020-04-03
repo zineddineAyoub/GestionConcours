@@ -36,16 +36,22 @@
 
     <!-- Main CSS-->
     <link href="~/Content/css_user/theme.css" rel="stylesheet" media="all">
+ 
 
 
 </head>
+
+
 
 <body class="animsition">
     <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar2">
             <div class="logo">
-                <h3 style="color:white">ENSA SAFI</h3>
+                <h4 style="color:white">
+                    <img src="~/Pictures/icon/ensa_2.jfif" class="rounded-circle mr-3" style="width:68px; height:58px;"/>
+                    ENSA SAFI
+                </h4>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">        
@@ -64,38 +70,38 @@
                         </li>
                         <li>
                             <a href='@Url.Action("ModifierPersonel", "Home")'>
-                                <i class="iconify mr-3" data-icon="ic:sharp-account-circle" data-inline="true" style="color:aquamarine; height:25px; width:25px;"></i>Informations Personnelles
+                                <i class="iconify mr-3" data-icon="fa-solid:user-edit" data-inline="true" style="color:dodgerblue; height:25px; width:25px;"></i>Informations Personnelles
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("Fiche", "Home")'>
-                                <i class="iconify mr-3" data-icon="bx:bxs-file-doc" data-inline="true" style="color:crimson; height:25px; width:25px;"></i>Fiche de Convocation
+                                <i class="iconify mr-3" data-icon="bx:bxs-file-doc" data-inline="true" style="color:crimson; height:28px; width:28px;"></i>Fiche de Convocation
                             </a>
                         </li>
                         <li>
                             <a class="js-arrow" href='@Url.Action("ModifierDiplome", "Home")'>
-                                <i class="fas fa-tachometer-alt"></i>Diplôme
+                                <i class="iconify mr-3 " data-icon="vaadin:diploma" data-inline="true" style="color:darkorchid; height:25px; width:25px;"></i>Diplôme
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("ModifierBac", "Home")'>
-                                <i class="iconify mr-3" data-icon="mdi:bulletin-board" data-inline="true" style="color: burlywood; height:25px; width:25px;"></i>Bac
+                                <i class="iconify mr-3" data-icon="mdi:bulletin-board" data-inline="true" style="color: coral; height:25px; width:25px;"></i>Baccalauréat
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("ModifierFiliere", "Home")'>
-                                <i class="fas fa-shopping-basket"></i>Filière
+                                <span class="iconify mr-3" data-icon="bx:bxs-calendar-edit" data-inline="true" style="color: darkturquoise; height:25px; width:25px;"></span>Filière
                             </a>
                         </li>
 
                         <li>
                             <a class="js-arrow" href='@Url.Action("Epreuve", "Home")'>
-                                <i class="fas fa-tachometer-alt"></i>Anciens Epreuves
+                                <i class="iconify mr-3" data-icon="fa-regular:file-pdf" data-inline="true" style="color:goldenrod; height:25px; width:25px;"></i>Anciens Epreuves
                             </a>
                         </li>
                         <li>
                             <a href='@Url.Action("Deconnexion", "Home")'>
-                                <i class="fas fa-chart-bar"></i>Deconnexion
+                                <span class="iconify mr-3" data-icon="ls:logout" data-inline="true" style="color:mediumvioletred; height:28px; width:28px;"></span>Deconnexion
                             </a>
                         </li>
                         
@@ -111,13 +117,22 @@
             <header class="header-desktop2">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <h3 style="color:white">
+                            Inscription au Concours d'accès à l'ENSAS
+                        </h3>
                         <div class="header-wrap2">
+
                             <div class="logo d-block d-lg-none">
-                                <a href="#">
-                                    <img src="../Pictures/icon/logo-white.png" alt="CoolAdmin" />
-                                </a>
+                                <div class="logo">
+                                    <h3 style="color:white">
+                                        <img src="~/Pictures/icon/ensa_2.jfif" class="rounded-circle mr-3" style="width:68px; height:58px;" />
+                                        ENSA SAFI
+                                    </h3>
+
+
+                                </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -312,11 +327,11 @@
 
 
             <section>
-                <div class="container-fluid">
+                <div class="container-fluid mt-5">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="copyright">
-                                <p>Copyright © 2020 Ecole National De Science Appliqué.</p>
+                                <p>Copyright © 2020 Ecole Nationale Des Sciences Appliquées de Safi.</p>
                             </div>
                         </div>
                     </div>

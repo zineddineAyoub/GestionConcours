@@ -318,9 +318,14 @@
     <Content Include="Pictures\admin_pic\third.svg" />
     <Content Include="Pictures\bg-title-01.jpg" />
     <Content Include="Pictures\bg-title-02.jpg" />
+    <Content Include="Pictures\ensa.jfif" />
     <Content Include="Pictures\ENSA.jpg" />
+    <Content Include="Pictures\ensa_2.jfif" />
+    <Content Include="Pictures\ensa_2_jimage.tif" />
+    <Content Include="Pictures\grad.svg" />
     <Content Include="Pictures\icons_user\bac.svg" />
     <Content Include="Pictures\icons_user\edit_icon.svg" />
+    <Content Include="Pictures\icons_user\graduation.svg" />
     <Content Include="Pictures\icon\avatar-01.jpg" />
     <Content Include="Pictures\icon\avatar-02.jpg" />
     <Content Include="Pictures\icon\avatar-03.jpg" />
@@ -328,6 +333,9 @@
     <Content Include="Pictures\icon\avatar-05.jpg" />
     <Content Include="Pictures\icon\avatar-06.jpg" />
     <Content Include="Pictures\icon\avatar-big-01.jpg" />
+    <Content Include="Pictures\icon\ensa_2.jfif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pictures\icon\icon.jpg" />
     <Content Include="Pictures\icon\logo-blue.png" />
     <Content Include="Pictures\icon\logo-mini.png" />
@@ -337,7 +345,10 @@
     <Content Include="Pictures\admin_pic\school.svg" />
     <Content Include="Pictures\admin_pic\school4.svg" />
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
+    <Content Include="Pictures\image.jpg" />
     <Content Include="Pictures\Mark.jpg" />
+    <Content Include="Pictures\opac.PNG" />
+    <Content Include="Pictures\read.svg" />
     <Content Include="Pictures\userPic\icon.jpg" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />

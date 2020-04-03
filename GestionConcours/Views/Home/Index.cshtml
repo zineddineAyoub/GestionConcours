@@ -9,53 +9,74 @@
         <div class="container-fluid">
             <!-- USER DATA-->
             <div class="user-data m-b-40">
-                @if (TempData["message"] != null)
-                {
-                    <div class="form-group">
-                        <div class="alert alert-success ml-3 mr-3">
-                            <span>@TempData["message"]</span>
+                
+                <div class="row">
+                    <div class="col-12">
+                        @if (TempData["message"] != null)
+                        {
+                            <div class="form-group">
+                                <div class="alert alert-success ml-3 mr-3">
+                                    <span>@TempData["message"]</span>
+                                </div>
+                            </div>
+                        }
+                        @if (ViewData["error"] != "")
+                        {
+                            <div class="form-group">
+                                <div class="alert alert-danger ml-3 mr-3">
+                                    <span>@ViewData["error"]</span>
+                                </div>
+                            </div>
+                        }<br>
+                         <h2 class="title-3 mb-4 text-center font-weight-bold">
+                             <i class="iconify mr-3" data-icon="ion:home" data-inline="true" style="color:hotpink; height:35px; width:35px;"></i>
+                             Bienvenue Candidat
+                         </h2>
+                        <p class="text-center pb-4">
+                            Vous êtes sur votre espace d'inscription au concours d'accès de l'ENSA de Safi
+                        </p>
                         </div>
                     </div>
-                }
-                @if (ViewData["error"] != "")
-                {
-                    <div class="form-group">
-                        <div class="alert alert-danger ml-3 mr-3">
-                            <span>@ViewData["error"]</span>
+                <div class="row">
+                    <div class="col-md-3 offset-5 mb-2">
+
+                        <div>
+
+                            <p><strong>@Model.Nom @Model.Prenom </strong> </p>
+                            <p><strong> CNE </strong> : @Model.Cne</p>
+
+                            <p><strong> CIN </strong>: @Model.Cin  </p>
+                            <p><strong> Email </strong> : @Model.Email</p>
+                        </div>
+                        <br />
+
                         </div>
                     </div>
-                }<br>
-                <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar" style="padding-left:390px;"></i>user data
-                </h3>
+                <div class="row">
+                    <div class="col-10 offset-1">
 
-                <div style="padding-left:420px;">
+                        <div >
+                            <h4 class="mb-3"> Dates Critiques : </h4>
 
-                    <p><strong>@Model.Nom @Model.Prenom </strong> </p>
-                    <p><strong> CNE </strong> : @Model.Cne</p>
+                            <div class="row">
+                                <div class="col-lg-8 alert alert-danger" role="alert" >
+                                    La date limite d'inscription est le 20/06/2020
+                                </div>
+                                <div class=" col-lg-8 alert alert-warning" role="alert">
+                                    Le concours aura lieu le 20/08/2020
+                                </div>
+                                <div class="col-lg-8 alert alert-info" role="alert">
+                                    Veuillez imprimer la fiche d'inscription et l'avoir le jour du concours !!
+                                </div>
+                                <div class=" col-lg-8 alert alert-success" role="alert">
+                                    Les résultats du concours seront prêts 3 jours après le passage du concours
+                                </div>
+                            </div>
+                            
+                            
 
-                    <p><strong> CIN </strong>: @Model.Cin  </p>
-                    <p><strong> Email </strong> : @Model.Email</p>
-                </div>
-                <br />
-
-                <div style="padding-left:200px">
-                    <h3> NB : </h3>
-
-
-                    <div class="alert alert-danger" role="alert" style="width: 590px">
-                        La date limite d'inscription est le 20/06/2020
+                        </div>
                     </div>
-                    <div class="alert alert-warning" role="alert" style="width: 590px">
-                        Le concours aura lieu le 20/08/2020
-                    </div>
-                    <div class="alert alert-info" role="alert" style="width: 590px">
-                        Veuillez imprimer la fiche d'inscription et l'avoir le jour du concours !!
-                    </div>
-                    <div class="alert alert-success" role="alert" style="width: 590px">
-                        Les résultats du concours seront prêts 3 jours après le passage du concours
-                    </div>
-
                 </div>
                 <br /><br />
 

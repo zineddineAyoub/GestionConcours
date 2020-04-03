@@ -12,41 +12,51 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                             @using (Html.BeginForm())
                             {
                                 <div class="row register-form " style="padding-bottom: 40px">
                                     <div class="col-md-8 offset-2">
-                                        <h1 class="register-heading">Modification des informations Diplômes et notes</h1><br /><br /><br />
+                                        <h2 class="register-heading">
+                                            <i class="iconify mr-3 " data-icon="vaadin:diploma" data-inline="true" style="color:darkorchid; height:35px; width:35px;"></i>
+                                            Modification des informations Diplômes et notes
+                                        </h2><br /><br /><br />
                                         <div class="form-group">
-                                            <h3 class="register-heading">Diplome obtenu</h3><br />
+                                            <h4 class="register-heading">Diplome obtenu</h4><br />
+                                                                                       
+                                            @if (Session["niveau"].ToString() == "3")
+                                            {
 
-                                            <select name="Type" id="Type" class="form-control">                                                
-                                                <option selected value="">-- Choix de type du Diplôme --</option>
-
-
-                                                @if (Session["niveau"].ToString() == "3")
+                                                @Html.DropDownListFor(model => model.Type,
+                                                new List<SelectListItem>
                                                 {
-                                                    <option value="DUT">DUT</option>
-                                                    <option value="DEUG">DEUG</option>
-                                                    <option value="Lic.pro-DUT">Liscence Professionnelle - DUT</option>
-                                                    <option value="Lic.pro-DEUG">Liscence Professionnelle - DEUG</option>
-                                                    <option value="Lic.fnd-DUT">Liscence Fondamentale - DUT</option>
-                                                    <option value="Lic.fnd-DEUG">Liscence Fondamentale - DEUG</option>
-                                                    <option value="Lic.st-DUT">Liscence ST - DUT</option>
-                                                    <option value="Lic.st-DEUG">Liscence ST - DEUG</option>
+                                                   new SelectListItem{Text="DUT", Value="DUT"},
+                                                   new SelectListItem{Text="DEUG", Value="DEUG"},
+                                                   new SelectListItem{Text="Liscence Professionnelle - DUT", Value="Lic.pro-DUT"},
+                                                   new SelectListItem{Text="Liscence Professionnelle - DEUG", Value="Lic.pro-DEUG"},
+                                                   new SelectListItem{Text="Liscence Fondamentale - DUT", Value="Lic.fnd-DUT"},
+                                                   new SelectListItem{Text="Liscence Fondamentale - DEUG", Value="Lic.fnd-DEUG"},
+                                                   new SelectListItem{Text="Liscence ST - DUT", Value="Lic.st-DUT"},
+                                                   new SelectListItem{Text="Liscence ST - DEUG", Value="Lic.st-DEUG"}
                                                 }
-                                                else if (Session["niveau"].ToString() == "4")
+                                                , "-- Choix de type du Diplôme --", htmlAttributes: new { @class = "form-control " })
+                                            } else
+                                            {
+                                                @Html.DropDownListFor(model => model.Type,
+                                                new List<SelectListItem>
                                                 {
-                                                    <option value="Lic.pro">Liscence Professionnelle </option>
-                                                    <option value="Lic.fnd">Liscence Fondamentale</option>
-                                                    <option value="Lic.st">Liscence Sciences et Techniques </option>
-
+                                                   new SelectListItem{Text="Liscence Professionnelle", Value="Lic.pro"},
+                                                   new SelectListItem{Text="Liscence Fondamentale", Value="Lic.fnd"},
+                                                   new SelectListItem{Text="Liscence Sciences et Techniques", Value="Lic.st"}
                                                 }
-                                            </select>
+                                                , "-- Choix de type du Diplôme --", htmlAttributes: new { @class = "form-control " })
+                                             }
+
+                                            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+
+                                            
                                         </div>
                                         <div class="form-group">
-                                            @Html.EditorFor(model => model.Specialite, "Specialité", new { htmlAttributes = new { @class = "form-control",@placeholder="Specialité" } })
+                                            @Html.EditorFor(model => model.Specialite, "Specialité", new { htmlAttributes = new { @class = "form-control", @placeholder = "Specialité" } })
                                             @Html.ValidationMessageFor(model => model.Specialite, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
@@ -56,14 +66,18 @@
 
                                         </div>
                                         <div class="form-group">
-                                            <select name="Etablissement" class="form-control">
-                                                <option selected value="">-- Choix d'Etablissement --</option>
-                                                <option value="EST">École Supérieure de Technologie EST</option>
-                                                <option value="FST">Faculté des Sciences et Techniques FST</option>
-                                                <option value="FP">Faculté Polydisciplinaire FP</option>
-                                                <option value="FS">Faculté des Sciences FS</option>
 
-                                            </select>
+                                            @Html.DropDownListFor(model => model.Etablissement,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="École Supérieure de Technologie EST", Value="EST"},
+                                                   new SelectListItem{Text="Faculté des Sciences et Techniques FST", Value="FST"},
+                                                   new SelectListItem{Text="Faculté Polydisciplinaire FP", Value="FP"},
+                                                   new SelectListItem{Text="Faculté des Sciences FS", Value="FS"}
+                                                }
+                                                , "-- Choix d'Etablissement --", htmlAttributes: new { @class = "form-control " })
+                                            @Html.ValidationMessageFor(model => model.Etablissement, "", new { @class = "text-danger" })
+
                                         </div>
                                         <div class="form-group">
                                             @Html.EditorFor(model => model.VilleObtention, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ville Obtention" } })
@@ -72,133 +86,146 @@
                                         </div>
 
                                     </div>
-                                    <h3 class="register-heading" style="margin-left: 96px;margin-bottom: 23px">Relevé de notes semestrielles</h3><br />
-                                    <div style="display:flex">
-                                        <div class="rs-select2--dark  rs-select2--border" style="width: 283px; padding-left: 97px;margin-right: 30px">
-
-                                            <select name="AnneUni1" class="form-control">
-                                                <option selected value="">Année universitaire</option>
-                                                <option value="2012/2013">2012/2013</option>
-                                                <option value="2013/2014">2013/2014</option>
-                                                <option value="2014/2015">2014/2015</option>
-                                                <option value="2015/2016">2015/2016</option>
-                                                <option value="2016/2017">2016/2017</option>
-
-                                            </select>
-                                            <br />
-                                            <select name="AnneUni2" class="form-control">
-                                                <option selected value="">Année universitaire</option>
-                                                <option value="2013/2014">2013/2014</option>
-                                                <option value="2014/2015">2014/2015</option>
-                                                <option value="2015/2016">2015/2016</option>
-                                                <option value="2016/2017">2016/2017</option>
-                                                <option value="2017/2018">2017/2018</option>
-                                            </select>
-
-                                            <br />
-                                            <select id="AnneUni3" name="AnneUni3" class="form-control">
-                                                <option selected value="">Année universitaire</option>
-                                                <option value="2014/2015">2014/2015</option>
-                                                <option value="2015/2016">2015/2016</option>
-                                                <option value="2016/2017">2016/2017</option>
-                                                <option value="2017/2018">2017/2018</option>
-                                                <option value="2018/2019">2018/2019</option>
-                                            </select>
-
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                        <div class="rs-select2--dark rs-select2--md  rs-select2--border" style="margin-right: 30px">
-
-                                            <select name="Redoublant1" class="form-control">
-
-                                                <option selected value="">Redoublement</option>
-
-                                                <option value="Oui">Oui</option>
-                                                <option value="Non">Non</option>
-                                            </select>
-                                            <br />
-                                            <select name="Redoublant2" class="form-control">
-
-                                                <option selected value="">Redoublement</option>
-
-                                                <option value="Oui">Oui</option>
-                                                <option value="Non">Non</option>
-                                            </select>
-                                            <br />
-
-                                            <select name="Redoublant3" id="Redoublant3" class="form-control">
-
-                                                <option selected value="">Redoublement</option>
-
-                                                <option value="Oui">Oui</option>
-                                                <option value="Non">Non</option>
-                                            </select>
-
-                                            <div class="dropDownSelect2"></div>
-
-
-                                        </div>
-
-                                        <div class="rs-select2--dark rs-select2--md rs-select2--border" style="margin-right: 30px">
-
-                                            <div>
-                                                @Html.EditorFor(model => model.Semestre1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre1" } })
-                                                @Html.ValidationMessageFor(model => model.Semestre1, "", new { @class = "text-danger" })
-                                            </div>
-                                            <br />
-                                            <div>
-                                                @Html.EditorFor(model => model.Semestre3, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre3" } })
-                                                @Html.ValidationMessageFor(model => model.Semestre3, "", new { @class = "text-danger" })
-                                            </div>
-                                            <br />
-
-                                            <div>
-                                                @Html.EditorFor(model => model.Semestre5, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre5" } })
-                                                @Html.ValidationMessageFor(model => model.Semestre5, "", new { @class = "text-danger" })
-                                            </div>
-
-
-
-                                        </div>
-
-                                        <div class="rs-select2--dark rs-select2--md rs-select2--border" style="margin-right: 30px">
-
-                                            <div>
-                                                @Html.EditorFor(model => model.Semestre2, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre2" } })
-                                                @Html.ValidationMessageFor(model => model.Semestre2, "", new { @class = "text-danger" })
-                                            </div>
-                                            <br />
-                                            <div>
-                                                @Html.EditorFor(model => model.Semestre4, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre4" } })
-                                                @Html.ValidationMessageFor(model => model.Semestre4, "", new { @class = "text-danger" })
-                                            </div>
-                                            <br />
-
-                                            <div>
-                                                @Html.EditorFor(model => model.Semestre6, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre6" } })
-                                                @Html.ValidationMessageFor(model => model.Semestre6, "", new { @class = "text-danger" })
-                                            </div>
-
-
-
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-8 offset-2">
-                                        <div class="form-group" style="margin-left: 260px">
-                                            <br /><br />
-                                            <button type="submit" class="btn btn-success" id="maj">Mettre à jour</button>
-
-                                        </div>
-                                    </div>
-                                    <br /><br />
-
-
-
-
                                 </div>
+                                <div class="row">
+
+                                    <h3 class="col-11 offset-1 mb-1">Notes semestrielle</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 offset-sm-1 mt-3">
+
+                                        @Html.DropDownListFor(model => model.AnneUni1,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="2014/2015", Value="2014/2015"},
+                                                   new SelectListItem{Text="2015/2016", Value="2015/2016"},
+                                                   new SelectListItem{Text="2016/2017", Value="2016/2017"},
+                                                   new SelectListItem{Text="2017/2018", Value="2017/2018"},
+                                                   new SelectListItem{Text="2018/2019", Value="2018/2019"}
+                                                }
+                                                , "Année universitaire 1", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.AnneUni1, "", new { @class = "text-danger" })
+                                        <br />
+                                        @Html.DropDownListFor(model => model.AnneUni2,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="2015/2016", Value="2015/2016"},
+                                                   new SelectListItem{Text="2016/2017", Value="2016/2017"},
+                                                   new SelectListItem{Text="2017/2018", Value="2017/2018"},
+                                                   new SelectListItem{Text="2018/2019", Value="2018/2019"},
+                                                   new SelectListItem{Text="2019/2020", Value="2019/2020"}
+                                                }
+                                                , "Année universitaire 2", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.AnneUni2, "", new { @class = "text-danger" })
+                                        <br />
+                                        @Html.DropDownListFor(model => model.AnneUni3,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="2015/2016", Value="2015/2016"},
+                                                   new SelectListItem{Text="2016/2017", Value="2016/2017"},
+                                                   new SelectListItem{Text="2017/2018", Value="2017/2018"},
+                                                   new SelectListItem{Text="2018/2019", Value="2018/2019"},
+                                                   new SelectListItem{Text="2019/2020", Value="2019/2020"}
+                                                }
+                                                , "Année universitaire 3", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.AnneUni3, "", new { @class = "text-danger" })
+
+                                        <br />
+                                        
+
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                    <div class="col-sm-3 mt-3">
+
+                                        @Html.DropDownListFor(model => model.Redoublant1,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="Oui", Value="Oui"},
+                                                   new SelectListItem{Text="Non", Value="Non"}
+                                                }
+                                                , "Redoublant", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.Redoublant1, "", new { @class = "text-danger" })
+                                        <br />
+
+                                        @Html.DropDownListFor(model => model.Redoublant2,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="Oui", Value="Oui"},
+                                                   new SelectListItem{Text="Non", Value="Non"}
+                                                }
+                                                , "Redoublant", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.Redoublant2, "", new { @class = "text-danger" })
+                                        <br />
+
+                                        @Html.DropDownListFor(model => model.Redoublant3,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="Oui", Value="Oui"},
+                                                   new SelectListItem{Text="Non", Value="Non"}
+                                                }
+                                                , "Redoublant", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.Redoublant3, "", new { @class = "text-danger" })
+                                        
+                                                                               
+                                    </div>
+
+                                    <div class="col-sm-2 mt-3">
+
+                                        <div>
+                                            @Html.EditorFor(model => model.Semestre1, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre1" } })
+                                            @Html.ValidationMessageFor(model => model.Semestre1, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <div>
+                                            @Html.EditorFor(model => model.Semestre3, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre3" } })
+                                            @Html.ValidationMessageFor(model => model.Semestre3, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+
+                                        <div>
+                                            @Html.EditorFor(model => model.Semestre5, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre5" } })
+                                            @Html.ValidationMessageFor(model => model.Semestre5, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-2 mt-3">
+
+                                        <div>
+                                            @Html.EditorFor(model => model.Semestre2, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre2" } })
+                                            @Html.ValidationMessageFor(model => model.Semestre2, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <div>
+                                            @Html.EditorFor(model => model.Semestre4, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre4" } })
+                                            @Html.ValidationMessageFor(model => model.Semestre4, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+
+                                        <div>
+                                            @Html.EditorFor(model => model.Semestre6, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre6" } })
+                                            @Html.ValidationMessageFor(model => model.Semestre6, "", new { @class = "text-danger" })
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-8 offset-2">
+                                    <div class="form-group text-center" >
+                                        <br /><br />
+                                        <button type="submit" class="btn btn-primary" id="maj" style="width:180px">Mettre à jour</button>
+
+                                    </div>
+                                </div>
+                                <br /><br />
+
+                                                                
+
                             }
                         </div>
                     </div>
