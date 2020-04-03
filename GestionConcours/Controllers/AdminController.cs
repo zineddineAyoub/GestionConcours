@@ -14,11 +14,13 @@ namespace GestionConcours.Controllers
         private ISearch3Service search;
         private ICorbeil3Service corbeil;
         private IPreselectionService preselec;
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec)
+        private ISelectionService selection;
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec,ISelectionService selection)
         {
             this.search = search;
             this.corbeil = corbeil;
             this.preselec = preselec;
+            this.selection = selection;
         }
         // GET: Admin
         public ActionResult Index()
@@ -159,5 +161,117 @@ namespace GestionConcours.Controllers
         {
             return View();
         }
+
+        public ActionResult Selection()
+        {
+           return View();
+        }
+
+        public ActionResult SelectionL()
+        {
+            return View();
+        }
+
+     
+
+        public JsonResult GetConfigurationSelection(string filiere,int nv)
+        {
+            var data = selection.getConfigurationSelection(filiere,nv);
+          
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult Test(string f, int cs, int np, int la, double nm, int cm, string cl, string nv)
+        {
+            return Json("niceTest", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SetConfigurationSelection(string f, int cs, int np, int la, double nm,int cm,string cl,string nv)
+        {
+            ConfigurationSelection conf = new ConfigurationSelection();
+
+            conf.Filiere = f;
+            conf.CoeffMath = cm;
+            conf.CoeffSpecialite = cs;
+            conf.NbrPlace = np;
+            conf.NoteMin = nm;
+            conf.NbrPlaceListAtt = la;
+            conf.TypeClassement =cl;
+            conf.Niveau = nv;
+
+
+         
+             selection.updateConfigurationSelection(conf);
+            if(nv=="3")
+            {
+                selection.calculeNoteGlobale(f);
+            }
+           
+          var data = selection.selectStudents(f,nv);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ListeFinal()
+        {
+            
+            return View();
+        }
+/*
+        public JsonResult GetListeFinal(string filiere)
+        {
+            // return data of filiere
+           // var data = selection.getListPrincipale(filiere);
+            GestionConcourDbContext a = new GestionConcourDbContext();
+            var data1 = a.Candidats;
+            var data2 = "hhh";
+            var data = filiere;
+            return Json(data1, JsonRequestBehavior.AllowGet);
+        }*/
+
+      public ActionResult ListFinaleSup()
+        {
+            return View();
+        }
+
+        public JsonResult GetListePrincipal(string filiere)
+        {
+            var data = selection.getListPrincipale(filiere);
+             // var data = selection.getConfigurationSelection(filiere);
+          
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetListeAttente(string filiere)
+        {
+            var data = selection.getListAttente(filiere);
+            // var data = selection.getConfigurationSelection(filiere);
+
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetListePrincipalSup(string filiere)
+        {
+            var data = selection.getListPrincipaleSup(filiere);
+            // var data = selection.getConfigurationSelection(filiere);
+
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetListeAttenteSup(string filiere)
+        {
+            var data = selection.getListAttenteSup(filiere);
+            // var data = selection.getConfigurationSelection(filiere);
+
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }
