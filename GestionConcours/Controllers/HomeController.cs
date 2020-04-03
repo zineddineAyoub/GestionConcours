@@ -298,7 +298,6 @@ namespace GestionConcours.Controllers
         // que son nom est passé en parametre depuis le dossier Epreuves
         public FileResult Download(string fichier)
         {
-            
             string fullName = Server.MapPath("~/Epreuves/" + fichier);
             byte[] fileBytes = System.IO.File.ReadAllBytes(fullName);
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fichier);
@@ -308,6 +307,10 @@ namespace GestionConcours.Controllers
        // affiche tous les donnes extstantes dans la table épreuve
         public ActionResult Epreuve()
         {
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
             var data = cl.Epreuves;
             return View(data);
         }
@@ -316,7 +319,7 @@ namespace GestionConcours.Controllers
         public ActionResult Fiche(string id,string click="empty")
         {
             // Pour supprimer le header de la page de la convocation
-            if(click.Equals("imprimer"))
+            if (click.Equals("imprimer"))
             {
                 ViewBag.Imprimer = "imprimer";
             }
@@ -338,7 +341,6 @@ namespace GestionConcours.Controllers
 
         public Candidat GetCandidat(string cne)
         {
-            
             var candidat = cl.Candidats.Include("Filiere").Include("Diplome").Where(c => c.Cne == cne).SingleOrDefault();
             return candidat as Candidat;
         }
@@ -347,7 +349,7 @@ namespace GestionConcours.Controllers
         // Responsable d'imprimer le fiche mais les sessions ne marchent pas lors de l'appel de Fiche()
          public ActionResult ImprimerConvocation()
          {
-           return new Rotativa.ActionAsPdf("Fiche", new { id = Session["cne"], click = "imprimer" })
+            return new Rotativa.ActionAsPdf("Fiche", new { id = Session["cne"], click = "imprimer" })
            {
                PageSize = Size.A4,
                CustomSwitches = "--disable-smart-shrinking",

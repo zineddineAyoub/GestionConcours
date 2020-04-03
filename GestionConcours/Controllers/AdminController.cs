@@ -15,12 +15,14 @@ namespace GestionConcours.Controllers
         private ICorbeil3Service corbeil;
         private IPreselectionService preselec;
         private IIndexService index;
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, IIndexService index)
+        private IEpreuveService epreuve;
+        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, IIndexService index,IEpreuveService epreuve)
         {
             this.search = search;
             this.corbeil = corbeil;
             this.preselec = preselec;
             this.index = index;
+            this.epreuve = epreuve;
         }
         // GET: Admin
         public ActionResult Index()
@@ -242,6 +244,26 @@ namespace GestionConcours.Controllers
             var list = preselec.getPourcentage(niv, fil, diplome);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        
+
+        // ##################################### Upload Epreuve #############################################
+        public ActionResult Epreuve()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
+
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+
+        public JsonResult UploadEpreuve(UploadModel epr)
+        {
+            var result = epreuve.uploadEpreuve(epr);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
