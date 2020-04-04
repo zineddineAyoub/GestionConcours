@@ -82,6 +82,12 @@ namespace GestionConcours.Services
                 {
                     person.Admis = false;
                 }
+                // les persones deja selection en liste d'att deviens non selectionee 
+                var data1 = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.listDatt == true && c.Niveau == 3);
+                foreach (var person in data1)
+                {
+                    person.listDatt = false;
+                }
 
                 //      var total = db.CouncourEcrits.Include("Candidat").Take(nombreTotal).OrderByDescending(c=>c.NoteGenerale).Where(c => c.NoteGenerale > conf.NoteMin);
 
@@ -90,6 +96,12 @@ namespace GestionConcours.Services
                 foreach (var a in admis)
                 {
                     a.Candidat.Admis = true;
+                }
+                // Take(NbrePlace) for liste d'attente
+                var listeAtt = db.CouncourEcrits.Include("Candidat").Where(c => c.NoteGenerale > conf.NoteMin).OrderByDescending(c => c.NoteGenerale).Take(conf.NbrPlaceListAtt + 1);
+                foreach (var a in listeAtt)
+                {
+                    a.Candidat.listDatt = true;
                 }
 
                 db.SaveChanges();
