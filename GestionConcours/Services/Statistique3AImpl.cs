@@ -63,14 +63,17 @@ namespace GestionConcours.Services
         {
             return Bdd.Filieres.ToList();
         }
-
-        public int getCandidatListeAtt(int idFilier, string diplome,string niveau)
+        //statistique liste d'att
+        public int getCandidatListeAtt(int idFilier, string diplome,int niveau)
         {
-            Filiere f = Bdd.Filieres.FirstOrDefault(fl => fl.ID == idFilier);
-            return Bdd.ConfigurationSelections.Count(c => c.Filiere == f.Nom && c.Niveau == niveau);
-            
+            return Bdd.Candidats.Count(c => c.Filiere.ID == idFilier && c.Diplome.Type.Contains(diplome) && c.Niveau == niveau && c.listDatt == true);
+
+        }
+        public int getNbCandidatAttPerDiplome(string diplom, int niveau)
+        {
+            return Bdd.Candidats.Count(c => c.Diplome.Type.Contains(diplom) && c.Niveau == niveau && c.listDatt == true);
         }
 
-    
+
     }
 }

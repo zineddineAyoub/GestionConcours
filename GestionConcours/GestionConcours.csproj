@@ -204,6 +204,10 @@
     <Compile Include="Migrations\202004021832362_changing_councour_to_concour.designer.cs">
       <DependentUpon>202004021832362_changing_councour_to_concour.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004041249239_add_column_listAtt_toCandidat.cs" />
+    <Compile Include="Migrations\202004041249239_add_column_listAtt_toCandidat.designer.cs">
+      <DependentUpon>202004041249239_add_column_listAtt_toCandidat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
@@ -2435,6 +2439,7 @@
     <Content Include="Views\Admin\Statistique3A.cshtml" />
     <Content Include="Views\Admin\Statistique4A.cshtml" />
     <Content Include="Views\Admin\Statistique3ApresConcour.cshtml" />
+    <Content Include="Views\Admin\Statistique4ApresConcour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2499,6 +2504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004021832362_changing_councour_to_concour.resx">
       <DependentUpon>202004021832362_changing_councour_to_concour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041249239_add_column_listAtt_toCandidat.resx">
+      <DependentUpon>202004041249239_add_column_listAtt_toCandidat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

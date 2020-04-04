@@ -15,8 +15,8 @@ namespace GestionConcours.Controllers
         private ISearch3Service search;
         private ICorbeil3Service corbeil;
         private IPreselectionService preselec;
-        private IStatistiques3AService statistiques;
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec)
+        
+        public AdminController (ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec)
         {
             this.search = search;
             this.corbeil = corbeil;
@@ -161,6 +161,7 @@ namespace GestionConcours.Controllers
         {
             return View();
         }
+        ///!!!!!!!!!!!!!!!!!!!!---------statistique-----------!!!!!!!!!!\\\
         public ActionResult Statistique3A()
         {
             if (Session["admin"] != null)
@@ -302,7 +303,7 @@ namespace GestionConcours.Controllers
                     List<Statistique> statistiquesPresent = new List<Statistique>();
                     List<Statistique> statistiquesPrincipal = new List<Statistique>();
                     List<Statistique> statistiquesAttente = new List<Statistique>();
-                    List<Statistique> statistiquesAdmis = new List<Statistique>();
+                    
 
                     List<Filiere> filieres = new List<Filiere>();
 
@@ -338,10 +339,10 @@ namespace GestionConcours.Controllers
                             statistiquesAttente.Add(new Statistique
                             {
                                 nbDeug = dal.getCandidatListeAtt(f.ID, "deug", 3),
-                                nbDut = dal.getCandidatPrincipale(f.ID, "dut", 3),
-                                nbLicenceFnd = dal.getCandidatPrincipale(f.ID, "Lic.fnd", 3),
-                                nbLicencePro = dal.getCandidatPrincipale(f.ID, "Lic.pro", 3),
-                                nbLicenceSt = dal.getCandidatPrincipale(f.ID, "Lic.st", 3),
+                                nbDut = dal.getCandidatListeAtt(f.ID, "dut", 3),
+                                nbLicenceFnd = dal.getCandidatListeAtt(f.ID, "Lic.fnd", 3),
+                                nbLicencePro = dal.getCandidatListeAtt(f.ID, "Lic.pro", 3),
+                                nbLicenceSt = dal.getCandidatListeAtt(f.ID, "Lic.st", 3),
                                 nomFiliere = f.Nom
                             });
                         }
@@ -361,13 +362,23 @@ namespace GestionConcours.Controllers
                             nbLicenceSt = dal.getNbCandidatPrincipalPerDiplome("Lic.st", 3),
                             nbLicencePro = dal.getNbCandidatPrincipalPerDiplome("Lic.pro", 3),
                         };
+                        statPerDiplomAtt = new Statistique
+                        {
+                            nbDeug = dal.getNbCandidatAttPerDiplome("deug", 3),
+                            nbDut = dal.getNbCandidatAttPerDiplome("dut", 3),
+                            nbLicenceFnd = dal.getNbCandidatAttPerDiplome("Lic.fnd", 3),
+                            nbLicenceSt = dal.getNbCandidatAttPerDiplome("Lic.st", 3),
+                            nbLicencePro = dal.getNbCandidatAttPerDiplome("Lic.pro", 3),
+                        };
 
                     }
 
                     ViewData["statistiquesPresent"] = statistiquesPresent;
                     ViewData["statistiquesPrincipal"] = statistiquesPrincipal;
+                    ViewData["statistiquesAttente"] = statistiquesAttente;
                     ViewBag.statPerDiplomPresent = statPerDiplomPresent;
                     ViewBag.statPerDiplomPrincipale = statPerDiplomPrincipale;
+                    ViewBag.statPerDiplomAtt = statPerDiplomAtt;
                     return View();
                 }
             }
@@ -379,13 +390,17 @@ namespace GestionConcours.Controllers
             {
                 if (Session["admin"].Equals(true))
                 {
-                    List<Statistique> statistiquesPre = new List<Statistique>();
-                    List<Statistique> statistiquesConvoque = new List<Statistique>();
+                    List<Statistique> statistiquesPresent = new List<Statistique>();
+                    List<Statistique> statistiquesPrincipal = new List<Statistique>();
+                    List<Statistique> statistiquesAttente = new List<Statistique>();
+
 
                     List<Filiere> filieres = new List<Filiere>();
 
-                    Statistique statPerDiplomPre = new Statistique();
-                    Statistique statPerDiplomConv = new Statistique();
+                    Statistique statPerDiplomPresent = new Statistique();
+                    Statistique statPerDiplomPrincipale = new Statistique();
+                    Statistique statPerDiplomAtt = new Statistique();
+
 
                     using (IStatistiques3AService dal = new Statistique3AImpl())
                     {
@@ -393,51 +408,72 @@ namespace GestionConcours.Controllers
                         filieres = dal.GetFilieres();
                         foreach (var f in filieres)
                         {
-                            statistiquesPre.Add(new Statistique
+                            statistiquesPresent.Add(new Statistique
                             {
-                                nbDeug = dal.getCandidatPreisncrit(f.ID, "deug", 4),
-                                nbDut = dal.getCandidatPreisncrit(f.ID, "dut", 4),
-                                nbLicenceFnd = dal.getCandidatPreisncrit(f.ID, "Lic.fnd", 4),
-                                nbLicencePro = dal.getCandidatPreisncrit(f.ID, "Lic.pro", 4),
-                                nbLicenceSt = dal.getCandidatPreisncrit(f.ID, "Lic.st", 4),
+                                nbDeug = dal.getCandidatPresent(f.ID, "deug", 4),
+                                nbDut = dal.getCandidatPresent(f.ID, "dut", 4),
+                                nbLicenceFnd = dal.getCandidatPresent(f.ID, "Lic.fnd", 4),
+                                nbLicencePro = dal.getCandidatPresent(f.ID, "Lic.pro", 4),
+                                nbLicenceSt = dal.getCandidatPresent(f.ID, "Lic.st", 4),
                                 nomFiliere = f.Nom
                             });
-                            statistiquesConvoque.Add(new Statistique
+                            statistiquesPrincipal.Add(new Statistique
                             {
-                                nbDeug = dal.getCandidatConv(f.ID, "deug", 4),
-                                nbDut = dal.getCandidatConv(f.ID, "dut", 4),
-                                nbLicenceFnd = dal.getCandidatConv(f.ID, "Lic.fnd", 4),
-                                nbLicencePro = dal.getCandidatConv(f.ID, "Lic.pro", 4),
-                                nbLicenceSt = dal.getCandidatConv(f.ID, "Lic.st", 4),
+                                nbDeug = dal.getCandidatPrincipale(f.ID, "deug", 4),
+                                nbDut = dal.getCandidatPrincipale(f.ID, "dut", 4),
+                                nbLicenceFnd = dal.getCandidatPrincipale(f.ID, "Lic.fnd", 4),
+                                nbLicencePro = dal.getCandidatPrincipale(f.ID, "Lic.pro", 4),
+                                nbLicenceSt = dal.getCandidatPrincipale(f.ID, "Lic.st", 4),
+                                nomFiliere = f.Nom
+                            });
+                            statistiquesAttente.Add(new Statistique
+                            {
+                                nbDeug = dal.getCandidatListeAtt(f.ID, "deug", 4),
+                                nbDut = dal.getCandidatListeAtt(f.ID, "dut", 3),
+                                nbLicenceFnd = dal.getCandidatListeAtt(f.ID, "Lic.fnd", 4),
+                                nbLicencePro = dal.getCandidatListeAtt(f.ID, "Lic.pro", 4),
+                                nbLicenceSt = dal.getCandidatListeAtt(f.ID, "Lic.st", 4),
                                 nomFiliere = f.Nom
                             });
                         }
-                        statPerDiplomPre = new Statistique
+                        statPerDiplomPresent = new Statistique
                         {
-                            nbDeug = dal.getNbCandidatPerDiplome("deug", 4),
-                            nbDut = dal.getNbCandidatPerDiplome("dut", 4),
-                            nbLicenceFnd = dal.getNbCandidatPerDiplome("Lic.fnd", 4),
-                            nbLicenceSt = dal.getNbCandidatPerDiplome("Lic.st", 4),
-                            nbLicencePro = dal.getNbCandidatPerDiplome("Lic.pro", 4),
+                            nbDeug = dal.getNbCandidatPresentPerDiplome("deug", 4),
+                            nbDut = dal.getNbCandidatPresentPerDiplome("dut", 4),
+                            nbLicenceFnd = dal.getNbCandidatPresentPerDiplome("Lic.fnd", 4),
+                            nbLicenceSt = dal.getNbCandidatPresentPerDiplome("Lic.st", 4),
+                            nbLicencePro = dal.getNbCandidatPresentPerDiplome("Lic.pro", 4),
                         };
-                        statPerDiplomConv = new Statistique
+                        statPerDiplomPrincipale = new Statistique
                         {
-                            nbDeug = dal.getNbCandidatPerDiplomeConv("deug", 4),
-                            nbDut = dal.getNbCandidatPerDiplomeConv("dut", 4),
-                            nbLicenceFnd = dal.getNbCandidatPerDiplomeConv("Lic.fnd", 4),
-                            nbLicenceSt = dal.getNbCandidatPerDiplomeConv("Lic.st", 4),
-                            nbLicencePro = dal.getNbCandidatPerDiplomeConv("Lic.pro", 4),
+                            nbDeug = dal.getNbCandidatPrincipalPerDiplome("deug", 4),
+                            nbDut = dal.getNbCandidatPrincipalPerDiplome("dut", 4),
+                            nbLicenceFnd = dal.getNbCandidatPrincipalPerDiplome("Lic.fnd", 4),
+                            nbLicenceSt = dal.getNbCandidatPrincipalPerDiplome("Lic.st", 4),
+                            nbLicencePro = dal.getNbCandidatPrincipalPerDiplome("Lic.pro", 4),
                         };
+                        statPerDiplomAtt = new Statistique
+                        {
+                            nbDeug = dal.getNbCandidatAttPerDiplome("deug", 4),
+                            nbDut = dal.getNbCandidatAttPerDiplome("dut", 4),
+                            nbLicenceFnd = dal.getNbCandidatAttPerDiplome("Lic.fnd", 4),
+                            nbLicenceSt = dal.getNbCandidatAttPerDiplome("Lic.st", 4),
+                            nbLicencePro = dal.getNbCandidatAttPerDiplome("Lic.pro", 4),
+                        };
+
                     }
 
-                    ViewData["statistiquesPre"] = statistiquesPre;
-                    ViewData["statistiquesConvoque"] = statistiquesConvoque;
-                    ViewBag.statPerDiplomPre = statPerDiplomPre;
-                    ViewBag.statPerDiplomConv = statPerDiplomConv;
+                    ViewData["statistiquesPresent"] = statistiquesPresent;
+                    ViewData["statistiquesPrincipal"] = statistiquesPrincipal;
+                    ViewData["statistiquesAttente"] = statistiquesAttente;
+                    ViewBag.statPerDiplomPresent = statPerDiplomPresent;
+                    ViewBag.statPerDiplomPrincipale = statPerDiplomPrincipale;
+                    ViewBag.statPerDiplomAtt = statPerDiplomAtt;
                     return View();
                 }
             }
             return RedirectToAction("Login", "AdminAuth");
         }
+
     }
 }

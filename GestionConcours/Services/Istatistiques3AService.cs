@@ -17,8 +17,10 @@ namespace GestionConcours.Services
         int getNbCandidatPresentPerDiplome(string diplom, int niveau);
         int getCandidatPrincipale(int idFilier, string diplome, int niveau);
         int getNbCandidatPrincipalPerDiplome(string diplom, int niveau);
-        int getCandidatListeAtt(int idFilier, string diplome, string niveau);
-        
+        int getCandidatListeAtt(int idFilier, string diplome, int niveau);
+        int getNbCandidatAttPerDiplome(string diplom, int niveau);
+
+
 
 
     }
