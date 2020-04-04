@@ -20,10 +20,10 @@
             if (!context.Filieres.Any())
             {
                 var filieres = new List<Filiere>();
-                filieres.Add(new Filiere() { Nom = "Genie Informatique" });
-                filieres.Add(new Filiere() { Nom = "Génie Réseaux et Télécoms" });
-                filieres.Add(new Filiere() { Nom = "Génie Industriel" });
-                filieres.Add(new Filiere() { Nom = "Génie des Procédés et M.C	" });
+                filieres.Add(new Filiere() { Nom = "Informatique" });
+                filieres.Add(new Filiere() { Nom = "GTR" });
+                filieres.Add(new Filiere() { Nom = "Industriel" });
+                filieres.Add(new Filiere() { Nom = "GPMC" });
 
                 context.Filieres.AddRange(filieres);
             }
