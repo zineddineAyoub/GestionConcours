@@ -3,39 +3,61 @@
     ViewBag.Title = "ModifierFiliere";
 }
 
-
 <section>
     <div class="section__content section__content--p30 m-t-75">
         <div class="container-fluid">
             <!-- USER DATA-->
             <div class="user-data m-b-40">
-                <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar"></i>user data
-                </h3>
-                <div class="filters m-b-45">
-                    <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                        <select class="js-select2 select2-hidden-accessible" name="property" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Properties</option>
-                            <option value="">Products</option>
-                            <option value="">Services</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 126.8px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-property-qs-container"><span class="select2-selection__rendered" id="select2-property-qs-container" title="All Properties">All Properties</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                    <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                        <select class="js-select2 au-select-dark select2-hidden-accessible" name="time" tabindex="-1" aria-hidden="true">
-                            <option selected="selected">All Time</option>
-                            <option value="">By Month</option>
-                            <option value="">By Day</option>
-                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 97.2px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-time-6y-container"><span class="select2-selection__rendered" id="select2-time-6y-container" title="All Time">All Time</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                        <div class="dropDownSelect2"></div>
-                    </div>
-                </div>
 
-                <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
-                </div>
+                <h2 class="title-3 mb-4 text-center font-weight-bold">
+                    <i class="iconify mr-3" data-icon="bx:bxs-calendar-edit" data-inline="true" style="color: darkturquoise; height:32px; width:32px;"></i>
+                    Modification de la Filière Choisie
+                </h2>
+                <hr style="margin:15px 150px 40px 80px" />
+
+                @using (Html.BeginForm("ModifierFiliere", "Home", FormMethod.Post))
+                {
+                    <div class="row d-flex justify-content-center m-b-30">
+                        <div class="col-md-11">
+                            <div class="form-horizontal">
+                                <div class="alert alert-success">
+                                    <span>Vous avez choisi de postuler a @ViewData["filiere"] </span>
+                                </div>
+                            </div>
+                            <div class="form-horizontal">
+                                <div class="form-group offset-4">
+                                    <br />
+
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="ID" value="1" checked>
+                                        <label class="custom-control-label" for="defaultGroupExample1">Génie Informatique</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="ID" value="2">
+                                        <label class="custom-control-label" for="defaultGroupExample2">Génie Réseau et Télécom</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="ID" value="3">
+                                        <label class="custom-control-label" for="defaultGroupExample3">Génie Industriel</label>
+                                    </div>
+                                    <div class="custom-control custom-radio mt-2">
+                                        <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="ID" value="4">
+                                        <label class="custom-control-label" for="defaultGroupExample4">Génie Procedès et M.C</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10 d-flex justify-content-center" style="margin-bottom:250px">
+                                        <input type="submit" value=" Modifier " class="btn btn-primary px-4 mt-2 mx-2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
             </div>
         </div>
     </div>
 </section>
+

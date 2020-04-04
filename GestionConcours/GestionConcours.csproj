@@ -210,6 +210,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AdmisModel.cs" />
     <Compile Include="Models\AnneUniversitaire.cs" />
     <Compile Include="Models\Baccalaureat.cs" />
     <Compile Include="Models\Candidat.cs" />
@@ -219,22 +220,40 @@
     <Compile Include="Models\ConfigurationSelection.cs" />
     <Compile Include="Models\Corbeil.cs" />
     <Compile Include="Models\CorbeilModel.cs" />
+    <Compile Include="Models\CorrectionModel.cs" />
+    <Compile Include="Models\CorrectionModel4.cs" />
     <Compile Include="Models\Diplome.cs" />
+    <Compile Include="Models\DiplomeNote.cs" />
     <Compile Include="Models\Epreuves.cs" />
+    <Compile Include="Models\EtudiantEnreg.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
+    <Compile Include="Models\ListFinal.cs" />
+    <Compile Include="Models\Note_Concour3.cs" />
+    <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\PreselectionModel.cs" />
     <Compile Include="Models\SearchModel3.cs" />
+    <Compile Include="Models\UploadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Corbeil3ServiceImp.cs" />
+    <Compile Include="Services\EpreuveServicceImp.cs" />
+    <Compile Include="Services\IEpreuveService.cs" />
+    <Compile Include="Services\CorrectionServiceImp.cs" />
     <Compile Include="Services\ICorbeil3Service.cs" />
+    <Compile Include="Services\ICorrectionService.cs" />
+    <Compile Include="Services\IIndexService.cs" />
+    <Compile Include="Services\IndexServiceImp.cs" />
     <Compile Include="Services\IPreselectionService.cs" />
     <Compile Include="Services\ISearch3Service.cs" />
+
     <Compile Include="Services\Istatistiques3AService.cs" />
-    <Compile Include="Services\PreselectionServiceImp.cs" />
-    <Compile Include="Services\Search3ServiceImp.cs" />
     <Compile Include="Services\Statistique3AImpl.cs" />
     <Compile Include="ViewModels\Statistique.cs" />
+    <Compile Include="Services\ISelectionService.cs" />
+    <Compile Include="Services\PreselectionServiceImp.cs" />
+    <Compile Include="Services\Search3ServiceImp.cs" />
+    <Compile Include="Services\SelectionServiceImp.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -246,6 +265,7 @@
     <Content Include="Content\css\sb-admin-2.min.css" />
     <Content Include="Content\css_user\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\css_user\font-face.css" />
+    <Content Include="Content\css_user\login_template.css" />
     <Content Include="Content\css_user\theme.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -311,14 +331,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Pictures\admin_pic\four.svg" />
     <Content Include="Pictures\admin_pic\admin.svg" />
     <Content Include="Pictures\admin_pic\admin2.svg" />
     <Content Include="Pictures\admin_pic\admin_icon.svg" />
+    <Content Include="Pictures\admin_pic\delete.svg" />
+    <Content Include="Pictures\admin_pic\grp.svg" />
+    <Content Include="Pictures\admin_pic\third.svg" />
     <Content Include="Pictures\bg-title-01.jpg" />
     <Content Include="Pictures\bg-title-02.jpg" />
+    <Content Include="Pictures\ensa.jfif" />
     <Content Include="Pictures\ENSA.jpg" />
+    <Content Include="Pictures\ensa_2.jfif" />
+    <Content Include="Pictures\ensa_2_jimage.tif" />
+    <Content Include="Pictures\grad.svg" />
     <Content Include="Pictures\icons_user\bac.svg" />
     <Content Include="Pictures\icons_user\edit_icon.svg" />
+    <Content Include="Pictures\icons_user\graduation.svg" />
     <Content Include="Pictures\icon\avatar-01.jpg" />
     <Content Include="Pictures\icon\avatar-02.jpg" />
     <Content Include="Pictures\icon\avatar-03.jpg" />
@@ -326,6 +355,9 @@
     <Content Include="Pictures\icon\avatar-05.jpg" />
     <Content Include="Pictures\icon\avatar-06.jpg" />
     <Content Include="Pictures\icon\avatar-big-01.jpg" />
+    <Content Include="Pictures\icon\ensa_2.jfif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pictures\icon\icon.jpg" />
     <Content Include="Pictures\icon\logo-blue.png" />
     <Content Include="Pictures\icon\logo-mini.png" />
@@ -335,7 +367,11 @@
     <Content Include="Pictures\admin_pic\school.svg" />
     <Content Include="Pictures\admin_pic\school4.svg" />
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
+    <Content Include="Pictures\image.jpg" />
     <Content Include="Pictures\Mark.jpg" />
+    <Content Include="Pictures\userPic\ENSA.jpg" />
+    <Content Include="Pictures\opac.PNG" />
+    <Content Include="Pictures\read.svg" />
     <Content Include="Pictures\userPic\icon.jpg" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
@@ -458,6 +494,7 @@
     <Content Include="Scripts\js\demo\chart-bar-demo.js" />
     <Content Include="Scripts\js\demo\chart-pie-demo.js" />
     <Content Include="Scripts\js\demo\datatables-demo.js" />
+    <Content Include="Scripts\js\jquery-dateformat.min.js" />
     <Content Include="Scripts\js\sb-admin-2.js" />
     <Content Include="Scripts\js\sb-admin-2.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -2387,8 +2424,6 @@
     <Content Include="Views\Home\ModifierPersonel.cshtml" />
     <Content Include="Views\Home\ModifierDiplome.cshtml" />
     <Content Include="Views\Home\ModifierBac.cshtml" />
-    <Content Include="Views\Home\ModifierFiliere.cshtml" />
-    <Content Include="Views\Home\Image.cshtml" />
     <Content Include="Views\Home\Deconnexion.cshtml" />
     <Content Include="Views\AdminAuth\Error.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
@@ -2436,10 +2471,29 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
+
     <Content Include="Views\Admin\Statistique3A.cshtml" />
     <Content Include="Views\Admin\Statistique4A.cshtml" />
     <Content Include="Views\Admin\Statistique3ApresConcour.cshtml" />
     <Content Include="Views\Admin\Statistique4ApresConcour.cshtml" />
+
+    <Content Include="Views\Admin\Selection.cshtml" />
+    <Content Include="Views\Admin\ListeFinal.cshtml" />
+    <Content Include="Views\Admin\SelectionL.cshtml" />
+    <Content Include="Views\Admin\ListFinaleSup.cshtml" />
+    <Content Include="Views\Admin\INFO.cshtml" />
+    <Content Include="Views\Admin\INFO4.cshtml" />
+    <Content Include="Views\Admin\GTR.cshtml" />
+    <Content Include="Views\Admin\GTR4.cshtml" />
+    <Content Include="Views\Admin\GPMC.cshtml" />
+    <Content Include="Views\Admin\GPMC4.cshtml" />
+    <Content Include="Views\Admin\INDUS.cshtml" />
+    <Content Include="Views\Admin\INDUS4.cshtml" />
+    <Content Include="Views\Home\ModifierFiliere.cshtml" />
+    <Content Include="Views\Auth\PasswordOublie.cshtml" />
+    <Content Include="Views\Admin\Statistique3Annee.cshtml" />
+    <Content Include="Views\Admin\Epreuve.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

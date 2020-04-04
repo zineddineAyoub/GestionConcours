@@ -8,8 +8,10 @@ using GestionConcours.Models;
 namespace GestionConcours.Services
 {
     public class Search3ServiceImp : ISearch3Service
-    {   
-        public IEnumerable<SearchModel3> info(int niveau)
+    {
+
+
+		public IEnumerable<SearchModel3> info(int niveau)
         {
             GestionConcourDbContext db = new GestionConcourDbContext();
             var x = (from c in db.Candidats
