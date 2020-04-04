@@ -19,10 +19,12 @@
                                         <h2 class="register-heading">
                                             <i class="iconify mr-3 " data-icon="vaadin:diploma" data-inline="true" style="color:darkorchid; height:35px; width:35px;"></i>
                                             Modification des informations Diplômes et notes
-                                        </h2><br /><br /><br />
+                                        </h2>
+
+                                        <hr style="margin:40px 0px 40px 0px" /><br />
                                         <div class="form-group">
                                             <h4 class="register-heading">Diplome obtenu</h4><br />
-                                                                                       
+
                                             @if (Session["niveau"].ToString() == "3")
                                             {
 
@@ -39,7 +41,8 @@
                                                    new SelectListItem{Text="Liscence ST - DEUG", Value="Lic.st-DEUG"}
                                                 }
                                                 , "-- Choix de type du Diplôme --", htmlAttributes: new { @class = "form-control " })
-                                            } else
+                                            }
+                                            else
                                             {
                                                 @Html.DropDownListFor(model => model.Type,
                                                 new List<SelectListItem>
@@ -49,11 +52,11 @@
                                                    new SelectListItem{Text="Liscence Sciences et Techniques", Value="Lic.st"}
                                                 }
                                                 , "-- Choix de type du Diplôme --", htmlAttributes: new { @class = "form-control " })
-                                             }
+                                            }
 
                                             @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
 
-                                            
+
                                         </div>
                                         <div class="form-group">
                                             @Html.EditorFor(model => model.Specialite, "Specialité", new { htmlAttributes = new { @class = "form-control", @placeholder = "Specialité" } })
