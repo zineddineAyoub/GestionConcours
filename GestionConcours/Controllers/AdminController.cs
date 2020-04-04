@@ -2,6 +2,7 @@
 using GestionConcours.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -11,6 +12,8 @@ namespace GestionConcours.Controllers
 {
     public class AdminController : Controller
     {
+      private GestionConcourDbContext db = new GestionConcourDbContext();
+       
 		
 		private ISearch3Service search;
         private ICorbeil3Service corbeil;
@@ -24,6 +27,7 @@ namespace GestionConcours.Controllers
 
               
         public AdminController(ISearch3Service search,ICorbeil3Service corbeil,ICorrectionService corret, IPreselectionService preselec,ISelectionService selection,IEpreuveService epreuve, IIndexService index)
+
         {
 			
             this.search = search;
@@ -69,7 +73,7 @@ namespace GestionConcours.Controllers
                 }
 
             }
-            return RedirectToAction("Login","AdminAuth");
+            return RedirectToAction("Login", "AdminAuth");
         }
 
         public ActionResult Recherche()
@@ -485,39 +489,40 @@ namespace GestionConcours.Controllers
             return RedirectToAction("Login", "AdminAuth");
         }
 
-        public JsonResult RestoreStudent(string cne,int Niveau)
+        public JsonResult RestoreStudent(string cne, int Niveau)
         {
-            var x = corbeil.restoreCorbeil(cne,Niveau);
+            var x = corbeil.restoreCorbeil(cne, Niveau);
             return Json(x, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SearchCriteria(string Criteria,string Key,string Diplome,string Filiere,int Niveau)
+        public JsonResult SearchCriteria(string Criteria, string Key, string Diplome, string Filiere, int Niveau)
         {
-            var x = search.specifiedSearch(Criteria, Key, Diplome, Filiere,Niveau);
+            var x = search.specifiedSearch(Criteria, Key, Diplome, Filiere, Niveau);
             return Json(x, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SearchCriteriaCorb(string Criteria, string Key, string Diplome, string Filiere,int Niveau)
+        public JsonResult SearchCriteriaCorb(string Criteria, string Key, string Diplome, string Filiere, int Niveau)
         {
-            var x = corbeil.searchCriteria(Criteria, Key, Diplome, Filiere,Niveau);
+            var x = corbeil.searchCriteria(Criteria, Key, Diplome, Filiere, Niveau);
             return Json(x, JsonRequestBehavior.AllowGet);
         }
 
         //delete candidat
-        public JsonResult deleteStudent(string cne,int Niveau)
+        public JsonResult deleteStudent(string cne, int Niveau)
         {
-            var x = search.deleteCandidat(cne,Niveau);
+            var x = search.deleteCandidat(cne, Niveau);
             return Json(x, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult conformeStudent(string cne,int Niveau)
+        public JsonResult conformeStudent(string cne, int Niveau)
         {
-            var x = search.conformCandidat(cne,Niveau);
+            var x = search.conformCandidat(cne, Niveau);
             return Json(x, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Enregistrement()
         {
+            
             if (Session["admin"] != null)
             {
                 if (Session["admin"].Equals(true))
@@ -525,6 +530,7 @@ namespace GestionConcours.Controllers
 
             }
             return RedirectToAction("Login", "AdminAuth");
+            
         }
 
         // ##################################### PRESELECTION #############################################
@@ -591,6 +597,7 @@ namespace GestionConcours.Controllers
             };
 
             preselec.setConfig(conf, niv);
+
             preselec.calculerPreselec(niv, fil, diplome);
             var x = preselec.getConvoques(niv, fil, diplome);
 
@@ -690,6 +697,7 @@ namespace GestionConcours.Controllers
         {
             
             return View();
+
         }
 
 
@@ -698,6 +706,97 @@ namespace GestionConcours.Controllers
             return View();
         }
 
+
+        // ##################################### ENREGISTREMENT #############################################
+
+        public JsonResult Enregistrement3A(string cin)
+        {
+            var c = db.Candidats.Where(x => x.Cin == cin);
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(c, JsonRequestBehavior.AllowGet);  //returns candidat
+        }
+
+        public JsonResult getFiliere(int id)
+        {
+            var c = db.Filieres.Where(x => x.ID == id);
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(c, JsonRequestBehavior.AllowGet);   //returns filiere
+        }
+
+        public JsonResult getDiplome(string cne)
+        {
+            var c = db.Diplomes.Where(x => x.Cne == cne);
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(c, JsonRequestBehavior.AllowGet);   //returns diplome
+        }
+
+        public JsonResult getNumDossier(string cin)
+        {
+            var c = db.Candidats.Where(x => x.Cin == cin);
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(c, JsonRequestBehavior.AllowGet);   //returns num_dossier
+        }
+
+        public JsonResult generateNumDossier(string cin) //generates num_dossier 
+        {
+            ViewBag.msg1 = "1";
+            ViewBag.msg2 = "2";
+            
+            var c = db.Candidats.Where(x => x.Cin == cin).Count();
+
+            if (c != 0) //cin exists in db
+            {
+                var c1 = db.Candidats.Where(x => x.Cin == cin).Single();
+
+                if(c1.Num_dossier == null)  //1st time checking in => num_dossier should be determined
+                {  
+                    //2 cas :
+                        //1: c'est le 1er candidat a confirmer la presence => num_dossier automatiquement = 1
+                        //2: num_dossier depend de la valeur précédente de num_dossier
+
+                    //2 :
+                        //condition : Count(candidats avec num_dossier!=null) > 0 
+                    var c3 = db.Candidats.Where(x => x.Num_dossier != null).Count();
+                    if (c3 > 0)
+                    {
+                        var c2 = (from e in db.Candidats
+                                  orderby e.Num_dossier descending
+                                  select e).Take(1).Single();   //takes the biggest num_dossier and increments it
+
+                        int nbr = Int32.Parse(c2.Num_dossier) + 1;
+                        c1.Num_dossier = nbr.ToString();
+                    }
+                    //1:                     
+                    else
+                    {
+                        c1.Num_dossier = "1";
+                    }
+
+                    c1.Presence = true;                    
+                }
+                else{   //candidat déjà confirmé (présence)
+                    ViewBag.msg1 = "Numéro de dossier déjà attribué";
+                }
+            }
+            else    //cin doesn't exist f bd
+            {
+                ViewBag.msg2 = cin + " CIN non valide ";
+            }
+
+            db.SaveChanges();
+
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.Candidats.Where(x => x.Cin == cin), JsonRequestBehavior.AllowGet);                
+        }
+
+    }
+
+
+}
         public JsonResult GetListePrincipal(string filiere)
         {
             var data = selection.getListPrincipale(filiere);
@@ -713,7 +812,10 @@ namespace GestionConcours.Controllers
 
         public JsonResult GetListePrincipalSup(string filiere)
         {
-            var data = selection.getListPrincipaleSup(filiere);
+            var data 
+      
+              
+              selection.getListPrincipaleSup(filiere);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
@@ -725,3 +827,4 @@ namespace GestionConcours.Controllers
     }
 }
  
+

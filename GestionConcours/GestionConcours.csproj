@@ -221,6 +221,7 @@
     <Compile Include="Models\Diplome.cs" />
     <Compile Include="Models\DiplomeNote.cs" />
     <Compile Include="Models\Epreuves.cs" />
+    <Compile Include="Models\EtudiantEnreg.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Models\ListFinal.cs" />
@@ -359,8 +360,12 @@
     <Content Include="Pictures\admin_pic\undraw_posting_photo.svg" />
     <Content Include="Pictures\image.jpg" />
     <Content Include="Pictures\Mark.jpg" />
+
+    <Content Include="Pictures\userPic\ENSA.jpg" />
+
     <Content Include="Pictures\opac.PNG" />
     <Content Include="Pictures\read.svg" />
+
     <Content Include="Pictures\userPic\icon.jpg" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
