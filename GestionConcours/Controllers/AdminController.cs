@@ -108,7 +108,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult INFO()
 		{
-			string type_fil = "informatique";
+			string type_fil = "Informatique";
 			if (Session["admin"] != null)
 			{
 
@@ -154,7 +154,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult GTR()
 		{
-			string type_fil = "gtr";
+			string type_fil = "GTR";
 			if (Session["admin"] != null)
 			{
 
@@ -198,7 +198,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult GPMC()
 		{
-			string type_fil = "gpmc";
+			string type_fil = "GPMC";
 			if (Session["admin"] != null)
 			{
 
@@ -242,7 +242,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult INDUS()
 		{
-			string type_fil = "indus";
+			string type_fil = "Industriel";
 			if (Session["admin"] != null)
 			{
 
@@ -288,7 +288,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult INFO4()
 		{
-			string type_fil = "informatique";
+			string type_fil = "Informatique";
 			if (Session["admin"] != null)
 			{
 
@@ -328,7 +328,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult GTR4()
 		{
-			string type_fil = "gtr";
+			string type_fil = "GTR";
 			if (Session["admin"] != null)
 			{
 
@@ -368,7 +368,7 @@ namespace GestionConcours.Controllers
 
 		public ActionResult GPMC4()
 		{
-			string type_fil = "gpmc";
+			string type_fil = "GPMC";
 			if (Session["admin"] != null)
 			{
 

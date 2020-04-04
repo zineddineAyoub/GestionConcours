@@ -32,6 +32,7 @@ namespace GestionConcours.Controllers
             var diplome = db.Diplomes.Find(Session["cne"]);
             var anne = db.AnneeUniversitaires.Find(Session["cne"]);
             var bac = db.Baccalaureats.Find(Session["cne"]);
+            string type_dip = diplome.Type;
             int k = 0;
             if(!isNull(diplome))
             {
@@ -40,8 +41,16 @@ namespace GestionConcours.Controllers
             }
             if (!isNull(anne))
             {
-                msg += "Année Univertsitaire, ";
-                k = 1;
+                if(type_dip == null)
+                {
+                    msg += "Année Univertsitaire, ";
+                    k = 1;
+                }
+                else if ( type_dip.Contains("Lic"))
+                {
+                    msg += "Année Univertsitaire, ";
+                    k = 1;
+                }
             }
             if (!isNull(bac))
             {

@@ -267,10 +267,16 @@ namespace GestionConcours.Services
                          
                          
                      }).ToList();
+            try
+            {
+                var NombrePlace = db.ConfigurationSelections.Where(c => c.Filiere.Equals(filiere) && c.Niveau == "3").SingleOrDefault().NbrPlaceListAtt;
+                var resultat = x.Take(NombrePlace).ToList();
+                return resultat;
 
-            var NombrePlace = db.ConfigurationSelections.Where(c => c.Filiere.Equals(filiere) && c.Niveau=="3").SingleOrDefault().NbrPlaceListAtt;
-            var resultat = x.Take(NombrePlace).ToList();
-            return resultat;
+            } catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public IEnumerable<ListFinal> getListPrincipale(string filiere)
@@ -314,6 +320,7 @@ namespace GestionConcours.Services
 
 
                      }).ToList();
+           
             return x;
         }
 
@@ -329,7 +336,6 @@ namespace GestionConcours.Services
                      orderby n.Classement
                     
 
-
                      select new ListFinal
                      {
                          Nom = c.Nom,
@@ -343,9 +349,18 @@ namespace GestionConcours.Services
 
                      }).ToList();
 
-            var NombrePlace = db.ConfigurationSelections.Where(c => c.Filiere.Equals(filiere) && c.Niveau == "4").SingleOrDefault().NbrPlaceListAtt;
-            var resultat = x.Take(NombrePlace).ToList();
-            return resultat;
+            try
+            {
+                var NombrePlace = db.ConfigurationSelections.Where(c => c.Filiere.Equals(filiere) && c.Niveau == "4").SingleOrDefault().NbrPlaceListAtt;
+                var resultat = x.Take(NombrePlace).ToList();
+                return resultat;
+
+            }
+            catch ( Exception ex)
+            {
+                return null;
+            }
+
         }
     }
 }

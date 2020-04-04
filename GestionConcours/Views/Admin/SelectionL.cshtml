@@ -9,7 +9,7 @@
 <div class="container-fluid">
 
     <div class="align-content-center">
-        <h3 class="font-weight-bold text-center pt-3 pb-5" id="title">Présélection 4 ème année</h3>
+        <h3 class="font-weight-bold text-center pt-3 pb-5" id="title">Sélection du 4ème année</h3>
         <div class="row mb-4 justify-content-center">
             <div class=" col-md-7">
 
@@ -30,10 +30,6 @@
                         </div>
 
 
-
-
-                        
-
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label">Nombre de places: </label>
                             <div class="col-md-8">
@@ -49,8 +45,15 @@
                         </div>
 
                     </form>
-                    <div class="form-group pt-4 col-md-5 offset-7">
-                        <button id="btn_selec" onclick="clicked()" class="btn btn-primary btn-block">Afficher la liste</button>
+                    
+                    <div class="form-group row pt-5">
+                        <div class="col-md-5">
+                            <button class="btn btn-danger py-2 btn-block" onclick="exportTableToExcel('tableSelection')">Exporter la table des candidats</button>
+                        </div>
+                        <div class="col-md-5 offset-2">
+                            <button id="btn_selec" onclick="clicked()" class="btn btn-primary btn-block">Afficher la liste</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -78,8 +81,6 @@
                 <th class="text-center">Note6</th>
                 <th class="text-center">Dossier</th>
                 <th class="text-center">DossierL</th>
-                <th class="text-center">Math</th>
-                <th class="text-center">Specialite</th>
                 <th class="text-center">NoteGlobal</th>
                 <th class="text-center">Class</th>
                 <th class="text-center">N.Dossier</th>
@@ -104,6 +105,41 @@
 <!-- /.container-fluid -->
 
 <script>
+
+
+    //######################################### Export to EXCELL
+    function exportTableToExcel(tableID) {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+        // Specify file name
+        filename = "ListeCandidats_Selection_4A_" + $("#FiliereSelect :selected").val() ;
+        filename = filename ? filename + '.xls' : 'ListCandidatSelection_4A.xls';
+
+        // Create download link element
+        downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+
 
 
     function select() {
@@ -133,9 +169,6 @@
       
         var f = $("#FiliereSelect").val();
        
-
-        
-
         $.get("/Admin/SetConfigurationSelection", { f: f, cs: 0, np: np, la: la, nm: 0, cm: 0,cl:"",nv:"4" }, function (data) {
            
             var num = 0;
@@ -173,8 +206,6 @@
                     '<td>' + element.Note6 + '</td>' +
                     '<td>' + element.note_Diplome + '</td>' +
                     '<td>' + 10.00 + '</td>' +
-                    '<td>' + element.Math + '</td>' +
-                    '<td>' + element.Specialite + '</td>' +
                     '<td>' + element.Globale + '</td>' +
                     '<td>' + classement + '</td>' +
                     '<td>' + element.Dossier + '</td>' +

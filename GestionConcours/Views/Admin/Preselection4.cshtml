@@ -113,7 +113,7 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label">Note Seuil : </label>
                         <div class="col-sm-2">
-                            <input type="text" name="seuil" id="seuil" class="form-control" />
+                            <input type="number" name="seuil" id="seuil" class="form-control" />
                         </div>
                     </div>
 
@@ -123,6 +123,9 @@
                         </div>
                         <div class="col-md-5 offset-2">
                             <button id="btn_preselec" class="btn btn-primary py-2 btn-block">Lancer la présélection</button>
+                        </div>
+                        <div class="btn_export col-md-6 offset-3 mt-3 " id="btn_export" style="display:none;">
+                            <button class="btn btn-danger py-2 btn-block" onclick="exportTableToExcel('listPreselec')">Exporter la table des candidats</button>
                         </div>
                     </div>
 
@@ -147,7 +150,7 @@
 
 
     <div id="table" style="display:none;">
-        <table class="table table-bordered table-responsive">
+        <table class="table table-bordered table-responsive" id="listPreselec">
             <tr>
                 <th class="text-center">N°</th>
                 <th class="text-center">Titre</th>
@@ -223,6 +226,40 @@
 <script src="~/Scripts/js/jquery-dateformat.min.js"></script>
 <script>
 
+    //######################################### Export to EXCELL
+    function exportTableToExcel(tableID) {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+        // Specify file name
+        filename = "ListeCandidats_Preselection_4A_" + $("#fil :selected").val() + "_" + $("#diplome :selected").val();
+        filename = filename ? filename + '.xls' : 'ListCandidatPreselection_4A.xls';
+
+        // Create download link element
+        downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+
+
     $(document).ready(function () {
 
         $("#info_sum2").css("color", "red");
@@ -259,6 +296,7 @@
                     $("#info2").hide();
                     $("#btn_table2").show();
                     $("#table").show();
+                    $("#btn_export").show();
                     $("#tbody").empty();
 
                     getPourcentage();
@@ -281,6 +319,7 @@
 
 
                 $("#table").hide();
+                $("#btn_export").hide();
                 $("#info").hide();
                 $("#info2").show();
                 $("#tableConvoq").show();
@@ -311,6 +350,7 @@
             $("#seuil").val(0);
 
             $("#table").hide();
+            $("#btn_export").hide();
             $("#tableConvoq").hide();
             $("#info2").hide();
             $("#btn_table2").hide();
@@ -320,6 +360,7 @@
             $.get("/Admin/GetConfig", { fil: $("#fil :selected").val(), diplome: $("#diplome :selected").val() }, function (data) {
 
                 $("#table").show();
+                $("#btn_export").show();
                 $("#btn_table2").show();
 
                 $("#Cs1").val(data.CoeffS1);
@@ -340,6 +381,7 @@
                     $("#tableConvoq").hide();
                     $("#info2").hide();
                     $("#table").show();
+                    $("#btn_export").show();
                     $("#erreur").hide();
                     $("#btn_table2").show();
                 }
