@@ -12,34 +12,34 @@ namespace GestionConcours.Controllers
 {
     public class AdminController : Controller
     {
-      private GestionConcourDbContext db = new GestionConcourDbContext();
-       
-		
-		private ISearch3Service search;
+        private GestionConcourDbContext db = new GestionConcourDbContext();
+
+
+        private ISearch3Service search;
         private ICorbeil3Service corbeil;
         private IEpreuveService epreuve;
         private ICorrectionService corret;
-		private IPreselectionService preselec;
-   private ISelectionService selection;
-    private IIndexService index;
+        private IPreselectionService preselec;
+        private ISelectionService selection;
+        private IIndexService index;
 
-	//	public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, ICorrectionService corret, IIndexService index)
+        //	public AdminController(ISearch3Service search,ICorbeil3Service corbeil, IPreselectionService preselec, ICorrectionService corret, IIndexService index)
 
-              
-        public AdminController(ISearch3Service search,ICorbeil3Service corbeil,ICorrectionService corret, IPreselectionService preselec,ISelectionService selection,IEpreuveService epreuve, IIndexService index)
+
+        public AdminController(ISearch3Service search, ICorbeil3Service corbeil, ICorrectionService corret, IPreselectionService preselec, ISelectionService selection, IEpreuveService epreuve, IIndexService index)
 
         {
-			
+
             this.search = search;
             this.corbeil = corbeil;
             this.preselec = preselec;
             this.selection = selection;
-			this.corret = corret;
+            this.corret = corret;
             this.index = index;
             this.epreuve = epreuve;
-		    }
-        
-        
+        }
+
+
         // GET: Admin
         public ActionResult Index()
 
@@ -68,7 +68,7 @@ namespace GestionConcours.Controllers
 
                         Total = index.getAll()
                     };
-                    
+
                     return View(model);
                 }
 
@@ -92,9 +92,7 @@ namespace GestionConcours.Controllers
 
 
 
-
-
-		public ActionResult Recherche4()
+        public ActionResult Recherche4()
         {
             if (Session["admin"] != null)
             {
@@ -108,360 +106,350 @@ namespace GestionConcours.Controllers
             return RedirectToAction("Login", "AdminAuth");
         }
 
-		// ##################################### CORRECTION #############################################
+        // ##################################### CORRECTION #############################################
 
-		public ActionResult INFO()
-		{
-			string type_fil = "Informatique";
-			if (Session["admin"] != null)
-			{
+        public ActionResult INFO()
+        {
+            string type_fil = "Informatique";
+            if (Session["admin"] != null)
+            {
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr(type_fil);
-					return View(x);
-					
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult INFO_Post()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
+        [HttpPost]
+        public ActionResult INFO_Post()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
 
-			var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
-			//var CIN = Request["etudiants.Cin"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourEcrit con = db.CouncourEcrits.Find(d);
-				con.NoteMath = Double.Parse(NOTES[i]);
-				con.NoteSpecialite = Double.Parse(NOTES2[i]);
-				db.SaveChanges();
-			}
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
 
-			return RedirectToAction("index");
+            var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
+            //var CIN = Request["etudiants.Cin"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourEcrit con = db.CouncourEcrits.Find(d);
+                con.NoteMath = Double.Parse(NOTES[i]);
+                con.NoteSpecialite = Double.Parse(NOTES2[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
+        }
 
 
-		public ActionResult GTR()
-		{
-			string type_fil = "GTR";
-			if (Session["admin"] != null)
-			{
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr(type_fil);
-					return View(x);
+        public ActionResult GTR()
+        {
+            string type_fil = "GTR";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult GTR_Post()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
+        [HttpPost]
+        public ActionResult GTR_Post()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
 
-			var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
-			//var CIN = Request["etudiants.Cin"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourEcrit con = db.CouncourEcrits.Find(d);
-				con.NoteMath = Double.Parse(NOTES[i]);
-				con.NoteSpecialite = Double.Parse(NOTES2[i]);
-				db.SaveChanges();
-			}
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
 
-			return RedirectToAction("index");
+            var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
+            //var CIN = Request["etudiants.Cin"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourEcrit con = db.CouncourEcrits.Find(d);
+                con.NoteMath = Double.Parse(NOTES[i]);
+                con.NoteSpecialite = Double.Parse(NOTES2[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
-		public ActionResult GPMC()
-		{
-			string type_fil = "GPMC";
-			if (Session["admin"] != null)
-			{
+        }
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr(type_fil);
-					return View(x);
+        public ActionResult GPMC()
+        {
+            string type_fil = "GPMC";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult GPMC_Post()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
+        [HttpPost]
+        public ActionResult GPMC_Post()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
 
-			var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
-			//var CIN = Request["etudiants.Cin"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourEcrit con = db.CouncourEcrits.Find(d);
-				con.NoteMath = Double.Parse(NOTES[i]);
-				con.NoteSpecialite = Double.Parse(NOTES2[i]);
-				db.SaveChanges();
-			}
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
 
-			return RedirectToAction("index");
+            var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
+            //var CIN = Request["etudiants.Cin"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourEcrit con = db.CouncourEcrits.Find(d);
+                con.NoteMath = Double.Parse(NOTES[i]);
+                con.NoteSpecialite = Double.Parse(NOTES2[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
-		public ActionResult INDUS()
-		{
-			string type_fil = "Industriel";
-			if (Session["admin"] != null)
-			{
+        }
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr(type_fil);
-					return View(x);
+        public ActionResult INDUS()
+        {
+            string type_fil = "Industriel";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult INDUS_Post()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
+        [HttpPost]
+        public ActionResult INDUS_Post()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            var NOTES = Request["etudiants.NoteMath"].ToString().Split(',');
 
-			var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
-			//var CIN = Request["etudiants.Cin"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourEcrit con = db.CouncourEcrits.Find(d);
-				con.NoteMath = Double.Parse(NOTES[i]);
-				con.NoteSpecialite = Double.Parse(NOTES2[i]);
-				db.SaveChanges();
-			}
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
 
-			return RedirectToAction("index");
+            var NOTES2 = Request["etudiants.NoteSpecialite"].ToString().Split(',');
+            //var CIN = Request["etudiants.Cin"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourEcrit con = db.CouncourEcrits.Find(d);
+                con.NoteMath = Double.Parse(NOTES[i]);
+                con.NoteSpecialite = Double.Parse(NOTES2[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
+        }
 
 
-		public ActionResult INFO4()
-		{
-			string type_fil = "Informatique";
-			if (Session["admin"] != null)
-			{
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr4(type_fil);
-					return View(x);
+        public ActionResult INFO4()
+        {
+            string type_fil = "Informatique";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr4(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult INFO_Post4()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.Classement"].ToString().Split(',');
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourOral con = db.CouncourOrals.Find(d);
-				con.Classement = Int32.Parse(NOTES[i]);
-				db.SaveChanges();
-			}
+        [HttpPost]
+        public ActionResult INFO_Post4()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			return RedirectToAction("index");
+            var NOTES = Request["etudiants.Classement"].ToString().Split(',');
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourOral con = db.CouncourOrals.Find(d);
+                con.Classement = Int32.Parse(NOTES[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
+        }
 
-		public ActionResult GTR4()
-		{
-			string type_fil = "GTR";
-			if (Session["admin"] != null)
-			{
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr4(type_fil);
-					return View(x);
+        public ActionResult GTR4()
+        {
+            string type_fil = "GTR";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr4(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult GTR_Post4()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.Classement"].ToString().Split(',');
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourOral con = db.CouncourOrals.Find(d);
-				con.Classement = Int32.Parse(NOTES[i]);
-				db.SaveChanges();
-			}
+        [HttpPost]
+        public ActionResult GTR_Post4()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			return RedirectToAction("index");
+            var NOTES = Request["etudiants.Classement"].ToString().Split(',');
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourOral con = db.CouncourOrals.Find(d);
+                con.Classement = Int32.Parse(NOTES[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
+        }
 
-		public ActionResult GPMC4()
-		{
-			string type_fil = "GPMC";
-			if (Session["admin"] != null)
-			{
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr4(type_fil);
-					return View(x);
+        public ActionResult GPMC4()
+        {
+            string type_fil = "GPMC";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr4(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult GPMC_Post4()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.Classement"].ToString().Split(',');
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourOral con = db.CouncourOrals.Find(d);
-				con.Classement = Int32.Parse(NOTES[i]);
-				db.SaveChanges();
-			}
+        [HttpPost]
+        public ActionResult GPMC_Post4()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			return RedirectToAction("index");
+            var NOTES = Request["etudiants.Classement"].ToString().Split(',');
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourOral con = db.CouncourOrals.Find(d);
+                con.Classement = Int32.Parse(NOTES[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
+        }
 
 
-		public ActionResult INDUS4()
-		{
-			string type_fil = "indus";
-			if (Session["admin"] != null)
-			{
 
-				if (Session["admin"].Equals(true))
-				{
-					var x = corret.corr4(type_fil);
-					return View(x);
+        public ActionResult INDUS4()
+        {
+            string type_fil = "indus";
+            if (Session["admin"] != null)
+            {
 
-				}
+                if (Session["admin"].Equals(true))
+                {
+                    var x = corret.corr4(type_fil);
+                    return View(x);
 
-			}
-			return RedirectToAction("Login", "AdminAuth");
-		}
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
 
 
-		[HttpPost]
-		public ActionResult INDUS_Post4()
-		{
-			GestionConcourDbContext db = new GestionConcourDbContext();
 
-			var NOTES = Request["etudiants.Classement"].ToString().Split(',');
-			var CNE = Request["etudiants.Cne"].ToString().Split(',');
-			String d;
-			for (int i = 0; i < CNE.Length; i++)
-			{
-				d = CNE[i].ToString();
-				ConcourOral con = db.CouncourOrals.Find(d);
-				con.Classement = Int32.Parse(NOTES[i]);
-				db.SaveChanges();
-			}
+        [HttpPost]
+        public ActionResult INDUS_Post4()
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
 
-			return RedirectToAction("index");
+            var NOTES = Request["etudiants.Classement"].ToString().Split(',');
+            var CNE = Request["etudiants.Cne"].ToString().Split(',');
+            String d;
+            for (int i = 0; i < CNE.Length; i++)
+            {
+                d = CNE[i].ToString();
+                ConcourOral con = db.CouncourOrals.Find(d);
+                con.Classement = Int32.Parse(NOTES[i]);
+                db.SaveChanges();
+            }
 
-		}
+            return RedirectToAction("index");
 
+        }
 
 
-
-
-
-
-
-
-
-
-
-		public ActionResult Corbeil()
+        public ActionResult Corbeil()
         {
             if (Session["admin"] != null)
             {
@@ -522,7 +510,7 @@ namespace GestionConcours.Controllers
 
         public ActionResult Enregistrement()
         {
-            
+
             if (Session["admin"] != null)
             {
                 if (Session["admin"].Equals(true))
@@ -530,7 +518,7 @@ namespace GestionConcours.Controllers
 
             }
             return RedirectToAction("Login", "AdminAuth");
-            
+
         }
 
         // ##################################### PRESELECTION #############################################
@@ -572,13 +560,13 @@ namespace GestionConcours.Controllers
                 CoeffS4 = Cs4,
                 CoeffS5 = Cs5,
                 CoeffS6 = Cs6,
-                NoteSeuil = Convert.ToDouble(seuil.Replace(".",","))
+                NoteSeuil = Convert.ToDouble(seuil.Replace(".", ","))
             };
 
             preselec.setConfig(conf, niv);
             preselec.calculerPreselec(niv, fil, diplome);
             var x = preselec.getConvoques(niv, fil, diplome);
-            
+
             return Json(x, JsonRequestBehavior.AllowGet);
         }
 
@@ -645,7 +633,7 @@ namespace GestionConcours.Controllers
 
         public ActionResult Selection()
         {
-           return View();
+            return View();
         }
 
         public ActionResult SelectionL()
@@ -653,12 +641,12 @@ namespace GestionConcours.Controllers
             return View();
         }
 
-     
 
-        public JsonResult GetConfigurationSelection(string filiere,int nv)
+
+        public JsonResult GetConfigurationSelection(string filiere, int nv)
         {
-            var data = selection.getConfigurationSelection(filiere,nv);
-          
+            var data = selection.getConfigurationSelection(filiere, nv);
+
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
@@ -668,7 +656,7 @@ namespace GestionConcours.Controllers
             return Json("niceTest", JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SetConfigurationSelection(string f, int cs, int np, int la, double nm,int cm,string cl,string nv)
+        public JsonResult SetConfigurationSelection(string f, int cs, int np, int la, double nm, int cm, string cl, string nv)
         {
             ConfigurationSelection conf = new ConfigurationSelection();
 
@@ -678,30 +666,30 @@ namespace GestionConcours.Controllers
             conf.NbrPlace = np;
             conf.NoteMin = nm;
             conf.NbrPlaceListAtt = la;
-            conf.TypeClassement =cl;
+            conf.TypeClassement = cl;
             conf.Niveau = nv;
 
 
-         
-             selection.updateConfigurationSelection(conf);
-            if(nv=="3")
+
+            selection.updateConfigurationSelection(conf);
+            if (nv == "3")
             {
                 selection.calculeNoteGlobale(f);
             }
-           
-          var data = selection.selectStudents(f,nv);
+
+            var data = selection.selectStudents(f, nv);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ListeFinal()
         {
-            
+
             return View();
 
         }
 
 
-      public ActionResult ListFinaleSup()
+        public ActionResult ListFinaleSup()
         {
             return View();
         }
@@ -745,21 +733,21 @@ namespace GestionConcours.Controllers
         {
             ViewBag.msg1 = "1";
             ViewBag.msg2 = "2";
-            
+
             var c = db.Candidats.Where(x => x.Cin == cin).Count();
 
             if (c != 0) //cin exists in db
             {
                 var c1 = db.Candidats.Where(x => x.Cin == cin).Single();
 
-                if(c1.Num_dossier == null)  //1st time checking in => num_dossier should be determined
-                {  
+                if (c1.Num_dossier == null)  //1st time checking in => num_dossier should be determined
+                {
                     //2 cas :
-                        //1: c'est le 1er candidat a confirmer la presence => num_dossier automatiquement = 1
-                        //2: num_dossier depend de la valeur précédente de num_dossier
+                    //1: c'est le 1er candidat a confirmer la presence => num_dossier automatiquement = 1
+                    //2: num_dossier depend de la valeur précédente de num_dossier
 
                     //2 :
-                        //condition : Count(candidats avec num_dossier!=null) > 0 
+                    //condition : Count(candidats avec num_dossier!=null) > 0 
                     var c3 = db.Candidats.Where(x => x.Num_dossier != null).Count();
                     if (c3 > 0)
                     {
@@ -776,9 +764,10 @@ namespace GestionConcours.Controllers
                         c1.Num_dossier = "1";
                     }
 
-                    c1.Presence = true;                    
+                    c1.Presence = true;
                 }
-                else{   //candidat déjà confirmé (présence)
+                else
+                {   //candidat déjà confirmé (présence)
                     ViewBag.msg1 = "Numéro de dossier déjà attribué";
                 }
             }
@@ -790,17 +779,16 @@ namespace GestionConcours.Controllers
             db.SaveChanges();
 
             db.Configuration.ProxyCreationEnabled = false;
-            return Json(db.Candidats.Where(x => x.Cin == cin), JsonRequestBehavior.AllowGet);                
+            return Json(db.Candidats.Where(x => x.Cin == cin), JsonRequestBehavior.AllowGet);
         }
 
-    }
 
 
-}
+
         public JsonResult GetListePrincipal(string filiere)
         {
             var data = selection.getListPrincipale(filiere);
-           return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -812,10 +800,7 @@ namespace GestionConcours.Controllers
 
         public JsonResult GetListePrincipalSup(string filiere)
         {
-            var data 
-      
-              
-              selection.getListPrincipaleSup(filiere);
+            var data = selection.getListPrincipaleSup(filiere);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
@@ -826,5 +811,5 @@ namespace GestionConcours.Controllers
         }
     }
 }
- 
+
 

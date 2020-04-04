@@ -58,10 +58,6 @@ namespace GestionConcours.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public ActionResult Register()
-		{
-			return View();
-		}
 
         public ActionResult PasswordOublie()
         {
@@ -72,7 +68,7 @@ namespace GestionConcours.Controllers
         public ActionResult PasswordOublie(string email)
         {
             GestionConcourDbContext db = new GestionConcourDbContext();
-            Candidat candidat = db.Candidats.Where(c => c.Email==email).SingleOrDefault();
+            Candidat candidat = db.Candidats.Where(c => c.Email==email).First();
             Random random = new Random();
             const string pool = "abcdefghijklmnopqrstuvwxyz0123456789";
             var chars = Enumerable.Range(0, 7)
@@ -108,8 +104,7 @@ namespace GestionConcours.Controllers
             return View();
         }
 
-        public ActionResult 
-        ()
+        public ActionResult Register()
         {
             return View();
         }
@@ -133,11 +128,11 @@ namespace GestionConcours.Controllers
 			{
 				ModelState.AddModelError("UniqueCin", "Cin need to be unique");
 			}
-			/*var w = db.Candidats.Where(c => c.Email == candidat.Email).SingleOrDefault();
+			var w = db.Candidats.Where(c => c.Email == candidat.Email).First();
 			if (w != null)
 			{
 				ModelState.AddModelError("UniqueEmail", "Email need to be unique");
-			}*/
+			}
 
 
             if (ModelState.IsValid)
@@ -149,7 +144,7 @@ namespace GestionConcours.Controllers
                 var chars = Enumerable.Range(0, 7)
                     .Select(x => pool[random.Next(0, pool.Length)]);
                 var charsMatricule = Enumerable.Range(0, 8)
-                    .Select(w => pool[random.Next(0, pool.Length)]);
+                    .Select(ww => pool[random.Next(0, pool.Length)]);
                 candidat.Matricule = new string(charsMatricule.ToArray());
                 candidat.Password=new string(chars.ToArray());
                 candidat.Verified = 0;

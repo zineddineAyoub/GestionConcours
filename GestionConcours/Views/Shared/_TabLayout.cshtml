@@ -51,16 +51,15 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        @Html.ActionLink("Enregistrement", "Enregistrement", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Recherche", "Recherche", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Corbeille", "Corbeil", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Présélection", "Preselection", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Selection", "Selection", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Liste Final", "ListeFinal", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Informatique", "INFO", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Reseau", "GTR", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Industrielle", "INDUS", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Procede", "GPMC", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Liste Finale", "ListeFinal", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Informatique", "INFO", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Reseau", "GTR", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Industrielle", "INDUS", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Procede", "GPMC", "Admin", new { @class = "collapse-item" })
                     </div>
                 </div>
             </li>
@@ -73,16 +72,15 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="collapseUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
-                        @Html.ActionLink("Enregistrement", "Enregistrement", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Recherche", "Recherche4", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Corbeille", "Corbeil4", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Présélection", "Preselection4", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("Selection", "SelectionL", "Admin", new { @class = "collapse-item" })
                         @Html.ActionLink("ListFinale", "ListFinaleSup", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Informatique", "INFO4", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Reseau", "GTR4", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Industrielle", "INDUS4", "Admin", new { @class = "collapse-item" })
-                        @Html.ActionLink("Procedes", "GPMC4", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Informatique", "INFO4", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Reseau", "GTR4", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Industrielle", "INDUS4", "Admin", new { @class = "collapse-item" })
+                        @Html.ActionLink("Correction Procedes", "GPMC4", "Admin", new { @class = "collapse-item" })
                     </div>
                 </div>
             </li>
@@ -94,9 +92,15 @@
                 Addons
             </div>
             <li class="nav-item">
+                <a class="nav-link" href='@Url.Action("Enregistrement", "Admin")'>
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Enregistrement</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href='@Url.Action("Epreuve", "Admin")'>
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Epreuve</span>
+                    <span>Epreuves</span>
                 </a>
             </li>
             <!-- Nav Item - LogOut -->
@@ -141,7 +145,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2019</span>
+                <span>Copyright &copy; 2020 Ecole Nationale des Sciences Appliquées</span>
             </div>
         </div>
     </footer>
