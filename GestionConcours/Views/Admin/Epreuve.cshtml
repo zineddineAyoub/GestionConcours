@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Epreuve";
+    Layout = "~/Views/Shared/_TabLayout.cshtml";
+}
+
+
+<div class="container">
+    <h2 class="text-center">Upload Epreuve</h2><br /><br /><br />
+    <div id="message"></div>
+    <div class="row">
+        <div class="col-6">
+            <select id="matiere" class="form-control">
+                <option value="Math">Math</option>
+                <option value="Programmation">Programmation</option>
+                <option value="Programmation">Physique</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <input type="text" id="annee" class="form-control" placeholder="Année épreuve" />
+        </div>
+    </div><br /><br />
+    <div class="row offset-2">
+        <div class="col-6">
+            <input type="file" class="form-control" name="file" id="file" />
+        </div>
+        <div class="col-4">
+            <button class="btn btn-info btn-block" id="upload">Upload</button>
+        </div>
+    </div>
+    <div class="alert alert-warning mt-5">
+        <span>Veuillez enregistrer un fichier à la fois!</span>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#upload").click(function () {
+            $("#message").empty();
+            var file = $("#file").get(0).files[0];
+            var formData = new FormData();
+            formData.append("file", file);
+            formData.append("matiere", $("#matiere").val());
+            formData.append("annee", $("#annee").val());
+
+            $.ajax({
+                url: "/Admin/UploadEpreuve",
+                method: "post",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response == "1") {
+                        $("#message").append("<div class='alert alert-success'><span>Fichier enregistrer avec succes</span></div>")
+                    }
+                    else {
+                        $("#message").append("<div class='alert alert-danger'><span>Erreur lors d'enregistrement</span></div>")
+                    }
+                }
+            })
+            .then(function(result) {
+
+            });
+                });
+    })
+</script>
+

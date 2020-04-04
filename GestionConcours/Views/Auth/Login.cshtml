@@ -12,64 +12,83 @@
     <link rel="stylesheet" href="~/Content/Register.css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    <div class="container register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-                <h3>Welcome</h3>
-                <p>You are 30 seconds away from earning your own money!</p>
+    <title>Login</title>
 
-            </div>
-            <div class="col-md-9 register-right">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Login Portal</h3>
-                        @using (Html.BeginForm())
-                        {
-                            <div class="row register-form">
-                                <div class="col-md-8 offset-2">
-                                    @if (TempData["message"] != null)
-                                    {
-                                        <div class="form-group">
-                                            <div class="alert alert-success">
-                                                <span>@TempData["message"]</span>
+    <style>
+
+        body {
+            background: url("../../Pictures/image.jpg");
+            background-repeat: no-repeat;
+            background-size:100%;
+        }
+        
+    </style>
+</head>
+
+<body class="parent" >
+    <div id="enfant" class="enfant">
+        <div class="container register after" style="margin-top:160px; opacity:0.9;">
+            <div class="row">
+                <div class="col-md-5 register-left">
+                    <img src="~/Pictures/icons_user/graduation.svg" alt="" />
+                    <h3>Bienvenue à l'ENSA</h3>
+                    <p>Pour s'inscrire au concours d'accès à l'ENSA de SAFI en 3ème ou 4ème année</p>
+
+                </div>
+                <div class="col-md-7 register-right">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h3 class="register-heading">Login Portal</h3>
+                            @using (Html.BeginForm())
+                            {
+                                <div class="row register-form">
+                                    <div class="col-md-8 offset-2">
+                                        @if (TempData["message"] != null)
+                                        {
+                                            <div class="form-group">
+                                                <div class="alert alert-success">
+                                                    <span>@TempData["message"]</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    }
-                                    @if (TempData["error"] != null)
-                                    {
-                                        <div class="form-group">
-                                            <div class="alert alert-danger">
-                                                <span>@TempData["error"]</span>
+                                        }
+                                        @if (TempData["error"] != null)
+                                        {
+                                            <div class="form-group">
+                                                <div class="alert alert-danger">
+                                                    <span>@TempData["error"]</span>
+                                                </div>
                                             </div>
+                                        }
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Cin" value="" name="cin" />
                                         </div>
-                                    }
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Cin" value="" name="cin" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Cne" value="" name="cne" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password" value="" name="password" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" class="btnRegister" value="Login" /><br /><br />
-                                        <a href="Register">Don't have an account?</a>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Cne" value="" name="cne" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password" value="" name="password" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btnRegister" value="Login" /><br /><br>
+                                            <a href="Register">S'inscrire !</a><br />
+                                            <a href="PasswordOublie">Mot de passe oublié</a>
+                                        </div>
+                                        
+
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
+    
 </body>
 </html>
+
+
 
 

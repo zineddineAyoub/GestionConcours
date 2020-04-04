@@ -1,11 +1,10 @@
 ﻿
 
+
 @if (ViewBag.imprimer == "imprimer")
 {
     {
         Layout = "~/Views/Shared/PdfLayout.cshtml";
-
-
     }
 
 }
@@ -13,17 +12,15 @@
 
 @if (ViewBag.imprimer == "imprimer")
 {
-   <style>
-       body {
-          
-           padding-top:50px;
-       }
+    <style>
+        body {
+            padding-top: 50px;
+        }
 
-       .second_table{
-           margin-top:50px;
-       }
-
-   </style>
+        .second_table {
+            margin-top: 50px;
+        }
+    </style>
 
 }
 
@@ -53,29 +50,25 @@
     }
 </style>
 
+<br /> <br /> <br />
 
 
-@if (ViewBag.imprimer != "imprimer")
-{
-    <br /> <br /> <br />
-    <div>
-        <a href="ImprimerConvocation"> <input class="btn btn-success" type="text" value="Imprimer" /></a>
-    </div>
-}
-
-<h1>Convocation Concours d'acces ENSA </h1>
+<h2 class=" my-4 text-center font-weight-bold">
+    <i class="iconify mr-3" data-icon="bx:bxs-file-doc" data-inline="true" style="color:crimson; height:38px; width:38px;"></i>
+    Convocation du Concours d'accès à ENSA
+</h2>
 
 
 
 <div class="row myborder">
 
     <div class="col-lg-6 col-md-8 col-xs-8 col-sm-8">
-        <table class="table">
+        <table class="table table table-bordered table-primary">
 
             <tr>
                 <th class="bg-primary">  <img width="100" src="~/Pictures/ENSA.jpg" /> </th>
-                <th class="bg-primary"> Ensa de Safi <br /> Concours d'acees en 3eme année </th>
-                <th rowspan="4"> <img src="~/Pictures/Mark.jpg" height="220" width="200" /></th>
+                <th class="bg-primary"> Ensa de Safi <br /> Concours d'accès en 3eme année </th>
+                <th rowspan="4"> <img src="../Pictures/userPic/@Model.Photo" class="mt-4" id="image" style="border-radius: 50%; width:250px; height:150px" /></th>
             </tr>
 
             <tr>
@@ -102,7 +95,7 @@
 
 <br />
 
-<table class="table second_table">
+<table class="table table-bordered table-primary">
     <tr class="bg-primary">
         <th>Nom</th>
         <th>Prenom</th>
@@ -127,6 +120,15 @@
         <td>@Model.DateInscription</td>
     </tr>
 </table>
+
+@if (ViewBag.imprimer != "imprimer")
+{
+
+    <div class="my-5 text-center">
+        <a href="ImprimerConvocation?cne=@Model.Cne"> <input class="btn btn-danger " type="text" value="Imprimer" /></a>
+    </div>
+}
+
 
 
 

@@ -22,6 +22,8 @@ namespace GestionConcours.Models
         public double Note4 { get; set; }
         public double Note5 { get; set; }
         public double Note6 { get; set; }
+        public double NoteDip { get; set; }
+        public double NoteLic { get; set; }
         public double NotePreselec { get; set; }
 
         public string Filiere { get; set; }
