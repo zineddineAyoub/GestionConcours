@@ -42,6 +42,7 @@ namespace GestionConcours.Models
         public string Matricule { get; set; }
         public Boolean Presence { get; set; }
         public Boolean Conforme { get; set; }
+        public Boolean listDatt { get; set; }
 
 
         //relation avec la classe annee universitaire oneToOne

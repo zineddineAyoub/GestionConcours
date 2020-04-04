@@ -1,7 +1,7 @@
 
 ﻿using GestionConcours.Models;
 
-using GestionConcours.Models;
+
 using Rotativa.Options;
 
 using System;
