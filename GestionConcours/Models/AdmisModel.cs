@@ -26,7 +26,7 @@ namespace GestionConcours.Models
         public double Globale { get; set; }
         
 
-        public string Dossier { get; set; }
+        public int Dossier { get; set; }
         public string Filiere { get; set; }
 
         public string Type_dip { get; set; }

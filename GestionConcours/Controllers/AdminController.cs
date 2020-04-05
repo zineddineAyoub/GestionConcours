@@ -1053,7 +1053,7 @@ namespace GestionConcours.Controllers
             {
                 var c1 = db.Candidats.Where(x => x.Cin == cin).Single();
 
-                if (c1.Num_dossier == null)  //1st time checking in => num_dossier should be determined
+                if (c1.Num_dossier == 0)  //1st time checking in => num_dossier should be determined
                 {
                     //2 cas :
                     //1: c'est le 1er candidat a confirmer la presence => num_dossier automatiquement = 1
@@ -1061,20 +1061,24 @@ namespace GestionConcours.Controllers
 
                     //2 :
                     //condition : Count(candidats avec num_dossier!=null) > 0 
-                    var c3 = db.Candidats.Where(x => x.Num_dossier != null).Count();
+                    var c3 = db.Candidats.Where(x => x.Num_dossier != 0).Count();
                     if (c3 > 0)
                     {
                         var c2 = (from e in db.Candidats
                                   orderby e.Num_dossier descending
                                   select e).Take(1).Single();   //takes the biggest num_dossier and increments it
 
-                        int nbr = Int32.Parse(c2.Num_dossier) + 1;
-                        c1.Num_dossier = nbr.ToString();
+                        var max = (from e in db.Candidats
+                                            orderby e.Num_dossier descending
+                                            select e).Take(1).Single();
+
+                        int nbr = max.Num_dossier + 1;
+                        c1.Num_dossier = nbr;
                     }
                     //1:                     
                     else
                     {
-                        c1.Num_dossier = "1";
+                        c1.Num_dossier = 1;
                     }
 
                     c1.Presence = true;

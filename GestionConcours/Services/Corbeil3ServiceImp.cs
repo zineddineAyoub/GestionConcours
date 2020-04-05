@@ -73,14 +73,7 @@ namespace GestionConcours.Services
         public IEnumerable<SearchModel3> searchCriteria(string Criteria, string Key, string Diplome, string Filiere,int niveau)
         {
             //first select
-            var param = Expression.Parameter(typeof(SearchModel3), "p");
-            var exp = Expression.Lambda<Func<SearchModel3, bool>>(
-                Expression.Equal(
-                    Expression.Property(param, Criteria),
-                    Expression.Constant(Key)
-                ),
-                param
-            );
+           
             GestionConcourDbContext db = new GestionConcourDbContext();
             db.Configuration.ProxyCreationEnabled = false;
             var x = (from c in db.Candidats
@@ -125,7 +118,31 @@ namespace GestionConcours.Services
 
             if (!String.IsNullOrEmpty(Key))
             {
-                x = x.Where(exp);
+                if (Criteria == "convoque" || Criteria == "admis")
+                {
+                    var param = Expression.Parameter(typeof(SearchModel3), "p");
+                    var exp = Expression.Lambda<Func<SearchModel3, bool>>(
+                        Expression.Equal(
+                            Expression.Property(param, Criteria),
+                            Expression.Constant(bool.Parse(Key))
+                    ),
+                    param
+                );
+                    x = x.Where(exp);
+                }
+                else
+                {
+                    //first select
+                    var param = Expression.Parameter(typeof(SearchModel3), "p");
+                    var exp = Expression.Lambda<Func<SearchModel3, bool>>(
+                        Expression.Equal(
+                            Expression.Property(param, Criteria),
+                            Expression.Constant(Key)
+                        ),
+                        param
+                    );
+                    x = x.Where(exp);
+                }
             }
 
             if (Filiere != "0")

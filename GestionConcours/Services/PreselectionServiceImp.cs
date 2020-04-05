@@ -47,7 +47,7 @@ namespace GestionConcours.Services
                            Note5 = a.Semestre5,
                            Note6 = a.Semestre6,
                            NoteDip = d.NoteDiplome,
-                           NoteLic = ((a.Semestre5 + a.Semestre6) / 2),
+                           NoteLic = Math.Round(((a.Semestre5 + a.Semestre6) / 2), 2),
                            NotePreselec = c.NotePreselec,
 
                            Type_dip = d.Type,

@@ -26,7 +26,7 @@ namespace GestionConcours.Models
         public string LieuNaissance { get; set; }
         public string Telephone { get; set; }
         public string Nationalite { get; set; }
-        public string Num_dossier { get; set; }
+        public int Num_dossier { get; set; }
         public string Sexe { get; set; }
         public string Gsm { get; set; }
         public DateTime DateInscription { get; set; }

@@ -33,7 +33,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.TypeBac, "Type du Bac :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.TypeBac, ViewBag.typeBac as SelectList, "--- Séléctionner un type ---", htmlAttributes: new { @class = "form-control " })
+                                        @Html.DropDownListFor(model => model.TypeBac,
+                                       new List<SelectListItem>
+                                       {
+                                                    new SelectListItem{Text="SMA", Value="SMA"},
+                                                    new SelectListItem{Text="SMB", Value="SMB"},
+                                                    new SelectListItem{Text="SVT", Value="SVT"},
+                                                    new SelectListItem{Text="PC", Value="PC"}
+                                       }, "--- Séléctionner un type ---", htmlAttributes: new { @class = "form-control " })
                                         @Html.ValidationMessageFor(model => model.TypeBac, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -57,7 +64,15 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.MentionBac, "Metion du Bac :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(model => model.MentionBac, ViewBag.mention as IEnumerable<SelectListItem>, "--- Séléctionner une mention ---", htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.MentionBac,
+                                       new List<SelectListItem>
+                                        {
+                                            new SelectListItem{Text="Très Bien", Value="Très Bien"},
+                                            new SelectListItem{Text="Bien", Value="Bien"},
+                                            new SelectListItem{Text="Assez Bien", Value="Assez Bien"},
+                                            new SelectListItem{Text="Passable", Value="Passable"}
+                                        }
+                                       , "--- Séléctionner une mention ---", htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.MentionBac, "", new { @class = "text-danger" })
                                     </div>
                                 </div>

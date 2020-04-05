@@ -16,7 +16,7 @@ namespace GestionConcours.Models
         public double Note4 { get; set; }
         public double Note5 { get; set; }
         public double Note6 { get; set; }
-        public string Dossier { get; set; }
+        public int Dossier { get; set; }
         public Boolean Convoque { get; set; }
         public double Math { get; set; }
         public double Specialite { get; set; }

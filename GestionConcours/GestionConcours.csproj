@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202004041249239_add_column_listAtt_toCandidat.designer.cs">
       <DependentUpon>202004041249239_add_column_listAtt_toCandidat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004042357595_convert_numDossier_toInt.cs" />
+    <Compile Include="Migrations\202004042357595_convert_numDossier_toInt.designer.cs">
+      <DependentUpon>202004042357595_convert_numDossier_toInt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AdmisModel.cs" />
@@ -245,7 +249,6 @@
     <Compile Include="Services\IndexServiceImp.cs" />
     <Compile Include="Services\IPreselectionService.cs" />
     <Compile Include="Services\ISearch3Service.cs" />
-
     <Compile Include="Services\Istatistiques3AService.cs" />
     <Compile Include="Services\Statistique3AImpl.cs" />
     <Compile Include="ViewModels\Statistique.cs" />
@@ -253,7 +256,6 @@
     <Compile Include="Services\PreselectionServiceImp.cs" />
     <Compile Include="Services\Search3ServiceImp.cs" />
     <Compile Include="Services\SelectionServiceImp.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -2471,12 +2473,10 @@
     <Content Include="Views\Admin\Corbeil4.cshtml" />
     <Content Include="Views\Admin\Preselection.cshtml" />
     <Content Include="Views\Admin\Preselection4.cshtml" />
-
     <Content Include="Views\Admin\Statistique3A.cshtml" />
     <Content Include="Views\Admin\Statistique4A.cshtml" />
     <Content Include="Views\Admin\Statistique3ApresConcour.cshtml" />
     <Content Include="Views\Admin\Statistique4ApresConcour.cshtml" />
-
     <Content Include="Views\Admin\Selection.cshtml" />
     <Content Include="Views\Admin\ListeFinal.cshtml" />
     <Content Include="Views\Admin\SelectionL.cshtml" />
@@ -2493,7 +2493,6 @@
     <Content Include="Views\Auth\PasswordOublie.cshtml" />
     <Content Include="Views\Admin\Statistique3Annee.cshtml" />
     <Content Include="Views\Admin\Epreuve.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2561,6 +2560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004041249239_add_column_listAtt_toCandidat.resx">
       <DependentUpon>202004041249239_add_column_listAtt_toCandidat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004042357595_convert_numDossier_toInt.resx">
+      <DependentUpon>202004042357595_convert_numDossier_toInt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,7 +10,7 @@ namespace GestionConcours.Models
       
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public string Num_dossier { get; set; }
+        public int Num_dossier { get; set; }
         public string Cin { get; set; }
         public string Matricule { get; set; }
     }

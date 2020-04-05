@@ -7,7 +7,7 @@ namespace GestionConcours.Models
 {
 	public class CorrectionModel4
 	{
-		public string Num_dossier { get; set; }
+		public int Num_dossier { get; set; }
 		public string Cin { get; set; }
 		public string Nom { get; set; }
 		public string Prenom { get; set; }
