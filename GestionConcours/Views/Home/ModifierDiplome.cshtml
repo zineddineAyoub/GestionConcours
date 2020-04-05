@@ -242,14 +242,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-           
 
+
+        traitement();
 
         $("#Type").change(function () {
 
+            traitement();
+            
+        });
+
+
+        function traitement() {
             if (@Session["niveau"] == "3") {
 
-                var select = $(this).children("option:selected").val();
+                var select = $("#Type").children("option:selected").val();
                 if (select == "DUT" || select == "DEUG") {
                     $("#Semestre6").hide();
                     $("#Semestre5").hide();
@@ -264,6 +271,7 @@
                 }
 
             }
-        });
+        }
+
     });
 </script>
