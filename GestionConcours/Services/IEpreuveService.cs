@@ -11,5 +11,6 @@ namespace GestionConcours.Services
     public interface IEpreuveService
     {
         string uploadEpreuve(UploadModel epreuve);
+        IEnumerable<DiplomeFichierModel> diplomeFile(string cne,int niveau);
     }
 }

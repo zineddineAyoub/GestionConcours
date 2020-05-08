@@ -609,7 +609,36 @@ namespace GestionConcours.Controllers
             var list = preselec.getPourcentage(niv, fil, diplome);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        // ##################################### Diplome Scanné #############################################
+        public ActionResult FichierScanne3()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
 
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+        public ActionResult FichierScanne4()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
+
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+        public JsonResult FichierScanne(string cne,int niveau)
+        {
+            var result = epreuve.diplomeFile(cne, niveau);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         // ##################################### Upload Epreuve #############################################
         public ActionResult Epreuve()
         {

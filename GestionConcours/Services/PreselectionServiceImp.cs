@@ -26,6 +26,10 @@ namespace GestionConcours.Services
                        join d in db.Diplomes on c.Cne equals d.Cne
                        join f in db.Filieres on c.ID equals f.ID
                        where (f.Nom.Equals(filiere) &&
+                       c.Conforme == false &&
+                       a.Redoublant1.Equals("Non") &&
+                       a.Redoublant2.Equals("Non") &&
+                       a.Redoublant3.Equals("Non") &&
                        d.Type.Contains(diplome) &&
                        !db.Corbeilles.Select(g => g.CNE).ToList().Contains(c.Cne) &&
                        c.Niveau == niveau)
