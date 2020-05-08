@@ -55,6 +55,7 @@ namespace GestionConcours.Services
 
         public void calculeNoteGlobale(string filiere)
         {
+            Console.WriteLine("the filiere is " + filiere);
 
             ConfigurationSelection conf = db.ConfigurationSelections.Where(a => a.Filiere.Equals(filiere) && a.Niveau == "3").SingleOrDefault();
             var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.Niveau == 3);
@@ -117,7 +118,7 @@ namespace GestionConcours.Services
                          where c.Niveau == 3
                          where fi.Nom == filiere
                          where c.Conforme == false
-                         where (a.Redoublant1.Equals("Non") && a.Redoublant2.Equals("Non") && a.Redoublant3.Equals("Non"))
+                         where (a.Redoublant1.Equals("Non") && a.Redoublant2.Equals("Non"))
                          orderby concour.NoteGenerale
                          descending
 
@@ -190,7 +191,7 @@ namespace GestionConcours.Services
                 //      var total = db.CouncourEcrits.Include("Candidat").Take(nombreTotal).OrderByDescending(c=>c.NoteGenerale).Where(c => c.NoteGenerale > conf.NoteMin);
 
                 // Take(NbrePlace)
-                var admis = db.CouncourOrals.Include("Candidat").OrderBy(c => c.Classement).Take(conf.NbrPlace);
+                var admis = db.CouncourOrals.Include("Candidat").OrderBy(c => c.Classement).Take(conf.NbrPlace+1);
                 foreach (var a in admis)
                 {
                     a.Candidat.Admis = true;
@@ -270,7 +271,7 @@ namespace GestionConcours.Services
                      where c.Niveau == 3
                      where a.Nom == filiere
                      where c.Conforme == false
-                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non") && an.Redoublant3.Equals("Non"))
+                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non"))
                      orderby n.NoteGenerale
                      descending
 
@@ -311,7 +312,7 @@ namespace GestionConcours.Services
                      where a.Nom == filiere
                      where c.Niveau == 3
                      where c.Conforme == false
-                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non") && an.Redoublant3.Equals("Non"))
+                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non"))
                      select new ListFinal
                      {
                          Nom = c.Nom,
