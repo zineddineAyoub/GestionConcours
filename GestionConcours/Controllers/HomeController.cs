@@ -157,12 +157,51 @@ namespace GestionConcours.Controllers
             };
             return View(dipNote);			
         }
+
+        public ActionResult FichierScanne()
+        {
+            if (Session["cne"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FichierScanne(HttpPostedFileBase[] files)
+        {
+            string cne = Session["cne"].ToString();
+            if (ModelState.IsValid)
+            {   //iterating through multiple file collection   
+                foreach (HttpPostedFileBase file in files)
+                {
+                    //Checking file is available to save.  
+                    if (file != null)
+                    {
+                        var InputFileName = Path.GetFileName(file.FileName);
+                        var ServerSavePath = Path.Combine(Server.MapPath("~/DiplomeScanné/") + InputFileName);
+                        //Save file to server folder  
+                        file.SaveAs(ServerSavePath);
+                        //assigning file uploaded status to ViewBag for showing message to user.  
+                        ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
+                        Fichier fichier = new Fichier();
+                        fichier.Cne = cne;
+                        fichier.nom = InputFileName;
+                        db.Fichiers.Add(fichier);
+                        db.SaveChanges();
+                    }
+
+                }
+            }
+            return View();
+        }
+
         [HttpPost]
         public ActionResult ModifierDiplome(DiplomeNote diplome)
         {
+            string cne = Session["cne"].ToString();
             if (ModelState.IsValid)
             {
-                string cne = Session["cne"].ToString();
                 var x = db.Diplomes.Where(c => c.Cne == cne).SingleOrDefault();
                 x.Type = diplome.Type;
                 x.Etablissement = diplome.Etablissement;

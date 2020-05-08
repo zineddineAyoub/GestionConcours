@@ -12,7 +12,7 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                            @using (Html.BeginForm())
+                            @using (Html.BeginForm("ModifierDiplome","Home",FormMethod.Post,new { enctype="multipart/form-data"}))
                             {
                                 <div class="row register-form " style="padding-bottom: 40px">
                                     <div class="col-md-8 offset-2">
@@ -209,14 +209,8 @@
                                             @Html.EditorFor(model => model.Semestre6, new { htmlAttributes = new { @class = "form-control", @placeholder = "Note Semestre6" } })
                                             @Html.ValidationMessageFor(model => model.Semestre6, "", new { @class = "text-danger" })
                                         </div>
-
-
-
-
                                     </div>
                                 </div>
-
-
 
                                 <div class="col-md-8 offset-2">
                                     <div class="form-group text-center" >

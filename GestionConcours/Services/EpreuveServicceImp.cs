@@ -9,6 +9,20 @@ namespace GestionConcours.Services
 {
     public class EpreuveServicceImp : IEpreuveService
     {
+        public IEnumerable<DiplomeFichierModel> diplomeFile(string cne, int niveau)
+        {
+            GestionConcourDbContext db = new GestionConcourDbContext();
+            var x = (from f in db.Fichiers
+                     join c in db.Candidats on f.Cne equals c.Cne
+                     where f.Cne==cne
+                     where c.Niveau == niveau
+                     select new DiplomeFichierModel
+                     {
+                         ID = f.ID,
+                         nom = f.nom
+                     }).ToList();
+            return x;
+        }
 
         public string uploadEpreuve(UploadModel epreuve)
         {

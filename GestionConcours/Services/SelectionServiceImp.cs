@@ -10,9 +10,9 @@ namespace GestionConcours.Services
     {
         GestionConcourDbContext db = new GestionConcourDbContext();
 
-        public ConfigurationSelection getConfigurationSelection(string filiere,int niveau)
+        public ConfigurationSelection getConfigurationSelection(string filiere, int niveau)
         {
-            if(niveau==3)
+            if (niveau == 3)
             {
                 var data = db.ConfigurationSelections.Where(c => c.Filiere == filiere && c.Niveau == "3").SingleOrDefault();
                 return data;
@@ -31,11 +31,11 @@ namespace GestionConcours.Services
         public void updateConfigurationSelection(ConfigurationSelection configurationSelection)
         {
 
-           var data = db.ConfigurationSelections.Where(c => c.Filiere == configurationSelection.Filiere && c.Niveau==configurationSelection.Niveau).SingleOrDefault();
+            var data = db.ConfigurationSelections.Where(c => c.Filiere == configurationSelection.Filiere && c.Niveau == configurationSelection.Niveau).SingleOrDefault();
             if (data == null)
             {
                 db.ConfigurationSelections.Add(configurationSelection);
-                
+
             }
             else
             {
@@ -56,28 +56,28 @@ namespace GestionConcours.Services
         public void calculeNoteGlobale(string filiere)
         {
 
-            ConfigurationSelection conf = db.ConfigurationSelections.Where(a=>a.Filiere.Equals(filiere) && a.Niveau=="3").SingleOrDefault();
-            var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) &&  c.Niveau==3);
-            foreach(var person in data)
+            ConfigurationSelection conf = db.ConfigurationSelections.Where(a => a.Filiere.Equals(filiere) && a.Niveau == "3").SingleOrDefault();
+            var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.Niveau == 3);
+            foreach (var person in data)
             {
-                ConcourEcrit concours =  db.CouncourEcrits.Where(c => c.Cne.Equals(person.Cne)).SingleOrDefault();
-                concours.NoteGenerale = (concours.NoteMath * conf.CoeffMath + concours.NoteSpecialite * conf.CoeffSpecialite)/(conf.CoeffMath+conf.CoeffSpecialite);
-                
+                ConcourEcrit concours = db.CouncourEcrits.Where(c => c.Cne.Equals(person.Cne)).SingleOrDefault();
+                concours.NoteGenerale = (concours.NoteMath * conf.CoeffMath + concours.NoteSpecialite * conf.CoeffSpecialite) / (conf.CoeffMath + conf.CoeffSpecialite);
+
             }
             db.SaveChanges();
 
 
         }
 
-        public IEnumerable<AdmisModel> selectStudents(string filiere,string nv)
+        public IEnumerable<AdmisModel> selectStudents(string filiere, string nv)
         {
 
-            if(nv=="3")
+            if (nv == "3")
             {
                 ConfigurationSelection conf = db.ConfigurationSelections.Where(a => a.Filiere.Equals(filiere) && a.Niveau.Equals(nv)).SingleOrDefault();
                 int nombreTotal = conf.NbrPlace + conf.NbrPlaceListAtt;
                 // les persones deja admis deviens non admis 
-                var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.Admis == true && c.Niveau==3);
+                var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.Admis == true && c.Niveau == 3);
                 foreach (var person in data)
                 {
                     person.Admis = false;
@@ -92,7 +92,7 @@ namespace GestionConcours.Services
                 //      var total = db.CouncourEcrits.Include("Candidat").Take(nombreTotal).OrderByDescending(c=>c.NoteGenerale).Where(c => c.NoteGenerale > conf.NoteMin);
 
                 // Take(NbrePlace)
-                var admis = db.CouncourEcrits.Include("Candidat").Where(c => c.NoteGenerale > conf.NoteMin).OrderByDescending(c => c.NoteGenerale).Take(conf.NbrPlace+1);
+                var admis = db.CouncourEcrits.Include("Candidat").Where(c => c.NoteGenerale > conf.NoteMin).OrderByDescending(c => c.NoteGenerale).Take(conf.NbrPlace + 1);
                 foreach (var a in admis)
                 {
                     a.Candidat.Admis = true;
@@ -116,6 +116,8 @@ namespace GestionConcours.Services
                          where !db.Corbeilles.Select(g => g.CNE).ToList().Contains(c.Cne)
                          where c.Niveau == 3
                          where fi.Nom == filiere
+                         where c.Conforme == false
+                         where (a.Redoublant1.Equals("Non") && a.Redoublant2.Equals("Non") && a.Redoublant3.Equals("Non"))
                          orderby concour.NoteGenerale
                          descending
 
@@ -165,7 +167,7 @@ namespace GestionConcours.Services
                     x = x.OrderByDescending(critere => critere.Math).ToList();
                 }
 
-                else if(classement.Equals("noteBac"))
+                else if (classement.Equals("noteBac"))
                 {
                     x = x.OrderByDescending(critere => critere.NoteBac).ToList();
                 }
@@ -174,12 +176,12 @@ namespace GestionConcours.Services
                 return x;
             }
 
-            else if (nv=="4")
+            else if (nv == "4")
             {
-                 ConfigurationSelection conf = db.ConfigurationSelections.Where(a => a.Filiere.Equals(filiere) && a.Niveau == nv).SingleOrDefault();
+                ConfigurationSelection conf = db.ConfigurationSelections.Where(a => a.Filiere.Equals(filiere) && a.Niveau == nv).SingleOrDefault();
                 int nombreTotal = conf.NbrPlace + conf.NbrPlaceListAtt;
                 // les persones deja admis deviens non admis 
-                var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.Admis == true && c.Niveau==4);
+                var data = db.Candidats.Where(c => c.Filiere.Nom.Equals(filiere) && c.Admis == true && c.Niveau == 4);
                 foreach (var person in data)
                 {
                     person.Admis = false;
@@ -201,11 +203,13 @@ namespace GestionConcours.Services
                          join fi in db.Filieres on c.ID equals fi.ID
                          join b in db.Baccalaureats on c.Cne equals b.Cne
                          join concour in db.CouncourOrals on c.Cne equals concour.Cne
-                        
+
                          join d in db.Diplomes on c.Cne equals d.Cne
                          where !db.Corbeilles.Select(g => g.CNE).ToList().Contains(c.Cne)
                          where c.Niveau == 4
                          where fi.Nom == filiere
+                         where c.Conforme == false
+                         where (a.Redoublant1.Equals("Non") && a.Redoublant2.Equals("Non") && a.Redoublant3.Equals("Non"))
                          orderby concour.Classement
 
 
@@ -242,7 +246,7 @@ namespace GestionConcours.Services
 
                 int NombrePlaceTotal = conf.NbrPlaceListAtt + conf.NbrPlace;
                 x = x.Take(NombrePlaceTotal).ToList();
-                
+
 
 
 
@@ -255,29 +259,33 @@ namespace GestionConcours.Services
 
         public IEnumerable<ListFinal> getListAttente(string filiere)
         {
-           // var data = db.Candidats.ToList();//.Include("Filiere").Where(c => c.Admis==true && c.Filiere.Nom.Equals(filiere)).ToList();
-           var x = (from c in db.Candidats
-                     where c.Admis==false
-                    join a in db.Filieres on c.ID equals a.ID
-                    join n in db.CouncourEcrits on c.Cne equals n.Cne
-                    
-                    where c.Niveau == 3
-                    where a.Nom == filiere
-                    orderby n.NoteGenerale 
-                    descending
-                    
-                    
+            // var data = db.Candidats.ToList();//.Include("Filiere").Where(c => c.Admis==true && c.Filiere.Nom.Equals(filiere)).ToList();
+            var x = (from c in db.Candidats
+
+                     join a in db.Filieres on c.ID equals a.ID
+                     join n in db.CouncourEcrits on c.Cne equals n.Cne
+                     join an in db.AnneeUniversitaires on c.Cne equals an.Cne
+
+                     where c.Admis == false
+                     where c.Niveau == 3
+                     where a.Nom == filiere
+                     where c.Conforme == false
+                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non") && an.Redoublant3.Equals("Non"))
+                     orderby n.NoteGenerale
+                     descending
+
+
                      select new ListFinal
                      {
                          Nom = c.Nom,
                          Prenom = c.Prenom,
                          Matricule = c.Matricule,
-                         
-                        Num_dossier = c.Num_dossier,
-                       
+
+                         Num_dossier = c.Num_dossier,
+
                          Cin = c.Cin,
-                         
-                         
+
+
                      }).ToList();
             try
             {
@@ -285,7 +293,8 @@ namespace GestionConcours.Services
                 var resultat = x.Take(NombrePlace).ToList();
                 return resultat;
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return null;
             }
@@ -293,11 +302,16 @@ namespace GestionConcours.Services
 
         public IEnumerable<ListFinal> getListPrincipale(string filiere)
         {
-             var x = (from c in db.Candidats
+            var x = (from c in db.Candidats
+
+                     join a in db.Filieres on c.ID equals a.ID
+                     join an in db.AnneeUniversitaires on c.Cne equals an.Cne
+
                      where c.Admis == true
-                      join a in db.Filieres on c.ID equals a.ID
-                      where a.Nom == filiere
-                      where c.Niveau == 3
+                     where a.Nom == filiere
+                     where c.Niveau == 3
+                     where c.Conforme == false
+                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non") && an.Redoublant3.Equals("Non"))
                      select new ListFinal
                      {
                          Nom = c.Nom,
@@ -318,8 +332,11 @@ namespace GestionConcours.Services
             var x = (from c in db.Candidats
                      where c.Admis == true
                      join a in db.Filieres on c.ID equals a.ID
+                     join an in db.AnneeUniversitaires on c.Cne equals an.Cne
                      where a.Nom == filiere
                      where c.Niveau == 4
+                     where c.Conforme == false
+                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non") && an.Redoublant3.Equals("Non"))
                      select new ListFinal
                      {
                          Nom = c.Nom,
@@ -332,7 +349,7 @@ namespace GestionConcours.Services
 
 
                      }).ToList();
-           
+
             return x;
         }
 
@@ -342,11 +359,14 @@ namespace GestionConcours.Services
                      where c.Admis == false
                      join a in db.Filieres on c.ID equals a.ID
                      join n in db.CouncourOrals on c.Cne equals n.Cne
+                     join an in db.AnneeUniversitaires on c.Cne equals an.Cne
 
+                     where c.Conforme == false
+                     where (an.Redoublant1.Equals("Non") && an.Redoublant2.Equals("Non") && an.Redoublant3.Equals("Non"))
                      where c.Niveau == 4
                      where a.Nom == filiere
                      orderby n.Classement
-                    
+
 
                      select new ListFinal
                      {
@@ -368,7 +388,7 @@ namespace GestionConcours.Services
                 return resultat;
 
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }

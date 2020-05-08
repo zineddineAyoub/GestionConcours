@@ -212,6 +212,10 @@
     <Compile Include="Migrations\202004042357595_convert_numDossier_toInt.designer.cs">
       <DependentUpon>202004042357595_convert_numDossier_toInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005071730380_fichier.cs" />
+    <Compile Include="Migrations\202005071730380_fichier.designer.cs">
+      <DependentUpon>202005071730380_fichier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AdmisModel.cs" />
@@ -227,9 +231,12 @@
     <Compile Include="Models\CorrectionModel.cs" />
     <Compile Include="Models\CorrectionModel4.cs" />
     <Compile Include="Models\Diplome.cs" />
+    <Compile Include="Models\DiplomeFichierModel.cs" />
     <Compile Include="Models\DiplomeNote.cs" />
     <Compile Include="Models\Epreuves.cs" />
     <Compile Include="Models\EtudiantEnreg.cs" />
+    <Compile Include="Models\Fichier.cs" />
+    <Compile Include="Models\FichierModel.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Models\ListFinal.cs" />
@@ -480,6 +487,7 @@
     <Content Include="Epreuves\Math2014_2013.pdf" />
     <Content Include="Epreuves\Reseau2018_2017.pdf" />
     <Content Include="App_Browsers\qt.browser" />
+    <None Include="Properties\PublishProfiles\gestionconcours-mvc - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2493,9 +2501,13 @@
     <Content Include="Views\Auth\PasswordOublie.cshtml" />
     <Content Include="Views\Admin\Statistique3Annee.cshtml" />
     <Content Include="Views\Admin\Epreuve.cshtml" />
+    <Content Include="Views\Home\FichierScanne.cshtml" />
+    <Content Include="Views\Admin\FichierScanne3.cshtml" />
+    <Content Include="Views\Admin\FichierScanne4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DiplomeScanné\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2563,6 +2575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004042357595_convert_numDossier_toInt.resx">
       <DependentUpon>202004042357595_convert_numDossier_toInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005071730380_fichier.resx">
+      <DependentUpon>202005071730380_fichier.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
