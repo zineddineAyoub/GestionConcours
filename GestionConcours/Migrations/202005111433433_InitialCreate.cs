@@ -8,17 +8,34 @@
         public override void Up()
         {
             CreateTable(
-                "dbo.AnneeUniversitaires",
+                "dbo.Admins",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        NoteS1 = c.Double(nullable: false),
-                        NosteS2 = c.Double(nullable: false),
-                        Date = c.DateTime(nullable: false),
-                        Redoublant = c.Boolean(nullable: false),
-                        Cne = c.String(maxLength: 128),
+                        Username = c.String(nullable: false),
+                        Password = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.AnneeUniversitaires",
+                c => new
+                    {
+                        Cne = c.String(nullable: false, maxLength: 128),
+                        Semestre1 = c.Double(nullable: false),
+                        Semestre2 = c.Double(nullable: false),
+                        Semestre3 = c.Double(nullable: false),
+                        Semestre4 = c.Double(nullable: false),
+                        Semestre5 = c.Double(nullable: false),
+                        Semestre6 = c.Double(nullable: false),
+                        Redoublant1 = c.String(),
+                        Redoublant2 = c.String(),
+                        Redoublant3 = c.String(),
+                        AnneUni1 = c.String(),
+                        AnneUni2 = c.String(),
+                        AnneUni3 = c.String(),
+                    })
+                .PrimaryKey(t => t.Cne)
                 .ForeignKey("dbo.Candidats", t => t.Cne)
                 .Index(t => t.Cne);
             
@@ -27,22 +44,31 @@
                 c => new
                     {
                         Cne = c.String(nullable: false, maxLength: 128),
-                        Cin = c.String(),
-                        Nom = c.String(),
-                        Prenom = c.String(),
-                        Email = c.String(),
+                        Cin = c.String(nullable: false),
+                        Nom = c.String(nullable: false),
+                        Prenom = c.String(nullable: false),
+                        Email = c.String(nullable: false),
                         Adresse = c.String(),
+                        Ville = c.String(),
                         LieuNaissance = c.String(),
                         Telephone = c.String(),
                         Nationalite = c.String(),
-                        Num_dossier = c.String(),
+                        Num_dossier = c.Int(nullable: false),
                         Sexe = c.String(),
                         Gsm = c.String(),
                         DateInscription = c.DateTime(nullable: false),
+                        DateNaissance = c.DateTime(nullable: false),
                         Photo = c.String(),
+                        NotePreselec = c.Double(nullable: false),
                         Convoque = c.Boolean(nullable: false),
                         Admis = c.Boolean(nullable: false),
+                        Niveau = c.Int(nullable: false),
+                        Verified = c.Int(nullable: false),
                         Password = c.String(),
+                        Matricule = c.String(),
+                        Presence = c.Boolean(nullable: false),
+                        Conforme = c.Boolean(nullable: false),
+                        listDatt = c.Boolean(nullable: false),
                         ID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Cne)
@@ -54,33 +80,33 @@
                 c => new
                     {
                         Cne = c.String(nullable: false, maxLength: 128),
-                        Type = c.String(),
-                        DateObtention = c.DateTime(nullable: false),
-                        Note = c.Double(nullable: false),
-                        Mention = c.String(),
+                        TypeBac = c.String(),
+                        DateObtentionBac = c.String(),
+                        NoteBac = c.Double(nullable: false),
+                        MentionBac = c.String(),
                     })
                 .PrimaryKey(t => t.Cne)
                 .ForeignKey("dbo.Candidats", t => t.Cne)
                 .Index(t => t.Cne);
             
             CreateTable(
-                "dbo.CouncourEcrits",
+                "dbo.ConcourEcrits",
                 c => new
                     {
                         Cne = c.String(nullable: false, maxLength: 128),
                         NoteMath = c.Double(nullable: false),
                         NoteSpecialite = c.Double(nullable: false),
+                        NoteGenerale = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Cne)
                 .ForeignKey("dbo.Candidats", t => t.Cne)
                 .Index(t => t.Cne);
             
             CreateTable(
-                "dbo.CouncourOrals",
+                "dbo.ConcourOrals",
                 c => new
                     {
                         Cne = c.String(nullable: false, maxLength: 128),
-                        ID = c.Int(nullable: false),
                         Classement = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Cne)
@@ -151,40 +177,60 @@
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Candidat_Cne = c.String(maxLength: 128),
+                        CNE = c.String(),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Candidats", t => t.Candidat_Cne)
-                .Index(t => t.Candidat_Cne);
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Epreuves",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Matiere = c.String(nullable: false),
+                        Annee = c.String(nullable: false),
+                        NomFichier = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Fichiers",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Cne = c.String(),
+                        nom = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Corbeilles", "Candidat_Cne", "dbo.Candidats");
             DropForeignKey("dbo.AnneeUniversitaires", "Cne", "dbo.Candidats");
             DropForeignKey("dbo.Candidats", "ID", "dbo.Filieres");
             DropForeignKey("dbo.Diplomes", "Cne", "dbo.Candidats");
-            DropForeignKey("dbo.CouncourOrals", "Cne", "dbo.Candidats");
-            DropForeignKey("dbo.CouncourEcrits", "Cne", "dbo.Candidats");
+            DropForeignKey("dbo.ConcourOrals", "Cne", "dbo.Candidats");
+            DropForeignKey("dbo.ConcourEcrits", "Cne", "dbo.Candidats");
             DropForeignKey("dbo.Baccalaureats", "Cne", "dbo.Candidats");
-            DropIndex("dbo.Corbeilles", new[] { "Candidat_Cne" });
             DropIndex("dbo.Diplomes", new[] { "Cne" });
-            DropIndex("dbo.CouncourOrals", new[] { "Cne" });
-            DropIndex("dbo.CouncourEcrits", new[] { "Cne" });
+            DropIndex("dbo.ConcourOrals", new[] { "Cne" });
+            DropIndex("dbo.ConcourEcrits", new[] { "Cne" });
             DropIndex("dbo.Baccalaureats", new[] { "Cne" });
             DropIndex("dbo.Candidats", new[] { "ID" });
             DropIndex("dbo.AnneeUniversitaires", new[] { "Cne" });
+            DropTable("dbo.Fichiers");
+            DropTable("dbo.Epreuves");
             DropTable("dbo.Corbeilles");
             DropTable("dbo.ConfigurationSelections");
             DropTable("dbo.ConfigurationPreselections");
             DropTable("dbo.Filieres");
             DropTable("dbo.Diplomes");
-            DropTable("dbo.CouncourOrals");
-            DropTable("dbo.CouncourEcrits");
+            DropTable("dbo.ConcourOrals");
+            DropTable("dbo.ConcourEcrits");
             DropTable("dbo.Baccalaureats");
             DropTable("dbo.Candidats");
             DropTable("dbo.AnneeUniversitaires");
+            DropTable("dbo.Admins");
         }
     }
 }

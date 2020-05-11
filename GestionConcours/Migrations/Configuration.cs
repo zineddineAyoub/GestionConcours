@@ -16,7 +16,7 @@
 
         protected override void Seed(GestionConcours.Models.GestionConcourDbContext context)
         {
-            
+
             if (!context.Filieres.Any())
             {
                 var filieres = new List<Filiere>();
@@ -30,7 +30,7 @@
             if (!context.Admins.Any())
             {
                 var admins = new List<Admin>();
-                admins.Add(new Admin() { Username="admin", Password="admin"});
+                admins.Add(new Admin() { Username = "admin", Password = "admin" });
 
                 context.Admins.AddRange(admins);
             }

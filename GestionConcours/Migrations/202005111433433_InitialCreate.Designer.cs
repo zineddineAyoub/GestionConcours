@@ -7,13 +7,13 @@ namespace GestionConcours.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class changingCorbeil : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changingCorbeil));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003291259123_changingCorbeil"; }
+            get { return "202005111433433_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
