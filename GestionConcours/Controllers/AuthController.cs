@@ -49,7 +49,8 @@ namespace GestionConcours.Controllers
                     Telephone = candidat.Telephone,
                     Nationalite = candidat.Nationalite,
                     Gsm = candidat.Gsm,
-                    DateNaissance = candidat.DateNaissance
+                    DateNaissance = candidat.DateNaissance,
+                    Sexe=candidat.Sexe
                 };
                 return View(info);
             }
@@ -65,6 +66,7 @@ namespace GestionConcours.Controllers
                 var originalCandiat = (from c in db.Candidats where c.Cne == cne select c).First();
                 originalCandiat.DateNaissance = candidat.DateNaissance;
                 originalCandiat.LieuNaissance = candidat.LieuNaissance;
+                originalCandiat.Sexe = candidat.Sexe;
                 originalCandiat.Nationalite = candidat.Nationalite;
                 originalCandiat.Gsm = candidat.Gsm;
                 originalCandiat.Telephone = candidat.Telephone;
@@ -154,7 +156,7 @@ namespace GestionConcours.Controllers
                 const string fromPassword = "dragonballz123+";
                 const string subject = "Création de compte de postulation au concours ENSAS";
                 //string body = "<a href=\"http://localhost:49969/Auth/Verify?cne="+candidat.Cne+" \">Link</a><br /><p> this is the password : "+candidat.Password+"</p>";
-                string body = "<div class=\"container\"><div class=\"row\"><img src=\"https://lh3.googleusercontent.com/proxy/g_QnANEsQGJPGvR4haGBTi-kr2n32DU-eArBRKuJWtpgPCHQbz-RINzL6FzIc1TQs0a80Vfkaew6umTHHPQgHTE4l_g \" /></div><div class=\"row text-center\"><h2>Vous avez créer un compte dans la platforme d'acces au cycle d'ingénieur a ENSAS </h2></div><div class=\"alert alert-danger\"><strong><span style=\"color:'red'\">Vous trouverez votre mot de pass au dessouss</span></strong><br></div><div class=\"row\"><div class=\"card\" style=\"width: 18rem;\"><div class=\"card-body\"><strong>Nom :</strong><span>" + candidat.Nom + "</span><br /><strong>Prenom : </strong><span>" + candidat.Prenom + "</span><br /><strong>CNE : </strong><span>" + candidat.Cne + "</span><br /><strong>CIN : </strong><span>" + candidat.Cin + "</span><br /><strong>Password : </strong><span>" + candidat.Password + "</span><br /><strong>Filiere Choisie : </strong><span>" + candidat.Filiere + "</span><br /></div></div></div></div>";
+                string body = "<div class=\"container\"><div class=\"row\"><img src=\"https://lh3.googleusercontent.com/proxy/g_QnANEsQGJPGvR4haGBTi-kr2n32DU-eArBRKuJWtpgPCHQbz-RINzL6FzIc1TQs0a80Vfkaew6umTHHPQgHTE4l_g \" /></div><div class=\"row text-center\"><h2>Vous avez créer un compte dans la platforme d'acces au cycle d'ingénieur a ENSAS </h2></div><div class=\"alert alert-danger\"><strong><span style=\"color:'red'\">Vous trouverez votre mot de pass au dessouss</span></strong><br></div><div class=\"row\"><div class=\"card\" style=\"width: 18rem;\"><div class=\"card-body\"><strong>Nom :</strong><span>" + candidat.Nom + "</span><br /><strong>Prenom : </strong><span>" + candidat.Prenom + "</span><br /><strong>CNE : </strong><span>" + candidat.Cne + "</span><br /><strong>CIN : </strong><span>" + candidat.Cin + "</span><br /><strong>Password : </strong><span>" + candidat.Password + "</span><br /><strong>Filiere Choisie : </strong><span>" + candidat.Filiere.Nom + "</span><br /></div></div></div></div>";
 
 
 				var smtp = new SmtpClient

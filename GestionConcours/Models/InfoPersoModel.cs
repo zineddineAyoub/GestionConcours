@@ -19,6 +19,8 @@ namespace GestionConcours.Models
         [Required]
         public string Nationalite { get; set; }
         [Required]
+        public string Sexe { get; set; }
+        [Required]
         public string Gsm { get; set; }
         [Required]
         public DateTime DateNaissance { get; set; }
