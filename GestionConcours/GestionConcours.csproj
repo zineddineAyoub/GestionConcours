@@ -173,6 +173,7 @@
     <Compile Include="Models\GenererCandidats.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Models\InfoPersoModel.cs" />
+    <Compile Include="Models\ListEnregistrement.cs" />
     <Compile Include="Models\ListFinal.cs" />
     <Compile Include="Models\Note_Concour3.cs" />
     <Compile Include="Models\IndexModel.cs" />
@@ -2441,6 +2442,7 @@
     <Content Include="Views\Auth\Step1.cshtml" />
     <Content Include="Views\Auth\Step2.cshtml" />
     <Content Include="Views\Auth\Step3.cshtml" />
+    <Content Include="Views\Admin\EnregistrementList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

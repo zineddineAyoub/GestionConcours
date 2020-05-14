@@ -1042,6 +1042,19 @@ namespace GestionConcours.Controllers
 
         // ##################################### ENREGISTREMENT #############################################
 
+        public ActionResult EnregistrementList()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    return View();
+                }
+
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+
         public JsonResult Enregistrement3A(string cin)
         {
             var c = db.Candidats.Where(x => x.Cin == cin);
@@ -1072,6 +1085,35 @@ namespace GestionConcours.Controllers
             db.Configuration.ProxyCreationEnabled = false;
 
             return Json(c, JsonRequestBehavior.AllowGet);   //returns num_dossier
+        }
+
+        public JsonResult getEtudiantByNiveau(int niveau)
+        {
+            // var w = db.Candidats.Where(x => x.Niveau == niveau);
+
+
+
+            var x = (from c in db.Candidats
+
+                     join a in db.Filieres on c.ID equals a.ID
+
+                     where c.Niveau == niveau
+
+                     orderby c.Num_dossier
+
+                     select new ListEnregistrement
+                     {
+                         Nom = c.Nom,
+                         Prenom = c.Prenom,
+                         Filiere = a.Nom,
+                         Cin = c.Cin,
+                         Num_dossier = c.Num_dossier,
+
+
+                     }).ToList();
+
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(x, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult generateNumDossier(string cin) //generates num_dossier 

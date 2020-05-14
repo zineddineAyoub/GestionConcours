@@ -93,7 +93,7 @@ namespace GestionConcours.Services
                 //      var total = db.CouncourEcrits.Include("Candidat").Take(nombreTotal).OrderByDescending(c=>c.NoteGenerale).Where(c => c.NoteGenerale > conf.NoteMin);
 
                 // Take(NbrePlace)
-                var admis = db.CouncourEcrits.Include("Candidat").Where(c => c.NoteGenerale > conf.NoteMin).OrderByDescending(c => c.NoteGenerale).Take(conf.NbrPlace + 1);
+                var admis = db.CouncourEcrits.Include("Candidat").Where(c => c.NoteGenerale > conf.NoteMin).OrderByDescending(c => c.NoteGenerale).Take(conf.NbrPlace );
                 foreach (var a in admis)
                 {
                     a.Candidat.Admis = true;
