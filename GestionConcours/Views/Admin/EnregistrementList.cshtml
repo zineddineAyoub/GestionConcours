@@ -31,15 +31,7 @@
 
 
                     </form>
-                    <div class="form-group row pt-5">
-                        <div class="col-md-5">
-                            <button class="btn btn-danger py-2 btn-block" onclick="exportTableToExcel('tableSelection')">Exporter la table des candidats</button>
-                        </div>
-                        <div class="col-md-5 offset-2">
-                            <button id="btn_selec" onclick="clicked()" class="btn btn-primary btn-block">Afficher la liste</button>
-                        </div>
-
-                    </div>
+                  
                 </div>
             </div>
 
@@ -104,7 +96,7 @@
 
                             '<td>' + element.Filiere + '</td>' +
                             '<td>' + element.Cin + '</td>'+
-                            '<td id="enrg"> <input type="submit" value="Enregistrer" onclick="clicked(\'' + element.Cin + '\')" /> </td>' +
+                            '<td id="'+element.Cin+'"> <input type="submit" value="Enregistrer" onclick="clicked(\'' + element.Cin + '\')" /> </td>' +
                             '</tr>' ) 
                     }
 
@@ -131,14 +123,13 @@
     }
 
     function clicked(data) {
-
-        alert(data);
+        
         $.get("/Admin/generateNumDossier", { cin: data }, function (daata) {
 
         });
 
-        $('#enrg').empty();
-        $('#enrg').append('<p class="btn btn-success">Enregistré </p>')
+        $('#'+data+'').empty();
+        $('#' + data + '').append('<p class="btn btn-success">Enregistré </p>')
       
 
 

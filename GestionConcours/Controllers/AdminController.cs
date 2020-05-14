@@ -76,36 +76,7 @@ namespace GestionConcours.Controllers
             return RedirectToAction("Login", "AdminAuth");
         }
 
-        public ActionResult Recherche()
-        {
-            if (Session["admin"] != null)
-            {
-                if (Session["admin"].Equals(true))
-                {
-                    var x = search.generalSearch(3);
-                    return View(x);
-                }
-
-            }
-            return RedirectToAction("Login", "AdminAuth");
-        }
-
-
-
-        public ActionResult Recherche4()
-        {
-            if (Session["admin"] != null)
-            {
-                if (Session["admin"].Equals(true))
-                {
-                    var x = search.generalSearch(4);
-                    return View(x);
-                }
-
-            }
-            return RedirectToAction("Login", "AdminAuth");
-        }
-
+        
         // ##################################### CORRECTION #############################################
 
         public ActionResult INFO()
@@ -447,6 +418,38 @@ namespace GestionConcours.Controllers
             return RedirectToAction("index");
 
         }
+
+        //################################### RECHERCHE / CORBEILLE ########################
+
+        public ActionResult Recherche()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    var x = search.generalSearch(3);
+                    return View(x);
+                }
+
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+        
+
+        public ActionResult Recherche4()
+        {
+            if (Session["admin"] != null)
+            {
+                if (Session["admin"].Equals(true))
+                {
+                    var x = search.generalSearch(4);
+                    return View(x);
+                }
+
+            }
+            return RedirectToAction("Login", "AdminAuth");
+        }
+
 
 
         public ActionResult Corbeil()
@@ -1095,6 +1098,8 @@ namespace GestionConcours.Controllers
                      join a in db.Filieres on c.ID equals a.ID
 
                      where c.Niveau == niveau
+
+                     orderby c.Num_dossier
 
                      select new ListEnregistrement
                      {
