@@ -70,7 +70,11 @@ namespace GestionConcours.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            candidat = db.Candidats.Find(Session["cne"]);
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             Session["photo"] = candidat.Photo;
             Session["nom"] = candidat.Nom;
             Session["prenom"] = candidat.Prenom;
@@ -90,7 +94,11 @@ namespace GestionConcours.Controllers
             }
             GestionConcourDbContext db = new GestionConcourDbContext();
             
-           Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).SingleOrDefault();
+            Candidat c1 = db.Candidats.Where(p => p.Cne == Session["cne"].ToString()).SingleOrDefault();
+            if (c1.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             return View(c1);
         }
 
@@ -103,6 +111,10 @@ namespace GestionConcours.Controllers
             }
 
             Candidat candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             Session["photo"] = candidat.Photo;
             return View(candidat);
         }
@@ -134,6 +146,11 @@ namespace GestionConcours.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             var diplome = db.Diplomes.Find(Session["cne"]);
             var anne = db.AnneeUniversitaires.Find(Session["cne"]);
             DiplomeNote dipNote = new DiplomeNote()
@@ -164,6 +181,11 @@ namespace GestionConcours.Controllers
             if (Session["cne"] == null)
             {
                 return RedirectToAction("Login", "Auth");
+            }
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
             }
             return View();
         }
@@ -239,7 +261,11 @@ namespace GestionConcours.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             Baccalaureat bac = db.Baccalaureats.Find(Session["cne"]);
 
             List<SelectListItem> listTypeBac = new List<SelectListItem>
@@ -285,7 +311,11 @@ namespace GestionConcours.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            GestionConcourDbContext db = new GestionConcourDbContext();
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             string cne = Session["cne"].ToString();
             var x = db.Candidats.Where(c => c.Cne == cne).SingleOrDefault();
             var y = db.Filieres.Where(f => f.ID == x.ID).SingleOrDefault();
@@ -300,7 +330,7 @@ namespace GestionConcours.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            GestionConcourDbContext db = new GestionConcourDbContext();
+            
             string cne = Session["cne"].ToString();
             var x = db.Candidats.Where(c => c.Cne == cne).SingleOrDefault();
             x.ID = Convert.ToInt32(ID);
@@ -360,6 +390,11 @@ namespace GestionConcours.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
+            }
             var data = cl.Epreuves;
             return View(data);
         }
@@ -370,6 +405,11 @@ namespace GestionConcours.Controllers
             if (Session["cne"] == null && id==null)
             {
                 return RedirectToAction("Login", "Auth");
+            }
+            var candidat = db.Candidats.Find(Session["cne"]);
+            if (candidat.Verified == 0)
+            {
+                return RedirectToAction("Step1", "Auth");
             }
             // Pour supprimer le header de la page de la convocation
             if (click.Equals("imprimer"))
