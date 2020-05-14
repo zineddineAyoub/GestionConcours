@@ -141,6 +141,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2508,6 +2509,7 @@
     <Content Include="Views\Auth\Step1.cshtml" />
     <Content Include="Views\Auth\Step2.cshtml" />
     <Content Include="Views\Auth\Step3.cshtml" />
+    <Content Include="Views\Landing\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
