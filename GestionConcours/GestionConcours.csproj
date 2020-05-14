@@ -170,6 +170,7 @@
     <Compile Include="Models\Fichier.cs" />
     <Compile Include="Models\FichierModel.cs" />
     <Compile Include="Models\Filiere.cs" />
+    <Compile Include="Models\GenererCandidats.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Models\ListFinal.cs" />
     <Compile Include="Models\Note_Concour3.cs" />

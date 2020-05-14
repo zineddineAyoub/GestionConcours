@@ -26,6 +26,13 @@
                 filieres.Add(new Filiere() { Nom = "GPMC" });
 
                 context.Filieres.AddRange(filieres);
+            } else
+            {
+                if (!context.Candidats.Any()) { 
+                    
+                    GenererCandidats.Generer(context);
+                }
+
             }
             if (!context.Admins.Any())
             {
@@ -34,6 +41,7 @@
 
                 context.Admins.AddRange(admins);
             }
+                                         
 
             base.Seed(context);
         }
