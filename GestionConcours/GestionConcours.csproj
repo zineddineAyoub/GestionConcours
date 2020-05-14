@@ -171,6 +171,7 @@
     <Compile Include="Models\FichierModel.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
+    <Compile Include="Models\ListEnregistrement.cs" />
     <Compile Include="Models\ListFinal.cs" />
     <Compile Include="Models\Note_Concour3.cs" />
     <Compile Include="Models\IndexModel.cs" />
@@ -2436,6 +2437,7 @@
     <Content Include="Views\Home\FichierScanne.cshtml" />
     <Content Include="Views\Admin\FichierScanne3.cshtml" />
     <Content Include="Views\Admin\FichierScanne4.cshtml" />
+    <Content Include="Views\Admin\EnregistrementList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
