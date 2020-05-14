@@ -65,6 +65,20 @@
                                 </div>
 
                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.Sexe, "Sexe : ", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.Sexe,
+                                                new List<SelectListItem>
+                                                {
+                                                   new SelectListItem{Text="Femme", Value="Femme"},
+                                                   new SelectListItem{Text="Homme", Value="Homme"},
+                                                }
+                                                , "-- Choix de Sexe --", htmlAttributes: new { @class = "form-control " })
+                                        @Html.ValidationMessageFor(model => model.Sexe, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.DateNaissance, "Date de naissance :", htmlAttributes: new { @class = "control-label col-md-10 text-secondary font-weight-bold" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.DateNaissance, new { htmlAttributes = new { @class = "form-control datePicker" } })
@@ -132,7 +146,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10 d-flex justify-content-end">
-                                        <input type="submit" value=" Enregistrer " class="btn btn-default px-4 mt-2" />
+                                        <input type="submit" value=" Enregistrer " class="btn btn-primary px-4 mt-2" />
                                     </div>
                                 </div>
                             </div>

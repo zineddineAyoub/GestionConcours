@@ -145,77 +145,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003072152039_InitialCreate.cs" />
-    <Compile Include="Migrations\202003072152039_InitialCreate.designer.cs">
-      <DependentUpon>202003072152039_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003092200186_InitialCreate1.cs" />
-    <Compile Include="Migrations\202003092200186_InitialCreate1.designer.cs">
-      <DependentUpon>202003092200186_InitialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003092254476_InitialCreate2.cs" />
-    <Compile Include="Migrations\202003092254476_InitialCreate2.designer.cs">
-      <DependentUpon>202003092254476_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003092307096_InitialCreate3.cs" />
-    <Compile Include="Migrations\202003092307096_InitialCreate3.designer.cs">
-      <DependentUpon>202003092307096_InitialCreate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003102116396_InitialCreate4.cs" />
-    <Compile Include="Migrations\202003102116396_InitialCreate4.designer.cs">
-      <DependentUpon>202003102116396_InitialCreate4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003102122397_InitialCreate5.cs" />
-    <Compile Include="Migrations\202003102122397_InitialCreate5.designer.cs">
-      <DependentUpon>202003102122397_InitialCreate5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003111737280_InitialCreate6.cs" />
-    <Compile Include="Migrations\202003111737280_InitialCreate6.designer.cs">
-      <DependentUpon>202003111737280_InitialCreate6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003202229090_InitialCreate7.cs" />
-    <Compile Include="Migrations\202003202229090_InitialCreate7.designer.cs">
-      <DependentUpon>202003202229090_InitialCreate7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003251459262_addingBirthToCandidat.cs" />
-    <Compile Include="Migrations\202003251459262_addingBirthToCandidat.designer.cs">
-      <DependentUpon>202003251459262_addingBirthToCandidat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003251932284_addingCityToCandidat.cs" />
-    <Compile Include="Migrations\202003251932284_addingCityToCandidat.designer.cs">
-      <DependentUpon>202003251932284_addingCityToCandidat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003282134040_AddingMatriToCandidat.cs" />
-    <Compile Include="Migrations\202003282134040_AddingMatriToCandidat.designer.cs">
-      <DependentUpon>202003282134040_AddingMatriToCandidat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003291259123_changingCorbeil.cs" />
-    <Compile Include="Migrations\202003291259123_changingCorbeil.designer.cs">
-      <DependentUpon>202003291259123_changingCorbeil.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003291941421_ModifyOralConcour.cs" />
-    <Compile Include="Migrations\202003291941421_ModifyOralConcour.designer.cs">
-      <DependentUpon>202003291941421_ModifyOralConcour.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003311719083_Note_Preselection_Selection.cs" />
-    <Compile Include="Migrations\202003311719083_Note_Preselection_Selection.designer.cs">
-      <DependentUpon>202003311719083_Note_Preselection_Selection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004021832362_changing_councour_to_concour.cs" />
-    <Compile Include="Migrations\202004021832362_changing_councour_to_concour.designer.cs">
-      <DependentUpon>202004021832362_changing_councour_to_concour.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004041249239_add_column_listAtt_toCandidat.cs" />
-    <Compile Include="Migrations\202004041249239_add_column_listAtt_toCandidat.designer.cs">
-      <DependentUpon>202004041249239_add_column_listAtt_toCandidat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004042357595_convert_numDossier_toInt.cs" />
-    <Compile Include="Migrations\202004042357595_convert_numDossier_toInt.designer.cs">
-      <DependentUpon>202004042357595_convert_numDossier_toInt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005071730380_fichier.cs" />
-    <Compile Include="Migrations\202005071730380_fichier.designer.cs">
-      <DependentUpon>202005071730380_fichier.cs</DependentUpon>
+    <Compile Include="Migrations\202005111433433_InitialCreate.cs" />
+    <Compile Include="Migrations\202005111433433_InitialCreate.designer.cs">
+      <DependentUpon>202005111433433_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -239,8 +171,10 @@
     <Compile Include="Models\Fichier.cs" />
     <Compile Include="Models\FichierModel.cs" />
     <Compile Include="Models\Filiere.cs" />
+    <Compile Include="Models\GenererCandidats.cs" />
     <Compile Include="Models\GestionConcourDbContext.cs" />
     <Compile Include="Models\InfoPersoModel.cs" />
+    <Compile Include="Models\ListEnregistrement.cs" />
     <Compile Include="Models\ListFinal.cs" />
     <Compile Include="Models\Note_Concour3.cs" />
     <Compile Include="Models\IndexModel.cs" />
@@ -2510,6 +2444,7 @@
     <Content Include="Views\Auth\Step2.cshtml" />
     <Content Include="Views\Auth\Step3.cshtml" />
     <Content Include="Views\Landing\Index.cshtml" />
+    <Content Include="Views\Admin\EnregistrementList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2531,59 +2466,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003072152039_InitialCreate.resx">
-      <DependentUpon>202003072152039_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003092200186_InitialCreate1.resx">
-      <DependentUpon>202003092200186_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003092254476_InitialCreate2.resx">
-      <DependentUpon>202003092254476_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003092307096_InitialCreate3.resx">
-      <DependentUpon>202003092307096_InitialCreate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003102116396_InitialCreate4.resx">
-      <DependentUpon>202003102116396_InitialCreate4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003102122397_InitialCreate5.resx">
-      <DependentUpon>202003102122397_InitialCreate5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003111737280_InitialCreate6.resx">
-      <DependentUpon>202003111737280_InitialCreate6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003202229090_InitialCreate7.resx">
-      <DependentUpon>202003202229090_InitialCreate7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003251459262_addingBirthToCandidat.resx">
-      <DependentUpon>202003251459262_addingBirthToCandidat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003251932284_addingCityToCandidat.resx">
-      <DependentUpon>202003251932284_addingCityToCandidat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003282134040_AddingMatriToCandidat.resx">
-      <DependentUpon>202003282134040_AddingMatriToCandidat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003291259123_changingCorbeil.resx">
-      <DependentUpon>202003291259123_changingCorbeil.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003291941421_ModifyOralConcour.resx">
-      <DependentUpon>202003291941421_ModifyOralConcour.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311719083_Note_Preselection_Selection.resx">
-      <DependentUpon>202003311719083_Note_Preselection_Selection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004021832362_changing_councour_to_concour.resx">
-      <DependentUpon>202004021832362_changing_councour_to_concour.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004041249239_add_column_listAtt_toCandidat.resx">
-      <DependentUpon>202004041249239_add_column_listAtt_toCandidat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004042357595_convert_numDossier_toInt.resx">
-      <DependentUpon>202004042357595_convert_numDossier_toInt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005071730380_fichier.resx">
-      <DependentUpon>202005071730380_fichier.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005111433433_InitialCreate.resx">
+      <DependentUpon>202005111433433_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -134,6 +134,7 @@ namespace GestionConcours.Controllers
             originalCandiat.Adresse = candidat.Adresse;
             originalCandiat.Ville = candidat.Ville;
             originalCandiat.Email = candidat.Email;
+            originalCandiat.Sexe = candidat.Sexe;
             db.SaveChanges();
             TempData["message"] = "Profil Personel Modified succefully";
             return RedirectToAction("Index");
