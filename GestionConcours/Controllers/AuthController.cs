@@ -416,10 +416,10 @@ namespace GestionConcours.Controllers
 					message.IsBodyHtml = true;
 					smtp.Send(message);
 				}
-				TempData["message"] = "Vous trouverez votre mot de passe sur votre email !";
+                TempData["message"] = "Votre mot de passe est : '" + candidat.Password + "'." + " Vous le trouverez sur votre email aussi.";
 				return Redirect("Login");
 			}
 			return View(candidat);
-		}
+		} 
 	}
 }
