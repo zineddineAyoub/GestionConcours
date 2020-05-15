@@ -416,7 +416,7 @@ namespace GestionConcours.Controllers
 					message.IsBodyHtml = true;
 					smtp.Send(message);
 				}
-				TempData["message"] = "Verify Email To get Password";
+				TempData["message"] = "Vous trouverez votre mot de passe sur votre email !";
 				return Redirect("Login");
 			}
 			return View(candidat);
