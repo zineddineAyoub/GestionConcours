@@ -194,6 +194,7 @@ namespace GestionConcours.Controllers
         public ActionResult FichierScanne(HttpPostedFileBase[] files)
         {
             string cne = Session["cne"].ToString();
+            string globalName="";
             if (ModelState.IsValid)
             {   //iterating through multiple file collection   
                 foreach (HttpPostedFileBase file in files)
@@ -202,18 +203,28 @@ namespace GestionConcours.Controllers
                     if (file != null)
                     {
                         var InputFileName = Path.GetFileName(file.FileName);
+                        globalName += InputFileName + "|";
                         var ServerSavePath = Path.Combine(Server.MapPath("~/DiplomeScanné/") + InputFileName);
                         //Save file to server folder  
                         file.SaveAs(ServerSavePath);
                         //assigning file uploaded status to ViewBag for showing message to user.  
-                        ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
-                        Fichier fichier = new Fichier();
-                        fichier.Cne = cne;
-                        fichier.nom = InputFileName;
-                        db.Fichiers.Add(fichier);
-                        db.SaveChanges();
                     }
 
+                }
+                ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
+                var y = db.Fichiers.Where(f => f.Cne == cne).SingleOrDefault();
+                if (y == null)
+                {
+                    Fichier fichier = new Fichier();
+                    fichier.Cne = cne;
+                    fichier.nom = globalName;
+                    db.Fichiers.Add(fichier);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    y.nom = globalName;
+                    db.SaveChanges();
                 }
             }
             return View();

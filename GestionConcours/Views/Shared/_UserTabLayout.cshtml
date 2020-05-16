@@ -160,11 +160,11 @@
                 </div>
                 <div class="menu-sidebar2__content js-scrollbar2">
                     <div class="account2">
-                        <div class="image img-cir img-120">
-                            <img src="../Pictures/icon/avatar-big-01.jpg" alt="John Doe" />
+                        <div>
+                            <img src="../Pictures/userPic/@Session["photo"].ToString()" id="frontImage" style="border-radius: 50%; width:140px; height:140px;" />
                         </div>
-                        <h4 class="name">john doe</h4>
-                        <a href="#">Sign out</a>
+                        <h4 class="name">@Session["nom"] @Session["prenom"]</h4>
+                        <a href="/Home/Deconnexion">Sign out</a>
                     </div>
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
