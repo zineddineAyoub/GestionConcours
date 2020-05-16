@@ -53,7 +53,67 @@ namespace GestionConcours.Services
                          Filiere = db.Filieres.Where(f => f.ID == c.ID).FirstOrDefault().Nom,
                          Cin = c.Cin,
                          Cne = c.Cne,
-                         NonConforme = c.Conforme
+                         NonConforme = c.Conforme,
+                     }).ToList().Select(v =>
+                     {
+                         var fichier = db.Fichiers.Where(f => f.Cne == v.Cne).SingleOrDefault();
+                         var part1 = "";
+                         var part2 = "";
+                         var part3 = "";
+                         if (fichier != null)
+                         {
+                             if (fichier.nom.Split('|').Length == 1)
+                             {
+                                 part1 = fichier.nom.Split('|')[0];
+                             }
+                             else if (fichier.nom.Split('|').Length == 2)
+                             {
+                                 part1 = fichier.nom.Split('|')[0];
+                                 part2 = fichier.nom.Split('|')[1];
+                             }
+                             else
+                             {
+                                 part1 = fichier.nom.Split('|')[0];
+                                 part2 = fichier.nom.Split('|')[1];
+                                 part3 = fichier.nom.Split('|')[2];
+                             }
+                         }
+                         return new SearchModel3
+                         {
+                             Nom = v.Nom,
+                             Prenom = v.Prenom,
+                             Sexe = v.Sexe,
+                             NoteBac = v.NoteBac,
+                             Note1 = v.Note1,
+                             Note2 = v.Note2,
+                             Note3 = v.Note3,
+                             Note4 = v.Note4,
+                             Note5 = v.Note5,
+                             Note6 = v.Note6,
+                             Dossier = v.Dossier,
+                             Convoque = v.Convoque,
+                             Math = v.Math,
+                             Specialite = v.Specialite,
+                             Matricule = v.Matricule,
+                             Email = v.Email,
+                             Lieu_Naiss = v.Lieu_Naiss,
+                             Nationalite = v.Nationalite,
+                             Adress = v.Adress,
+                             Ville = v.Ville,
+                             Type_dip = v.Type_dip,
+                             note_Diplome = v.note_Diplome,
+                             Etablissement = v.Etablissement,
+                             Ville_dip = v.Ville_dip,
+                             Date_inscription = v.Date_inscription,
+                             Admis = v.Admis,
+                             Filiere = v.Filiere,
+                             Cin = v.Cin,
+                             Cne = v.Cne,
+                             NonConforme = v.NonConforme,
+                             Diplome1 = part1,
+                             Diplome2 = part2,
+                             Diplome3 = part3
+                         };
                      }).ToList();
             return x;
         }
@@ -170,7 +230,67 @@ namespace GestionConcours.Services
             {
                 x = x.Where(s => s.Type_dip == Diplome);
             }
-            return x.ToList();
+            return x.ToList().Select(v =>
+            {
+                var fichier = db.Fichiers.Where(f => f.Cne == v.Cne).SingleOrDefault();
+                var part1 = "";
+                var part2 = "";
+                var part3 = "";
+                if (fichier != null)
+                {
+                    if (fichier.nom.Split('|').Length == 1)
+                    {
+                        part1 = fichier.nom.Split('|')[0];
+                    }
+                    else if (fichier.nom.Split('|').Length == 2)
+                    {
+                        part1 = fichier.nom.Split('|')[0];
+                        part2 = fichier.nom.Split('|')[1];
+                    }
+                    else
+                    {
+                        part1 = fichier.nom.Split('|')[0];
+                        part2 = fichier.nom.Split('|')[1];
+                        part3 = fichier.nom.Split('|')[2];
+                    }
+                }
+                return new SearchModel3
+                {
+                    Nom = v.Nom,
+                    Prenom = v.Prenom,
+                    Sexe = v.Sexe,
+                    NoteBac = v.NoteBac,
+                    Note1 = v.Note1,
+                    Note2 = v.Note2,
+                    Note3 = v.Note3,
+                    Note4 = v.Note4,
+                    Note5 = v.Note5,
+                    Note6 = v.Note6,
+                    Dossier = v.Dossier,
+                    Convoque = v.Convoque,
+                    Math = v.Math,
+                    Specialite = v.Specialite,
+                    Matricule = v.Matricule,
+                    Email = v.Email,
+                    Lieu_Naiss = v.Lieu_Naiss,
+                    Nationalite = v.Nationalite,
+                    Adress = v.Adress,
+                    Ville = v.Ville,
+                    Type_dip = v.Type_dip,
+                    note_Diplome = v.note_Diplome,
+                    Etablissement = v.Etablissement,
+                    Ville_dip = v.Ville_dip,
+                    Date_inscription = v.Date_inscription,
+                    Admis = v.Admis,
+                    Filiere = v.Filiere,
+                    Cin = v.Cin,
+                    Cne = v.Cne,
+                    NonConforme = v.NonConforme,
+                    Diplome1 = part1,
+                    Diplome2 = part2,
+                    Diplome3 = part3
+                };
+            }).ToList();
         }
     }
 }

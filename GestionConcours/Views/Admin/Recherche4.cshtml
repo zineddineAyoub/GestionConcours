@@ -70,6 +70,9 @@
             <th class="text-center">Sexe</th>
             <th class="text-center">NoteBac</th>
             <th class="text-center">TypeDiplôme </th>
+            <th class="text-center">Diplome 1</th>
+            <th class="text-center">Diplome 2</th>
+            <th class="text-center">Diplome 3</th>
             <th class="text-center">Note1</th>
             <th class="text-center">Note2</th>
             <th class="text-center">Note3</th>
@@ -83,24 +86,27 @@
         <tbody id="tbody">
             @foreach (var x in Model)
             {
-                <tr>
-                    <td class="text-center"><button class="btn btn-danger deleteBtn" id="@x.Cne">Delete</button></td>
-                    <td class="text-center"><button class="btn btn-info conformBtn" id="@x.Cne">Conforme</button></td>
-                    <td class="text-center">@x.Nom</td>
-                    <td class="text-center">@x.Prenom</td>
-                    <td class="text-center">@x.Sexe</td>
-                    <td class="text-center">@x.NoteBac</td>
-                    <td class="text-center">@x.Type_dip</td>
-                    <td class="text-center">@x.Note1</td>
-                    <td class="text-center">@x.Note2</td>
-                    <td class="text-center">@x.Note3</td>
-                    <td class="text-center">@x.Note4</td>
-                    <td class="text-center">@x.Dossier</td>
-                    <td class="text-center">@x.Convoque</td>
-                    <td class="text-center">@x.Filiere</td>
-                    <td class="text-center">@x.Admis</td>
-                    <td class="text-center">@x.NonConforme</td>
-                </tr>
+            <tr>
+                <td class="text-center"><button class="btn btn-danger deleteBtn" id="@x.Cne">Delete</button></td>
+                <td class="text-center"><button class="btn btn-info conformBtn" id="@x.Cne">Conforme</button></td>
+                <td class="text-center">@x.Nom</td>
+                <td class="text-center">@x.Prenom</td>
+                <td class="text-center">@x.Sexe</td>
+                <td class="text-center">@x.NoteBac</td>
+                <td class="text-center">@x.Type_dip</td>
+                <td class="text-center"><a href="../../DiplomeScanné/@x.Diplome1" download>@x.Diplome1</a></td>
+                <td class="text-center"><a href="../../DiplomeScanné/@x.Diplome2" download>@x.Diplome2</a></td>
+                <td class="text-center"><a href="../../DiplomeScanné/@x.Diplome3" download>@x.Diplome3</a></td>
+                <td class="text-center">@x.Note1</td>
+                <td class="text-center">@x.Note2</td>
+                <td class="text-center">@x.Note3</td>
+                <td class="text-center">@x.Note4</td>
+                <td class="text-center">@x.Dossier</td>
+                <td class="text-center">@x.Convoque</td>
+                <td class="text-center">@x.Filiere</td>
+                <td class="text-center">@x.Admis</td>
+                <td class="text-center">@x.NonConforme</td>
+            </tr>
             }
         </tbody>
     </table>
@@ -116,7 +122,7 @@
             $.get("/Admin/SearchCriteria", { Criteria: $("#criteria").val(), Key: $("#key").val(), Diplome: $("#diplome").val(), Filiere: $("#filiere").val(), Niveau: 4 }, function (data) {
                 $("#tbody").empty();
                 $.each(data, function (index, row) {
-                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Type_dip + "</td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme + "</td></tr>");
+                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Type_dip + "</td><td><a href=\"../../DiplomeScanné/" + row.Diplome1 + "\" download>" + row.Diplome1 + "</a></td><td><a href=\"../../DiplomeScanné/" + row.Diplome2 + "\" download>" + row.Diplome2 + "</a></td><td><a href=\"../../DiplomeScanné/" + row.Diplome3 + "\" download>" + row.Diplome3 + "</a></td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme + "</td></tr>");
                 });
             });
         });
@@ -126,7 +132,7 @@
             $.get("/Admin/deleteStudent", { cne: id, Niveau: 4 }, function (data) {
                 $("#tbody").empty();
                 $.each(data, function (index, row) {
-                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Type_dip + "</td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme + "</td></tr>");
+                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Type_dip + "</td><td><a href=\"../../DiplomeScanné/" + row.Diplome1 + "\" download>" + row.Diplome1 + "</a></td><td><a href=\"../../DiplomeScanné/" + row.Diplome2 + "\" download>" + row.Diplome2 + "</a></td><td><a href=\"../../DiplomeScanné/" + row.Diplome3 + "\" download>" + row.Diplome3 + "</a></td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme + "</td></tr>");
                 });
             });
         });
@@ -137,7 +143,7 @@
             $.get("/Admin/conformeStudent", { cne: id, Niveau: 4 }, function (data) {
                 $("#tbody").empty();
                 $.each(data, function (index, row) {
-                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Type_dip + "</td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme + "</td></tr>");
+                    $("#tbody").append("<tr><td><button class='btn btn-danger deleteBtn' id=" + row.Cne + ">Delete</button></td><td><button class='btn btn-info conformBtn' id=" + row.Cne + ">Conforme</button></td><td>" + row.Nom + "</td><td>" + row.Prenom + "</td><td>" + row.Sexe + "</td><td>" + row.NoteBac + "</td><td>" + row.Type_dip + "</td><td><a href=\"../../DiplomeScanné/" + row.Diplome1 + "\" download>" + row.Diplome1 + "</a></td><td><a href=\"../../DiplomeScanné/" + row.Diplome2 + "\" download>" + row.Diplome2 + "</a></td><td><a href=\"../../DiplomeScanné/" + row.Diplome3 + "\" download>" + row.Diplome3 + "</a></td><td>" + row.Note1 + "</td><td>" + row.Note2 + "</td><td>" + row.Note3 + "</td><td>" + row.Note4 + "</td><td>" + row.Dossier + "</td><td>" + row.Convoque + "</td><td>" + row.Filiere + "</td><td>" + row.Admis + "</td><td>" + row.NonConforme + "</td></tr>");
                 });
             });
         });
